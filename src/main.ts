@@ -53,8 +53,11 @@ const onNotifyUser = (_info: IUpdateInfo) => {
 };
 
 if (acquiredLock) {
-  // start auto update logic
-  updateElectronApp({ onNotifyUser });
+  // Auto-update disabled until Zarzour-owned update feed exists (class E).
+  // Do not call updateElectronApp() — it would target the upstream GitHub publisher.
+  if (process.env.ZARZOUR_ENABLE_UPDATES === "1") {
+    updateElectronApp({ onNotifyUser });
+  }
 
   // create and configure the app when electron is ready
   app.on("ready", () => {
@@ -75,7 +78,7 @@ if (acquiredLock) {
 
     // Windows specific fix for notifications
     if (process.platform === "win32") {
-      app.setAppUserModelId("chat.stoat.notifications");
+      app.setAppUserModelId("cc.zarzour.notifications");
     }
   });
 

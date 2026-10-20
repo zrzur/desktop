@@ -1,2 +1,2 @@
-export const sinkName = "stoat-virtual-sink";
-export const sourceName = "stoat-virtual-source";
+export const sinkName = "zarzour-virtual-sink";
+export const sourceName = "zarzour-virtual-source";

@@ -16,14 +16,14 @@ export async function initDiscordRpc() {
 
     rpc.on("ready", () =>
       rpc.setActivity({
-        state: "stoat.chat",
+        state: "zarzour.cc",
         details: "Chatting with others",
         largeImageKey: "qr",
-        largeImageText: "Join Stoat!",
+        largeImageText: "Join Zarzour!",
         buttons: [
           {
-            label: "Join Stoat",
-            url: "https://stoat.chat/",
+            label: "Join Zarzour",
+            url: "https://zarzour.cc/",
           },
         ],
       }),
@@ -31,6 +31,7 @@ export async function initDiscordRpc() {
 
     rpc.on("disconnected", reconnect);
 
+    // Discord application ID for rich presence — replace when Zarzour Discord app exists (class E).
     rpc.login({ clientId: "872068124005007420" });
   } catch (err) {
     reconnect();

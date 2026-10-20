@@ -1,3 +1,8 @@
+﻿# Zarzour Desktop (Zarzour 26)
+
+This tree is the **Zarzour** fork of Stoat `for-desktop` (AGPL). Product name, tray, installers, and default load URL are Zarzour / localhost. Auto-update against upstream GitHub is disabled until a Zarzour update feed exists.
+
+---
 <div align="center">
 <h1>
   Stoat for Desktop

@@ -19,12 +19,19 @@ import { updateTrayMenu } from "./tray";
 // global reference to main window
 export let mainWindow: BrowserWindow;
 
-// currently in-use build
-export const BUILD_URL = new URL(
-  app.commandLine.hasSwitch("force-server")
-    ? app.commandLine.getSwitchValue("force-server")
-    : /*MAIN_WINDOW_VITE_DEV_SERVER_URL ??*/ "https://stoat.chat/app",
-);
+// currently in-use build — fail closed: never default to Stoat/Revolt production
+function resolveBuildUrl(): string {
+  if (app.commandLine.hasSwitch("force-server")) {
+    return app.commandLine.getSwitchValue("force-server");
+  }
+  if (process.env.ZARZOUR_DESKTOP_URL) {
+    return process.env.ZARZOUR_DESKTOP_URL;
+  }
+  // Local web client (Vite) or packaged loopback — no upstream fallback.
+  return "http://127.0.0.1:5173";
+}
+
+export const BUILD_URL = new URL(resolveBuildUrl());
 
 // internal window state
 let shouldQuit = false;
