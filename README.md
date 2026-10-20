@@ -10,14 +10,14 @@ Electron application for Windows, macOS, and Linux — **Zarzour 26**.
 
 ## Purpose
 
-Zarzour Desktop wraps the Zarzour web client in an Electron shell with native windowing, tray behavior, and desktop packaging. Product name, icons, Flatpak ID, and default load URL are Zarzour / localhost.
+Zarzour Desktop is the desktop client for Zarzour. It runs the web client inside an Electron shell (window, tray, and packaging).
 
 ## Architecture
 
-- **Shell:** Electron + Electron Forge
-- **UI content:** loads a local or remote Zarzour Web build
-- **Identity:** `cc.zarzour.ZarzourDesktop` (desktop entry / Flatpak / metainfo)
-- **Tooling:** mise, pnpm
+- Electron + Electron Forge
+- Loads a local or remote Zarzour Web build
+- App ID: `cc.zarzour.ZarzourDesktop`
+- Tooling: mise, pnpm
 
 ## Supported platforms
 
@@ -29,9 +29,7 @@ Zarzour Desktop wraps the Zarzour web client in an Electron shell with native wi
 
 ## Installation
 
-Public download pages and signed installers are **pending** until the owner publishes them. Build from source for now.
-
-Do not use upstream Stoat download sites for Zarzour packaging.
+Signed public downloads are not published yet. Build from this repository for now.
 
 ## Development
 
@@ -47,14 +45,13 @@ mise build        # bundle
 mise make         # distributables
 ```
 
-### Connect to a local web client
+### Local web client
 
 ```bash
-# point at a Vite dev server (see Zarzour Web README)
 mise exec -- pnpm start -- --force-server http://localhost:5173
 ```
 
-### Flatpak helpers
+### Flatpak
 
 ```bash
 mise exec -- pnpm install:flatpak
@@ -71,36 +68,24 @@ pnpm run:nix
 pnpm run:nix --force-server=http://localhost:5173
 ```
 
-## Local backend integration
+## Local stack
 
-1. Run [Zarzour Backend](https://github.com/zrzur/backend) (API on `14702` in the default local layout).
-2. Run [Zarzour Web](https://github.com/zrzur/web) with fail-closed `VITE_*` pointing at that API.
-3. Launch Desktop with `--force-server` against the web origin, or load a packaged web build configured for the same endpoints.
-
-Never default the desktop shell to `stoat.chat` / `revolt.chat`.
-
-## Packaging and identity
-
-| Item | Value |
-| --- | --- |
-| Product name | Zarzour |
-| Flatpak / desktop ID | `cc.zarzour.ZarzourDesktop` |
-| Brand icons | Vendored under `assets/` |
+1. Start the [backend](https://github.com/zrzur/backend) (API on `14702` in the default local layout).
+2. Start [web](https://github.com/zrzur/web) against that API.
+3. Launch Desktop with `--force-server` pointing at the web origin.
 
 ## Updates
 
-Auto-update against upstream GitHub feeds is **disabled** until a Zarzour-owned update channel exists.
+Auto-update is disabled until a Zarzour update channel exists.
 
 ## Troubleshooting
 
-- **Blank window:** confirm the web server URL (`--force-server`) is reachable.
-- **Wrong branding:** ensure `assets/` contains Zarzour icons, not upstream Stoat art.
-- **Flatpak ID mismatch:** installers and metainfo must use `cc.zarzour.ZarzourDesktop`.
-- **Build tooling:** use mise-managed Node/pnpm versions from this repository.
+- Blank window: check that the URL passed to `--force-server` is reachable.
+- Use the mise-managed Node/pnpm versions from this repository.
 
 ## Contributing
 
-After publication under [github.com/zrzur](https://github.com/zrzur), open Issues and PRs on this repository. Preserve AGPL attribution; keep packaging and identity changes reviewable.
+Issues and pull requests on this repository after it is published under [github.com/zrzur](https://github.com/zrzur). Keep changes focused and preserve AGPL attribution.
 
 ## License
 
