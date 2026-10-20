@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Zarzour
+Comment=Zarzour 26 — community chat desktop client
+Exec=zarzour-desktop
+Terminal=false
+Type=Application
+Icon=cc.zarzour.ZarzourDesktop
+Categories=Network;InstantMessaging
+StartupWMClass=zarzour-desktop
+X-Desktop-File-Install-Version=0.26
+X-Flatpak=cc.zarzour.ZarzourDesktop

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>cc.zarzour.ZarzourDesktop</id>
+  <launchable type="desktop-id">cc.zarzour.ZarzourDesktop.desktop</launchable>
+  <name>Zarzour</name>
+  <developer id="cc.zarzour">
+    <name>Zarzour</name>
+  </developer>
+  <summary>Zarzour 26 — community chat desktop client</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>AGPL-3.0</project_license>
+  <icon type="local" height="256" width="256">assets/desktop/icon.png</icon>
+  <description>
+    <p>Zarzour is a community chat platform (fork of Stoat/AGPL). Send messages,
+      share images, mention users, and join voice channels from a native desktop
+      application.</p>
+  </description>
+  <url type="homepage">https://zarzour.cc</url>
+  <content_rating type="oars-1.1">
+    <content_attribute id="social-chat">intense</content_attribute>
+    <content_attribute id="social-info">intense</content_attribute>
+    <content_attribute id="social-audio">intense</content_attribute>
+    <content_attribute id="social-contacts">intense</content_attribute>
+  </content_rating>
+</component>
