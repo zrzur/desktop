@@ -1,8 +1,5 @@
 ﻿<div align="center">
 
-<img src="assets/branding/bird_white.svg" alt="Zarzour" width="96" class="gh-dark-mode-only" />
-<img src="assets/branding/bird_black.svg" alt="Zarzour" width="96" class="gh-light-mode-only" />
-
 # Zarzour Desktop
 
 Electron application for Windows, macOS, and Linux — **Zarzour 26**.
@@ -89,7 +86,6 @@ Never default the desktop shell to `stoat.chat` / `revolt.chat`.
 | Product name | Zarzour |
 | Flatpak / desktop ID | `cc.zarzour.ZarzourDesktop` |
 | Brand icons | Vendored under `assets/` |
-| README bird mark | [`assets/branding/`](assets/branding/) (standalone SVG, no circle) |
 
 ## Updates
 
