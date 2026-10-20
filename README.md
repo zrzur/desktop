@@ -1,36 +1,26 @@
-﻿# Zarzour Desktop (Zarzour 26)
+﻿<div align="center">
 
-This tree is the **Zarzour** fork of Stoat `for-desktop` (AGPL). Product name, tray, installers, and default load URL are Zarzour / localhost. Auto-update against upstream GitHub is disabled until a Zarzour update feed exists.
+<img src="../logo/03_APP_ICONS/black-circle/zarzour_black-circle_128.png" alt="Zarzour" width="96" height="96" />
 
----
-<div align="center">
-<h1>
-  Stoat for Desktop
-  
-  [![Stars](https://img.shields.io/github/stars/stoatchat/for-desktop?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-desktop/stargazers)
-  [![Forks](https://img.shields.io/github/forks/stoatchat/for-desktop?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-desktop/network/members)
-  [![Pull Requests](https://img.shields.io/github/issues-pr/stoatchat/for-desktop?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-desktop/pulls)
-  [![Issues](https://img.shields.io/github/issues/stoatchat/for-desktop?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-desktop/issues)
-  [![Contributors](https://img.shields.io/github/contributors/stoatchat/for-desktop?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-desktop/graphs/contributors)
-  [![License](https://img.shields.io/github/license/stoatchat/for-desktop?style=flat-square&logoColor=white)](https://github.com/stoatchat/for-desktop/blob/main/LICENSE)
-</h1>
-Application for Windows, macOS, and Linux.
+# Zarzour Desktop
+
+Electron application for Windows, macOS, and Linux — **Zarzour 26**.
+
 </div>
+
 <br/>
+
+This tree is the Zarzour fork of Stoat `for-desktop` (AGPL). Product name, tray, installers, Flatpak IDs (`cc.zarzour.ZarzourDesktop`), and default load URL are Zarzour / localhost. Auto-update against upstream GitHub is **disabled** until a Zarzour update feed exists.
 
 ## Installation
 
-<a href="https://repology.org/project/stoat-desktop/versions">
-    <img src="https://repology.org/badge/vertical-allrepos/stoat-desktop.svg" alt="Packaging status" align="right">
-</a>
+Public download pages and signed installers for Zarzour are **pending** until the owner publishes them. Until then, build from this tree (see Development Guide).
 
-- All downloads and instructions for Stoat can be found on our [Website](https://stoat.chat/download).
+Do not use upstream Stoat download links (`stoat.chat/download`) for Zarzour packaging.
 
 ## Development Guide
 
-_Contribution guidelines for Desktop app TBA!_
-
-<!-- Before contributing, make yourself familiar with [our contribution guidelines](https://developers.revolt.chat/contrib.html), the [code style guidelines](./GUIDELINES.md), and the [technical documentation for this project](https://revoltchat.github.io/frontend/). -->
+_Contribution guidelines for the desktop app: follow [`../CONTRIBUTING.md`](../CONTRIBUTING.md)._
 
 Before getting started, you'll want to install:
 
@@ -40,9 +30,8 @@ Before getting started, you'll want to install:
 Then proceed to setup:
 
 ```bash
-# clone the repository
-git clone --recursive https://github.com/stoatchat/for-desktop stoat-for-desktop
-cd stoat-for-desktop
+# From the Zarzour workspace root:
+cd desktop
 
 # Install tools from mise
 mise install
@@ -80,13 +69,34 @@ pnpm run:nix --force-server=http://localhost:5173
 # Electron Forge where system Electron is
 ```
 
-### Pulling in Stoat's assets
+### Brand assets
 
-If you want to pull in Stoat brand assets after pulling, run the following:
+Zarzour brand icons are vendored under `assets/` (and workspace `../logo/`). The upstream Stoat assets submodule is not used.
+
+If you need to refresh icons from the workspace brand kit:
 
 ```bash
-# update the assets
-mise assets
+# copy approved icons into desktop/assets as required by forge.config.ts
+# (do not pull upstream Stoat marketing assets)
 ```
 
-Currently, this is required to build, any forks are expected to provide their own assets.
+## Application identity
+
+| Item | Value |
+|---|---|
+| Product name | Zarzour |
+| Flatpak / desktop ID | `cc.zarzour.ZarzourDesktop` |
+| Default load URL | localhost / configured Zarzour web host (fail closed) |
+| Auto-update | Disabled pending Zarzour update feed |
+
+## License
+
+AGPL — see [LICENSE](./LICENSE).
+
+## Upstream Project & Attribution
+
+Zarzour Desktop is independently developed from the open-source Stoat desktop client. Stoat does not sponsor or endorse Zarzour.
+
+- Upstream repository: https://github.com/stoatchat/for-desktop
+- License: AGPL (see [LICENSE](./LICENSE))
+- Pinned release: see `docs/UPSTREAM_LOCK.md` in the workspace root
