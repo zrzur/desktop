@@ -1,6 +1,7 @@
 ﻿<div align="center">
 
-<img src="../logo/03_APP_ICONS/black-circle/zarzour_black-circle_128.png" alt="Zarzour" width="96" height="96" />
+<img src="assets/branding/bird_white.svg" alt="Zarzour" width="96" class="gh-dark-mode-only" />
+<img src="assets/branding/bird_black.svg" alt="Zarzour" width="96" class="gh-light-mode-only" />
 
 # Zarzour Desktop
 
@@ -10,93 +11,109 @@ Electron application for Windows, macOS, and Linux — **Zarzour 26**.
 
 <br/>
 
-This tree is the Zarzour fork of Stoat `for-desktop` (AGPL). Product name, tray, installers, Flatpak IDs (`cc.zarzour.ZarzourDesktop`), and default load URL are Zarzour / localhost. Auto-update against upstream GitHub is **disabled** until a Zarzour update feed exists.
+## Purpose
+
+Zarzour Desktop wraps the Zarzour web client in an Electron shell with native windowing, tray behavior, and desktop packaging. Product name, icons, Flatpak ID, and default load URL are Zarzour / localhost.
+
+## Architecture
+
+- **Shell:** Electron + Electron Forge
+- **UI content:** loads a local or remote Zarzour Web build
+- **Identity:** `cc.zarzour.ZarzourDesktop` (desktop entry / Flatpak / metainfo)
+- **Tooling:** mise, pnpm
+
+## Supported platforms
+
+| Platform | Notes |
+| --- | --- |
+| Windows | Forge distributables |
+| macOS | Forge distributables |
+| Linux | Forge packages; Flatpak helpers available |
 
 ## Installation
 
-Public download pages and signed installers for Zarzour are **pending** until the owner publishes them. Until then, build from this tree (see Development Guide).
+Public download pages and signed installers are **pending** until the owner publishes them. Build from source for now.
 
-Do not use upstream Stoat download links (`stoat.chat/download`) for Zarzour packaging.
+Do not use upstream Stoat download sites for Zarzour packaging.
 
-## Development Guide
-
-_Contribution guidelines for the desktop app: follow [`../CONTRIBUTING.md`](../CONTRIBUTING.md)._
-
-Before getting started, you'll want to install:
-
-- [Git](https://git-scm.com/install/)
-- [mise-en-place](https://mise.jdx.dev/getting-started.html)
-
-Then proceed to setup:
+## Development
 
 ```bash
-# From the Zarzour workspace root:
+git clone https://github.com/zrzur/desktop.git
 cd desktop
 
-# Install tools from mise
 mise install
-
-# install all packages
 mise install:frozen
 
-# start the application
-mise dev
-# ... or build the bundle
-mise build
-# ... or build all distributables
-mise make
+mise dev          # run
+mise build        # bundle
+mise make         # distributables
 ```
 
-Various useful commands for development testing:
+### Connect to a local web client
 
 ```bash
-# connect to the development server
+# point at a Vite dev server (see Zarzour Web README)
 mise exec -- pnpm start -- --force-server http://localhost:5173
+```
 
-# test the flatpak (after `make`)
+### Flatpak helpers
+
+```bash
 mise exec -- pnpm install:flatpak
 mise exec -- pnpm run:flatpak
-# ... also connect to dev server like so:
 mise exec -- pnpm run:flatpak --force-server http://localhost:5173
+```
 
-# Nix-specific instructions for testing
+### Nix
+
+```bash
 nix develop
 pnpm package
 pnpm run:nix
-# ... as before:
 pnpm run:nix --force-server=http://localhost:5173
-# a better solution would be telling
-# Electron Forge where system Electron is
 ```
 
-### Brand assets
+## Local backend integration
 
-Zarzour brand icons are vendored under `assets/` (and workspace `../logo/`). The upstream Stoat assets submodule is not used.
+1. Run [Zarzour Backend](https://github.com/zrzur/backend) (API on `14702` in the default local layout).
+2. Run [Zarzour Web](https://github.com/zrzur/web) with fail-closed `VITE_*` pointing at that API.
+3. Launch Desktop with `--force-server` against the web origin, or load a packaged web build configured for the same endpoints.
 
-If you need to refresh icons from the workspace brand kit:
+Never default the desktop shell to `stoat.chat` / `revolt.chat`.
 
-```bash
-# copy approved icons into desktop/assets as required by forge.config.ts
-# (do not pull upstream Stoat marketing assets)
-```
-
-## Application identity
+## Packaging and identity
 
 | Item | Value |
-|---|---|
+| --- | --- |
 | Product name | Zarzour |
 | Flatpak / desktop ID | `cc.zarzour.ZarzourDesktop` |
-| Default load URL | localhost / configured Zarzour web host (fail closed) |
-| Auto-update | Disabled pending Zarzour update feed |
+| Brand icons | Vendored under `assets/` |
+| README bird mark | [`assets/branding/`](assets/branding/) (standalone SVG, no circle) |
+
+## Updates
+
+Auto-update against upstream GitHub feeds is **disabled** until a Zarzour-owned update channel exists.
+
+## Troubleshooting
+
+- **Blank window:** confirm the web server URL (`--force-server`) is reachable.
+- **Wrong branding:** ensure `assets/` contains Zarzour icons, not upstream Stoat art.
+- **Flatpak ID mismatch:** installers and metainfo must use `cc.zarzour.ZarzourDesktop`.
+- **Build tooling:** use mise-managed Node/pnpm versions from this repository.
+
+## Contributing
+
+After publication under [github.com/zrzur](https://github.com/zrzur), open Issues and PRs on this repository. Preserve AGPL attribution; keep packaging and identity changes reviewable.
 
 ## License
 
-AGPL — see [LICENSE](./LICENSE).
+[AGPL](./LICENSE).
 
 ## Upstream Project & Attribution
 
 Zarzour Desktop is independently developed from the open-source Stoat desktop client. Stoat does not sponsor or endorse Zarzour.
 
-- Upstream repository: https://github.com/stoatchat/for-desktop
+- Upstream: https://github.com/stoatchat/for-desktop
+- Basis tag: `v1.5.4`
 - License: AGPL (see [LICENSE](./LICENSE))
-- Pinned release: see `docs/UPSTREAM_LOCK.md` in the workspace root
