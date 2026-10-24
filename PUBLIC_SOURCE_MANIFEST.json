@@ -28,8 +28,8 @@
     },
     {
       "path": ".github/workflows/source-check.yml",
-      "sha256": "c58fb9941e6c5e2b6c32955a17ab5238a7c9f11cd656a711381620352403898b",
-      "bytes": 939,
+      "sha256": "f52da40fd030e69380cb5b9ebe723a563c58d5a39b79b2b959627731c306d59f",
+      "bytes": 1261,
       "category": "reviewed-build-and-ci"
     },
     {
@@ -154,8 +154,8 @@
     },
     {
       "path": "ZARZOUR_RELEASE.md",
-      "sha256": "f1622e7a6c8be9485c6329a295d6b5422fd35a172d6f6a4e2389f9b2473a5c0f",
-      "bytes": 1444,
+      "sha256": "0f0d06e2386d42a74d41396d77702674ece876ad8bc402f31d3162fb24cff946",
+      "bytes": 2415,
       "category": "public-documentation"
     },
     {
@@ -256,8 +256,8 @@
     },
     {
       "path": "forge.config.ts",
-      "sha256": "c5300ecd76a8dd12e09dee229a9880a992e79f21d4967065258d3df2d9c6d83a",
-      "bytes": 4982,
+      "sha256": "37116d184dece0561035df74fc6e64baa2ba5c328d3ff1c890ea29dae70e6230",
+      "bytes": 5020,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -327,6 +327,12 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/native/applicationUrl.ts",
+      "sha256": "0aa3ba4d439439aef6d673ccae8146b254530d79216511f4180fee8da5972422",
+      "bytes": 1476,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/native/autoLaunch.ts",
       "sha256": "36ebdd6cc98ca87a9af7861bce57ddf4a944ef8dccd6de99cb4a67236a05b0cd",
       "bytes": 684,
@@ -364,8 +370,8 @@
     },
     {
       "path": "src/native/window.ts",
-      "sha256": "47def2a8bd639074a188d8a2dfdb7b267858b01c8db94ee566b9660da36fe211",
-      "bytes": 7929,
+      "sha256": "0bc695c823f7d2a8dd12ffda552fce6effb9eafa1f167005c9eb8bf46a70ece5",
+      "bytes": 7919,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -399,6 +405,12 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "test/applicationUrl.test.mjs",
+      "sha256": "fe4ec1ee97aa0082174fcd9e4dd359eadb86de3b60b34a72886cba214a650bec",
+      "bytes": 1972,
+      "category": "synthetic-test-source-or-fixture"
+    },
+    {
       "path": "tsconfig.json",
       "sha256": "ce71a53bdc775658587ee40d15f2dfe985f3aaaac6956ea6fe6fde93c0080a95",
       "bytes": 312,
@@ -406,8 +418,8 @@
     },
     {
       "path": "vite.main.config.ts",
-      "sha256": "154029cca80e45e8f2c6f0c219f9cd62e25244656328310bb055b18f37da1209",
-      "bytes": 180,
+      "sha256": "7b8cf42b9cb294ab95b47fda8ad7d1e2373b1765e60ef8e586c12abe0cae7af3",
+      "bytes": 739,
       "category": "product-source-or-build-manifest"
     },
     {

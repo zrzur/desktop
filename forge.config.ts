@@ -31,7 +31,8 @@ const makers: ForgeConfig["makers"] = [
     description: STRINGS.description,
     exe: `${STRINGS.execName}.exe`,
     setupExe: `${STRINGS.execName}-setup.exe`,
-    copyright: "Copyright (C) Zarzour; upstream Stoat/Revolt AGPL attributions preserved in LICENSE",
+    copyright:
+      "Copyright (C) Zarzour; upstream Stoat/Revolt AGPL attributions preserved in LICENSE",
   }),
   new MakerZIP({}),
   new MakerFlatpak({
@@ -91,6 +92,7 @@ const makers: ForgeConfig["makers"] = [
 const config: ForgeConfig = {
   packagerConfig: {
     asar: true,
+    extraResource: ["LICENSE"],
     name: STRINGS.name,
     executableName: STRINGS.execName,
     icon:
