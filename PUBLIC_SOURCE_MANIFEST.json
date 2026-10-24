@@ -1,0 +1,427 @@
+{
+  "format": 1,
+  "scope": "reviewed-current-source-tree-not-historical-secret-clearance",
+  "files": [
+    {
+      "path": ".eslintrc.json",
+      "sha256": "77a995ca5494ffe7c6d0ec464454c9c574cb233c01f924abb34c6ed1501fadd3",
+      "bytes": 575,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": ".github/build/appimage/extract-artifact.sh",
+      "sha256": "4b860104d57dc4936eceda19ca8642930c1316731d41249064301a333dde1d61",
+      "bytes": 271,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".github/build/appimage/get-dependencies.sh",
+      "sha256": "65a41d8ca46b57f9ce8a024691d8dd311058f697ec13f3ba7dc1d7fe87c26030",
+      "bytes": 347,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".github/build/appimage/make-appimage.sh",
+      "sha256": "6c4debaf171d3e7bfecbb542f688aaf83262f4080e69fd395e7e0bfcdd510f1f",
+      "bytes": 633,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".github/workflows/source-check.yml",
+      "sha256": "c58fb9941e6c5e2b6c32955a17ab5238a7c9f11cd656a711381620352403898b",
+      "bytes": 939,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "ffc33d7a9fa6599e1b2e0925e41ab8c74a4ac5d8c9603493528c63926fbd4a06",
+      "bytes": 1229,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": ".mise/config.toml",
+      "sha256": "d69e7c3d89fac7fa9e51cc09c43a2441c0ec1b55bee773067c42a0f0eb7024b3",
+      "bytes": 151,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/assets/_default",
+      "sha256": "f62092465869c9fdb4fc421b9d19b5c662a22942df91395e7b5eddb17b40ad99",
+      "bytes": 181,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/assets/fallback",
+      "sha256": "29a5bed6fa6b37df90553cf5417e3fa25017be007e144e85e733f4aac385d6df",
+      "bytes": 121,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/build/_default",
+      "sha256": "3fbce25a6347e8a8cbb5d5ac8a4536c92e579ba11ac6b79713c81af873e1aa6f",
+      "bytes": 99,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/dev/_default",
+      "sha256": "862939aeb08a62ddd2447c4e213e4f777d92671df11c3d5a016a1e181be8f5cd",
+      "bytes": 94,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/format/_default",
+      "sha256": "e603bb82e1fdb2af0baaa4d1c2f9a07278b709a5c594bd01238b904ac8dc4956",
+      "bytes": 83,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/format/fix",
+      "sha256": "e84f1b7806c677af41604984bdf816903657c997d06bffa3031fbaf7b8b26e8f",
+      "bytes": 85,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/install/frozen",
+      "sha256": "3f48caeb1842edca76a2b52f976ecf5fee6ad314a381f98abe796bcc9c47795f",
+      "bytes": 120,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/lint/_default",
+      "sha256": "a055e13516461e9bfa65d06fd4fc73079c6724ad4839867298256e8c0297c785",
+      "bytes": 88,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/lint/fix",
+      "sha256": "206688f6ed7dcea600fe553756957eb6329a48cd47c231f4f73d8f5a670415ec",
+      "bytes": 90,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".mise/tasks/make/_default",
+      "sha256": "92f841bb9d2426179ab84eaa8fbcd820458f5549e874e54991d51ff3f55a67dc",
+      "bytes": 263,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": ".prettierrc",
+      "sha256": "72a2d01d2618c3cf3f573accaea3440d9ababc73cb0fe4677033c9e9c2146e6a",
+      "bytes": 270,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": ".release-please-manifest.json",
+      "sha256": "36fc59586b68bb4df5e5081e68660b810934c5724410cd7e931849d88e6fee32",
+      "bytes": 18,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": ".vscode/settings.json",
+      "sha256": "32391e4aaeabc6b2a7fe6dfb2e23995df00babc5942e5b2f172895e4745595e0",
+      "bytes": 520,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "2766ff57212529f0b1cc30f7cafffd9e5fd0b810b7a90ff1889f0ed353b9f9d8",
+      "bytes": 10374,
+      "category": "public-documentation"
+    },
+    {
+      "path": "LICENSE",
+      "sha256": "6e6f0b6c2a89f9132768bf1596bd4db32267e9d0493d869d82bada688206d2b3",
+      "bytes": 34463,
+      "category": "license-and-attribution"
+    },
+    {
+      "path": "PUBLICATION_POLICY.md",
+      "sha256": "574896cf57512020bf0cc7118a07319cfe33a8c22fba04c19eddd3be7ddee8d3",
+      "bytes": 1319,
+      "category": "public-documentation"
+    },
+    {
+      "path": "README.md",
+      "sha256": "17fc5f167ca908b8049a71dad7f4483b893d5f4471f0570efa15c8d210bc848f",
+      "bytes": 2605,
+      "category": "public-documentation"
+    },
+    {
+      "path": "RELEASE.json",
+      "sha256": "562fe1597769b874f667c5667c9b5fcbec075ff32d425faf145d2bbfbe47aaaa",
+      "bytes": 310,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "ZARZOUR_RELEASE.md",
+      "sha256": "f1622e7a6c8be9485c6329a295d6b5422fd35a172d6f6a4e2389f9b2473a5c0f",
+      "bytes": 1444,
+      "category": "public-documentation"
+    },
+    {
+      "path": "assets/branding/bird_black.svg",
+      "sha256": "f157c57253f19a611036645539bf6c1419336c2107c08ec8aa5de6a063cc9b67",
+      "bytes": 15418,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/branding/bird_white.svg",
+      "sha256": "af18a318ff90a133cb3b800883047e6de7f283ec1fd30075b9d5e13983440405",
+      "bytes": 15418,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/hicolor/128x128.png",
+      "sha256": "5a2d8e0a73693e8cfd73f7cfc731782e0c3cf7673b5ec74f0ce784f18b250618",
+      "bytes": 6981,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/hicolor/16x16.png",
+      "sha256": "af418bbf7da1ab79506ea4870dc3336251dac2eb445b4adbd3c6459ab71d73ed",
+      "bytes": 650,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/hicolor/256x256.png",
+      "sha256": "fafe1ac1c18477324f102fa45c3ec6b22440f344abeca315b80c571ac7ac46f5",
+      "bytes": 13941,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/hicolor/32x32.png",
+      "sha256": "cac3d533b06eae982f098de6c5bb519e6b15016093680de5718cb72c0e78ee63",
+      "bytes": 1562,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/hicolor/512x512.png",
+      "sha256": "509f2427ed6bae3df8da04b94131b71e0aea5aa297ce3b0ae354c2b1fce52b26",
+      "bytes": 27549,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/hicolor/64x64.png",
+      "sha256": "0e56da092e02ea0abdde8fbb2e116b5879b4b7dc80cbbc75b3889431835c11b3",
+      "bytes": 3410,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/icon.ico",
+      "sha256": "e1fe7ba01dbce2965b7e2dee8a2a95709acafec7bbc8b5010a3a1518ea8407c4",
+      "bytes": 40410,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/icon.png",
+      "sha256": "fafe1ac1c18477324f102fa45c3ec6b22440f344abeca315b80c571ac7ac46f5",
+      "bytes": 13941,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/icon.svg",
+      "sha256": "d42d2c8e041397950d8c30d91c6f836281290f659ab114659f0f98e993dc6058",
+      "bytes": 15527,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/desktop/iconTemplate.png",
+      "sha256": "4c517910682d27eba8137ef1a2eb0aea4be6efc62d71238c0b5d3e43f35a27d1",
+      "bytes": 8794,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "cc.zarzour.ZarzourDesktop.desktop",
+      "sha256": "eefcd2ba2a5641ebff2ad849af029434e6c14fe07f28e69f7ab7435abaf81bd3",
+      "bytes": 305,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "cc.zarzour.ZarzourDesktop.metainfo.xml",
+      "sha256": "c7a74028c526f5f1247dcfa90b90beb0fed745ea1667ab42f641b6cbfe0d8a1d",
+      "bytes": 1122,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "flake.lock",
+      "sha256": "a6ebf1a9755a76ba76b547bd4ec580fa3e8604617a40d43f148fbe0d77e09920",
+      "bytes": 616,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "flake.nix",
+      "sha256": "2966b40f9af586d9ad53500aa5a9bdb48164a25c3cd78b4f7cdd315923d80357",
+      "bytes": 733,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "forge.config.ts",
+      "sha256": "c5300ecd76a8dd12e09dee229a9880a992e79f21d4967065258d3df2d9c6d83a",
+      "bytes": 4982,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "forge.env.d.ts",
+      "sha256": "f4da57531720d926daa76f2f08943ab64a0e793af938bcb9de6bf8e9d9537639",
+      "bytes": 69,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "index.html",
+      "sha256": "df3408955c8bd08df46426082a8f9fc3fb8abd6ad0aa9ea282764e323fad62e6",
+      "bytes": 269,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "package.json",
+      "sha256": "7d793dbebcab3eba1155941873d4a12e8a8872ecad8f88ba4517e377752e29c9",
+      "bytes": 2460,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "4408722036612768020d1a814f4f5c4191a7208b3473142633b1cdf8f66e2332",
+      "bytes": 244039,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "pnpm-workspace.yaml",
+      "sha256": "3dd23eeeee6fa0e38c9b515271fcc9cdea46b775914b6f62383b56c63ba73db6",
+      "bytes": 406,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "release-please-config.json",
+      "sha256": "970a2250bf762c3a6b82ce427af41dd329b589a2afcef03b9261513aab8f682c",
+      "bytes": 384,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "scripts/publication_guard.py",
+      "sha256": "263b8a186187db15bc3d3cb717177576c194265f6586cc4dc55f2aebc02e797e",
+      "bytes": 5580,
+      "category": "reviewed-build-and-ci"
+    },
+    {
+      "path": "src/config.d.ts",
+      "sha256": "bf57222173f78eb84a594c675e9a120e8af6f9ccc6a37e0c7c1e459abd894981",
+      "bytes": 307,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/constants.ts",
+      "sha256": "c90e2a7dbe93acb5934c1c0d86746bbfdcf2f854972bd05f155497c21ce11463",
+      "bytes": 100,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/index.css",
+      "sha256": "d5ca21956d7e06b48bb3c221fb2095a9585df4167cfac2e937e18d2953ebf344",
+      "bytes": 170,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/main.ts",
+      "sha256": "40f4879e6b139795fe1f96627d4c68dfad82e1f98c5929a415971c27a0077c9d",
+      "bytes": 3963,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/autoLaunch.ts",
+      "sha256": "36ebdd6cc98ca87a9af7861bce57ddf4a944ef8dccd6de99cb4a67236a05b0cd",
+      "bytes": 684,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/badges.ts",
+      "sha256": "a1dc9a531480a9b7399050e7ba742f3145b8587f5df88bfc4ba347753cda9324",
+      "bytes": 2003,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/config.ts",
+      "sha256": "05bb5dee2d2fb653ee7bb80ac3d3ff65efa30cf1c059ede81bac425ed213825c",
+      "bytes": 4871,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/discordRpc.ts",
+      "sha256": "52fc9110149163388aa26efe5361c77902e7ae76771097b148e5cd90d6135f5b",
+      "bytes": 1018,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/tray.ts",
+      "sha256": "7a1c910dfed28fef60f6228f4ab511e2eb948ff7e0ae0b704e16f6d05c917b85",
+      "bytes": 1851,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/virtualMic.ts",
+      "sha256": "486b38dcb46cdf0e3b5e77ee2e631f8507f90af4bba40290413b732d7d2fec1a",
+      "bytes": 3912,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/window.ts",
+      "sha256": "47def2a8bd639074a188d8a2dfdb7b267858b01c8db94ee566b9660da36fe211",
+      "bytes": 7929,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/preload.ts",
+      "sha256": "a4758349b079ef8ec3019165497c0ef5d86adacc6dbbc6990f60f0e24508b745",
+      "bytes": 50,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/renderer.ts",
+      "sha256": "7488cd789540a73743681e9be77bf0b4f2733cee5016bca4b5a35cb2d79c7b90",
+      "bytes": 953,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/world/config.ts",
+      "sha256": "ce92a7f42abe5fcde0201baf168ede86aa08516f2a20e617d1f3f7335773e61e",
+      "bytes": 490,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/world/window.ts",
+      "sha256": "f6a6a15cc9409c37c90d6855fadcaae1dd847a5ffacc67856c9ad0265ba30635",
+      "bytes": 1071,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "strings.ts",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "tsconfig.json",
+      "sha256": "ce71a53bdc775658587ee40d15f2dfe985f3aaaac6956ea6fe6fde93c0080a95",
+      "bytes": 312,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "vite.main.config.ts",
+      "sha256": "154029cca80e45e8f2c6f0c219f9cd62e25244656328310bb055b18f37da1209",
+      "bytes": 180,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "vite.preload.config.ts",
+      "sha256": "4e8b1a29f78aceaad0a11ad3e9975dcafb62b86032c39c6f039d860e4cefcd8c",
+      "bytes": 100,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "vite.renderer.config.ts",
+      "sha256": "4e8b1a29f78aceaad0a11ad3e9975dcafb62b86032c39c6f039d860e4cefcd8c",
+      "bytes": 100,
+      "category": "product-source-or-build-manifest"
+    }
+  ],
+  "submodules": []
+}

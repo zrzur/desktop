@@ -100,7 +100,7 @@ Issues and pull requests on this repository after it is published under [github.
 
 ## Upstream Project & Attribution
 
-Zarzour Desktop is independently developed from the open-source Stoat desktop client. Stoat does not sponsor or endorse Zarzour.
+Zarzour Desktop is a fork of the open-source Stoat desktop client; upstream history, copyright and licensing are preserved. Stoat does not sponsor or endorse Zarzour.
 
 - Upstream: https://github.com/stoatchat/for-desktop
 - Basis tag: `v1.5.4`
