@@ -1,7 +1,7 @@
 {
   "name": "zarzour-desktop",
   "productName": "Zarzour",
-  "version": "1.5.4",
+  "version": "26.0.0-dev",
   "main": ".vite/build/main.js",
   "repository": "zrzur/desktop",
   "scripts": {
