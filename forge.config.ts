@@ -1,0 +1,190 @@
+import { MakerFlatpak } from "@electron-forge/maker-flatpak";
+import { MakerFlatpakOptionsConfig } from "@electron-forge/maker-flatpak/dist/Config";
+import { FusesPlugin } from "@electron-forge/plugin-fuses";
+import { VitePlugin } from "@electron-forge/plugin-vite";
+import type { ForgeConfig } from "@electron-forge/shared-types";
+import { FuseV1Options, FuseVersion } from "@electron/fuses";
+import fs from "node:fs";
+import path from "node:path";
+import { pathToFileURL } from "node:url";
+
+import { generateThirdPartyNotices } from "./scripts/generate-third-party-notices.mjs";
+
+const STRINGS = {
+  author: "Zrzur",
+  name: "Zrzur",
+  execName: "zrzur-desktop",
+  description: "Zrzur — community chat desktop client.",
+};
+
+const ASSET_DIR = "assets/desktop";
+const NOTICES_FILE = "build/THIRD-PARTY-NOTICES.txt";
+
+// the beta build must not register the stable app's link scheme
+const linkScheme = /^https?:\/\/beta\./.test(process.env.ZRZUR_DESKTOP_URL ?? "")
+  ? "zrzur-beta"
+  : "zrzur";
+
+/**
+ * Build targets for the desktop app
+ */
+const zrzurIco = path.resolve(ASSET_DIR, "icon.ico");
+
+const makers: ForgeConfig["makers"] = [
+  {
+    name: "@electron-forge/maker-squirrel",
+    config: {
+      // Keep nupkg id from package.json (zrzur_desktop). Do not set name here.
+      authors: STRINGS.author,
+      // Local Zrzur .ico — never remote Electron/Stoat icon hosts.
+      iconUrl: pathToFileURL(zrzurIco).href,
+      setupIcon: zrzurIco,
+      description: STRINGS.description,
+      exe: `${STRINGS.execName}.exe`,
+      copyright:
+        "Copyright (C) Zrzur; upstream Stoat/Revolt AGPL attributions preserved in LICENSE",
+    },
+  },
+  {
+    name: "@electron-forge/maker-zip",
+    config: {},
+  },
+  new MakerFlatpak({
+    options: {
+      id: "cc.zrzur.ZrzurDesktop",
+      description: STRINGS.description,
+      productName: STRINGS.name,
+      productDescription: STRINGS.description,
+      runtimeVersion: "25.08",
+      icon: {
+        "16x16": `${ASSET_DIR}/hicolor/16x16.png`,
+        "32x32": `${ASSET_DIR}/hicolor/32x32.png`,
+        "64x64": `${ASSET_DIR}/hicolor/64x64.png`,
+        "128x128": `${ASSET_DIR}/hicolor/128x128.png`,
+        "256x256": `${ASSET_DIR}/hicolor/256x256.png`,
+        "512x512": `${ASSET_DIR}/hicolor/512x512.png`,
+      } as unknown,
+      categories: ["Network"],
+      modules: [
+        {
+          name: "zypak",
+          sources: [
+            {
+              type: "git",
+              url: "https://github.com/refi64/zypak",
+              tag: "v2025.09",
+            },
+          ],
+        },
+      ],
+      finishArgs: [
+        "--socket=fallback-x11",
+        "--socket=wayland",
+        "--share=ipc",
+        "--share=network",
+        "--device=dri",
+        "--device=all",
+        "--socket=pulseaudio",
+        "--filesystem=xdg-run/pipewire-0",
+        "--filesystem=xdg-videos:ro",
+        "--filesystem=xdg-pictures:ro",
+        "--filesystem=xdg-download",
+        "--filesystem=xdg-run/speech-dispatcher",
+        "--talk-name=org.freedesktop.ScreenSaver",
+        "--talk-name=org.freedesktop.Notifications",
+        "--talk-name=org.kde.StatusNotifierWatcher",
+        "--talk-name=com.canonical.AppMenu.Registrar",
+        "--talk-name=com.canonical.indicator.application",
+        "--talk-name=com.canonical.Unity",
+        "--env=XCURSOR_PATH=/run/host/user-share/icons:/run/host/share/icons",
+      ],
+      files: [],
+    } as MakerFlatpakOptionsConfig,
+  }),
+];
+
+const config: ForgeConfig = {
+  packagerConfig: {
+    asar: true,
+    // THIRD-PARTY-NOTICES.txt is written by the generateAssets hook below
+    extraResource: ["LICENSE", "NOTICE", NOTICES_FILE],
+    name: STRINGS.name,
+    executableName: STRINGS.execName,
+    appBundleId: "cc.zrzur.ZrzurDesktop",
+    // zrzur:// links from discover.zrzur.com and designs.zrzur.com (macOS)
+    // (zrzur-beta:// when the build's application is beta.zrzur.com)
+    protocols: [{ name: "Zrzur", schemes: [linkScheme] }],
+    appCopyright:
+      "Copyright (C) Zrzur; upstream Stoat/Revolt AGPL attributions preserved in LICENSE",
+    win32metadata: {
+      CompanyName: "Zrzur",
+      FileDescription: STRINGS.description,
+      OriginalFilename: `${STRINGS.execName}.exe`,
+      ProductName: STRINGS.name,
+      InternalName: STRINGS.execName,
+    },
+    // icon.ico (Windows), icon.icns (macOS), icon.png: the Zrzur logo B, from the delivered package
+    icon: `${ASSET_DIR}/icon`,
+  },
+  rebuildConfig: {},
+  makers,
+  hooks: {
+    // licence text of every production dependency, shipped in the app resources
+    generateAssets: async () => {
+      generateThirdPartyNotices(path.resolve("."), path.resolve(NOTICES_FILE));
+    },
+    packageAfterCopy: async (_config, buildPath, _version, platform) => {
+      if (platform === "linux") {
+        fs.cpSync(
+          "node_modules/node-pipewire/dist",
+          path.join(buildPath, "node_modules/node-pipewire/dist"),
+          { recursive: true },
+        );
+        fs.cpSync(
+          "node_modules/node-pipewire/LICENSE",
+          path.join(buildPath, "node_modules/node-pipewire/LICENSE"),
+          { recursive: true },
+        );
+        fs.cpSync(
+          "node_modules/node-pipewire/package.json",
+          path.join(buildPath, "node_modules/node-pipewire/package.json"),
+          { recursive: true },
+        );
+      }
+    },
+  },
+  plugins: [
+    {
+      name: "@electron-forge/plugin-auto-unpack-natives",
+      config: {},
+    },
+    new VitePlugin({
+      build: [
+        {
+          entry: "src/main.ts",
+          config: "vite.main.config.ts",
+          target: "main",
+        },
+        {
+          entry: "src/preload.ts",
+          config: "vite.preload.config.ts",
+          target: "preload",
+        },
+      ],
+      renderer: [],
+    }),
+    new FusesPlugin({
+      version: FuseVersion.V1,
+      [FuseV1Options.RunAsNode]: false,
+      [FuseV1Options.EnableCookieEncryption]: true,
+      [FuseV1Options.EnableNodeOptionsEnvironmentVariable]: false,
+      [FuseV1Options.EnableNodeCliInspectArguments]: false,
+      [FuseV1Options.EnableEmbeddedAsarIntegrityValidation]: true,
+      [FuseV1Options.OnlyLoadAppFromAsar]: true,
+    }),
+  ],
+  // Publisher intentionally omitted until Zrzur release infrastructure exists.
+  publishers: [],
+};
+
+export default config;

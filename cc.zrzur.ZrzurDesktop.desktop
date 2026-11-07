@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Zrzur
+Comment=Zrzur 26 — community chat desktop client
+Exec=zrzur-desktop %u
+Terminal=false
+Type=Application
+Icon=cc.zrzur.ZrzurDesktop
+Categories=Network;InstantMessaging
+MimeType=x-scheme-handler/zrzur;
+StartupWMClass=zrzur-desktop
+X-Desktop-File-Install-Version=0.26
+X-Flatpak=cc.zrzur.ZrzurDesktop

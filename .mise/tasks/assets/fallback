@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#MISE description="Use bundled Zrzur assets"
+set -e
+test -f assets/desktop/icon.png

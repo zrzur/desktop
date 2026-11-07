@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+#MISE description="Use bundled Zrzur assets"
+set -e
+test -f assets/desktop/icon.png
+echo "Using bundled Zrzur assets; no upstream asset fetch."
