@@ -52,8 +52,8 @@
     },
     {
       "path": ".github/workflows/desktop-builds.yml",
-      "sha256": "f97a6b24af2bbf894aff30af67b7b8039d54c428162bf0b8f678e27c2c15c44b",
-      "bytes": 3539,
+      "sha256": "9d88540c18bb537cdea685218e6ab67c90aa37a0341920b95cdbfb4c9336c556",
+      "bytes": 3654,
       "category": "reviewed-build-and-ci"
     },
     {
@@ -268,8 +268,8 @@
     },
     {
       "path": "assets/desktop/icon.ico",
-      "sha256": "c70dbfa6d53aae4b32dbdd294e116596db12358b39c440727faeddec26234a91",
-      "bytes": 13345,
+      "sha256": "adf3342c235e8165240e4651771858f5751b9fcc4e690682369dfcf1ef8b45e9",
+      "bytes": 381038,
       "category": "reviewed-product-asset"
     },
     {
