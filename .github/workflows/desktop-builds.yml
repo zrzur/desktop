@@ -5,6 +5,11 @@ name: Desktop builds
 # The macOS build is not signed or notarised yet: macOS asks before the first open.
 on:
   workflow_dispatch:
+  # a manual run needs the file on main; until then a change to this file on
+  # beta starts the builds (re-run them from the Actions page)
+  push:
+    branches: [beta]
+    paths: [.github/workflows/desktop-builds.yml]
 permissions:
   contents: read
 concurrency:
