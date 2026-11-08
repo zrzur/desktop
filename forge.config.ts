@@ -49,6 +49,26 @@ const makers: ForgeConfig["makers"] = [
     name: "@electron-forge/maker-zip",
     config: {},
   },
+  // Debian and Ubuntu package; the app needs the system NSS libraries
+  {
+    name: "@electron-forge/maker-deb",
+    platforms: ["linux"],
+    config: {
+      options: {
+        name: STRINGS.execName,
+        productName: STRINGS.name,
+        bin: STRINGS.execName,
+        maintainer: "Zrzur contributors",
+        homepage: "https://zrzur.com",
+        description: STRINGS.description,
+        icon: `${ASSET_DIR}/icon.png`,
+        categories: ["Network", "Chat"],
+        section: "net",
+        depends: ["libnss3", "libgtk-3-0", "libnotify4", "libxss1", "libxtst6", "xdg-utils", "libatspi2.0-0", "libsecret-1-0"],
+        mimeType: [`x-scheme-handler/${linkScheme}`],
+      },
+    },
+  },
   new MakerFlatpak({
     options: {
       id: "cc.zrzur.ZrzurDesktop",
