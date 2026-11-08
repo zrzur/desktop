@@ -51,9 +51,15 @@
       "category": "reviewed-build-and-ci"
     },
     {
+      "path": ".github/workflows/desktop-builds.yml",
+      "sha256": "f97a6b24af2bbf894aff30af67b7b8039d54c428162bf0b8f678e27c2c15c44b",
+      "bytes": 3539,
+      "category": "reviewed-build-and-ci"
+    },
+    {
       "path": ".github/workflows/source-check.yml",
-      "sha256": "43e024d5b4248826dfc71141f1aae9a4ae8fc2eb5d1fbeb03ec730b8eb45bfbf",
-      "bytes": 1259,
+      "sha256": "e90ffcc3fe83a46c77d4b913709ba81ca9b04fd470c07bddf4bb36b582a62a94",
+      "bytes": 1231,
       "category": "reviewed-build-and-ci"
     },
     {
@@ -190,14 +196,14 @@
     },
     {
       "path": "README.md",
-      "sha256": "a7b1eb2c29c872c2f18f8ac484a8a9798f8760e905f41ddcef5e5dfaa096d474",
-      "bytes": 3107,
+      "sha256": "983bb1008f312ccf6305e16a007d179eb5229d6d0bb64f31d4535b0167402de7",
+      "bytes": 3098,
       "category": "public-documentation"
     },
     {
       "path": "RELEASE.json",
-      "sha256": "0c6e4306b9026ff701dad8bad2cf8fbac19239d62a4cab78bba5eda503c6613f",
-      "bytes": 308,
+      "sha256": "c7bd56714358c68ef8c5a60a9dc8c1013ed8b0d64533545ac9c43436fc9c6734",
+      "bytes": 285,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -214,8 +220,8 @@
     },
     {
       "path": "ZRZUR_RELEASE.md",
-      "sha256": "f9f4938018e42ad2e5e5a0e4dda541ef37315a6f429fcbb9c070c9b366ef07fe",
-      "bytes": 2136,
+      "sha256": "e94592f018b9f9bbfe6a420de593b5ba0a8fd69dba7c33069cf8f7281d7521b2",
+      "bytes": 1108,
       "category": "public-documentation"
     },
     {
@@ -310,8 +316,8 @@
     },
     {
       "path": "forge.config.ts",
-      "sha256": "50791ac0d81064c356f63d43e8f6f0342efde5208753b660c1c53fea52e0109e",
-      "bytes": 6288,
+      "sha256": "679da4eeaa221a7ea453ec953a278922398dc2e42bdfb7fac55da94fc99cb738",
+      "bytes": 6987,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -328,8 +334,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "6f83fc3653f9b14dce68aa49472e1c2c430897994cbf22f573c1186ab3a3ae5b",
-      "bytes": 2546,
+      "sha256": "db0366d3a6afcbdf6a2dd42ee74370087340913472b10005bac6023bb145b2c4",
+      "bytes": 2542,
       "category": "product-source-or-build-manifest"
     },
     {
