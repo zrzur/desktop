@@ -63,8 +63,10 @@ jobs:
         shell: bash
         run: |
           cd out/make
+          # sha256sum on Windows and Linux, shasum on macOS
+          if command -v sha256sum >/dev/null; then sum="sha256sum"; else sum="shasum -a 256"; fi
           find . -type f \( -name '*.zip' -o -name '*.exe' -o -name '*.nupkg' \) -print0 \
-            | xargs -0 shasum -a 256 | tee SHA256SUMS.txt
+            | xargs -0 $sum | tee SHA256SUMS.txt
       - uses: actions/upload-artifact@v4
         with:
           name: zrzur-desktop-${{ runner.os }}-${{ matrix.arch }}
