@@ -1,0 +1,71 @@
+name: Desktop builds
+# Builds the desktop app for Windows, macOS and Linux, each on its own runner,
+# and keeps the files as workflow artifacts. Nothing is published or uploaded
+# anywhere else; a maintainer downloads, tests and hosts them by hand.
+# The macOS build is not signed or notarised yet: macOS asks before the first open.
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: desktop-builds-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: Windows x64
+            os: windows-latest
+            arch: x64
+          - name: macOS Apple silicon
+            os: macos-latest
+            arch: arm64
+          - name: macOS Intel
+            os: macos-latest
+            arch: x64
+          - name: Linux x64
+            os: ubuntu-latest
+            arch: x64
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Linux audio headers for screen-share sound (node-pipewire)
+        if: runner.os == 'Linux'
+        run: sudo apt-get update && sudo apt-get install -y libpipewire-0.3-dev
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: node --test test/*.test.mjs
+      # the zip maker works on every system; Windows also gets its installer
+      - name: Make
+        shell: bash
+        run: |
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            pnpm exec electron-forge make --arch=${{ matrix.arch }}
+          else
+            pnpm exec electron-forge make --arch=${{ matrix.arch }} --targets @electron-forge/maker-zip
+          fi
+      - name: Checksums
+        shell: bash
+        run: |
+          cd out/make
+          find . -type f \( -name '*.zip' -o -name '*.exe' -o -name '*.nupkg' \) -print0 \
+            | xargs -0 shasum -a 256 | tee SHA256SUMS.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: zrzur-desktop-${{ runner.os }}-${{ matrix.arch }}
+          path: |
+            out/make/**/*.zip
+            out/make/**/*.exe
+            out/make/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14
