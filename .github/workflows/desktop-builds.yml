@@ -9,7 +9,13 @@ on:
   # beta starts the builds (re-run them from the Actions page)
   push:
     branches: [beta]
-    paths: [.github/workflows/desktop-builds.yml]
+    paths:
+      - .github/workflows/desktop-builds.yml
+      - forge.config.ts
+      - package.json
+      - pnpm-lock.yaml
+      - assets/desktop/**
+      - src/**
 permissions:
   contents: read
 concurrency:
