@@ -15,6 +15,7 @@ import {
 } from "./native/deepLink";
 import { initDiscordRpc } from "./native/discordRpc";
 import { installFrameGuard } from "./native/frameGuard";
+import { initPushToTalk } from "./native/pushToTalk";
 import { initTray } from "./native/tray";
 import { resolveUpdateFeedUrl } from "./native/updateFeed";
 import { initVirtualMic } from "./native/virtualMic";
@@ -136,6 +137,7 @@ if (acquiredLock) {
     initDiscordRpc();
     initVirtualMic();
     initAutoLaunch();
+    initPushToTalk();
 
     // Windows specific fix for notifications
     if (process.platform === "win32") {

@@ -154,8 +154,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "351c149aa1838ec4d11e4564106cf01874af0e2d35cfa8f07c8350d0de32a39c",
-      "bytes": 11049,
+      "sha256": "4747397df7876d45dc7d8273af48a1bd93c5cc2f4551fb186f028e8283a16a08",
+      "bytes": 11462,
       "category": "public-documentation"
     },
     {
@@ -436,8 +436,8 @@
     },
     {
       "path": "src/main.ts",
-      "sha256": "9c273aae2eee13e64cf78b5a924be783d1f067f9415935a3ea47d400c787cf4e",
-      "bytes": 6132,
+      "sha256": "1b1c7eefae2c3c672929c682e3e558d903d38c47d19f19beba07d5e75f0425ea",
+      "bytes": 6208,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -489,6 +489,18 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/native/pushToTalk.ts",
+      "sha256": "6fcc19e872dd64e065943407458448064131d7b12df4e247e9312970b1af4d20",
+      "bytes": 1097,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/pushToTalkKeys.ts",
+      "sha256": "a4b2c8ba0da5a11317eeb1f85b911a20695e7b2e68b2fd76f9aa82d11a76e71f",
+      "bytes": 5369,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/native/tray.ts",
       "sha256": "9d466299af78080040b603cf76d1228b472a19e66b1f39c930e3c9869e23e73e",
       "bytes": 2328,
@@ -532,8 +544,8 @@
     },
     {
       "path": "src/world/window.ts",
-      "sha256": "f6a6a15cc9409c37c90d6855fadcaae1dd847a5ffacc67856c9ad0265ba30635",
-      "bytes": 1071,
+      "sha256": "6f4b2c6888d1d000c7bda9284d8b80c164982a278c14ed64876915f031e47e39",
+      "bytes": 1646,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -558,6 +570,12 @@
       "path": "test/identity.test.mjs",
       "sha256": "ef7a8c747c8cf7303b0be7609e4b8e06bb7029ecf0b44b3e696b72eecb8b2d4d",
       "bytes": 1006,
+      "category": "synthetic-test-source-or-fixture"
+    },
+    {
+      "path": "test/pushToTalk.test.mjs",
+      "sha256": "fa3c179bf4e4a5dfd82f2613aa221c69f48c156e12e0e135515b9a01b198febd",
+      "bytes": 5475,
       "category": "synthetic-test-source-or-fixture"
     },
     {

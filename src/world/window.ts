@@ -34,4 +34,19 @@ contextBridge.exposeInMainWorld("native", {
     ipcRenderer.send("screenPickerCallback", idx, audio),
 
   isWayland: () => ipcRenderer.invoke("getIsWayland"),
+
+  // Push to talk from other apps: Ctrl/Cmd+Shift with the push-to-talk key
+  // toggles talking (Electron sees no key release outside the window)
+  pushToTalk: {
+    register: (code: string) =>
+      ipcRenderer.invoke("pushToTalkSet", String(code)) as Promise<boolean>,
+    unregister: () => ipcRenderer.send("pushToTalkClear"),
+    onToggle: (callback: () => void) => {
+      const listener = () => callback();
+      ipcRenderer.on("pushToTalkToggle", listener);
+      return () => {
+        ipcRenderer.removeListener("pushToTalkToggle", listener);
+      };
+    },
+  },
 });

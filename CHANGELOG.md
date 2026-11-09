@@ -2,6 +2,7 @@
 
 ## Zrzur Desktop (unreleased)
 
+* Talk from other apps: when the person turns it on, during a push-to-talk call the app holds Ctrl/Cmd+Shift with the push-to-talk key as a global toggle (Electron sees no key release outside the window, so true hold needs a native keyboard hook). Only the app window's top frame may ask for it; editing and navigation combinations are never taken; it is freed on leaving the call, reload, crash, close and quit.
 * The app, tray and installer icons use the laughing face (version B) of the logo.
 * Rebranded to Zrzur (`cc.zrzur.ZrzurDesktop`), loads only approved Zrzur addresses.
 * Discord Rich Presence is off until Zrzur has its own Discord application ID.
