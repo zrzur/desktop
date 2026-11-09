@@ -4,8 +4,9 @@ import { createPushToTalkController } from "./pushToTalkKeys";
 import { mainWindow } from "./window";
 
 /**
- * Push to talk from other apps (toggle; see pushToTalkKeys.ts). The app
- * window asks for the combination while it is in a push-to-talk call.
+ * Talk from other apps (toggle; see pushToTalkKeys.ts). The app window asks
+ * for the combination while it is in a push-to-talk call and the person
+ * turned "Talk from other apps" on.
  */
 export function initPushToTalk() {
   const controller = createPushToTalkController(globalShortcut, () =>
@@ -13,23 +14,17 @@ export function initPushToTalk() {
   );
 
   ipcMain.handle("pushToTalkSet", (event, code: unknown) =>
-    controller.set(event.sender, code),
+    controller.set(event, code),
   );
-  ipcMain.on("pushToTalkClear", (event) => controller.clear(event.sender));
+  ipcMain.on("pushToTalkClear", (event) => controller.clear(event));
 
-  // a reload or a crash leaves no call behind: free the combination for
-  // other apps (the page asks again when it joins a call)
-  const watch = () => {
-    if (!mainWindow || mainWindow.isDestroyed()) return;
-    const contents = mainWindow.webContents;
-    contents.on("did-start-navigation", (details) => {
-      if (details.isMainFrame && !details.isSameDocument) controller.reset();
-    });
-    contents.on("render-process-gone", () => controller.reset());
-    contents.on("destroyed", () => controller.reset());
-  };
-  watch();
-  app.on("browser-window-created", watch);
+  // the window that exists now, and every window created later (the main
+  // window is created again on macOS after it was closed)
+  if (mainWindow && !mainWindow.isDestroyed())
+    controller.watch(mainWindow.webContents);
+  app.on("browser-window-created", (_event, window) =>
+    controller.watch(window.webContents),
+  );
 
   app.on("will-quit", () => controller.reset());
 }
