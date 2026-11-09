@@ -154,8 +154,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "48795b3c353213cf7027954085fadee998697750d1e0e8dc6fa3d0bb495dd24e",
-      "bytes": 11362,
+      "sha256": "4747397df7876d45dc7d8273af48a1bd93c5cc2f4551fb186f028e8283a16a08",
+      "bytes": 11462,
       "category": "public-documentation"
     },
     {
@@ -490,14 +490,14 @@
     },
     {
       "path": "src/native/pushToTalk.ts",
-      "sha256": "d72210be912cb1def575628b774a3271953d92641a252f7ac2255df8b87e2e59",
-      "bytes": 1320,
+      "sha256": "6fcc19e872dd64e065943407458448064131d7b12df4e247e9312970b1af4d20",
+      "bytes": 1097,
       "category": "product-source-or-build-manifest"
     },
     {
       "path": "src/native/pushToTalkKeys.ts",
-      "sha256": "c8650fd4e4121dd3e9c512bdb4eca55cebaaf896fa789a168faea626c1361fe5",
-      "bytes": 3774,
+      "sha256": "a4b2c8ba0da5a11317eeb1f85b911a20695e7b2e68b2fd76f9aa82d11a76e71f",
+      "bytes": 5369,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -574,8 +574,8 @@
     },
     {
       "path": "test/pushToTalk.test.mjs",
-      "sha256": "424816486517ac0e3561ff01fc9b26e887019c0c44d4b00f470aee84e9ed5cca",
-      "bytes": 3660,
+      "sha256": "fa3c179bf4e4a5dfd82f2613aa221c69f48c156e12e0e135515b9a01b198febd",
+      "bytes": 5475,
       "category": "synthetic-test-source-or-fixture"
     },
     {
