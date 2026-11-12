@@ -340,14 +340,14 @@
     },
     {
       "path": "pnpm-lock.yaml",
-      "sha256": "a98da0aaacf17bc8bbe0c6af86e0594a7c82ebdfa7c65ac1220d0b248fe3b71f",
-      "bytes": 244116,
+      "sha256": "639c1d2038a4426ba3767eac54066774d86d69c0fbbe9ffda00eca9dc46c5d36",
+      "bytes": 244203,
       "category": "product-source-or-build-manifest"
     },
     {
       "path": "pnpm-workspace.yaml",
-      "sha256": "02e7966c0d8082cad9563d9ffbd64314ff82290e651982c2b85e978475837a92",
-      "bytes": 483,
+      "sha256": "24803ff579d36a4e6c1d4e1090a94f3265c9bd774b42513d97542dd7a84d1cf1",
+      "bytes": 675,
       "category": "product-source-or-build-manifest"
     },
     {
