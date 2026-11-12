@@ -18,3 +18,7 @@ overrides:
   minimatch@9: 9.0.9
   undici: 7.30.2
   fast-uri: 3.1.9
+  # Security (pnpm audit, 2026-11-11): lift vulnerable transitive versions
+  # to the first patched release in the same major
+  "ws@<7.5.11": ">=7.5.11"
+  "ajv@>=7.0.0 <8.18.0": ">=8.18.0 <9"
