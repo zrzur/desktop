@@ -49,4 +49,35 @@ contextBridge.exposeInMainWorld("native", {
       };
     },
   },
+
+  // Keys that work in games: push to talk, push to mute, mute and deafen
+  // from any app. The listener runs only while the page holds binds, and
+  // the page hears only its own binds going down and up.
+  globalKeys: {
+    status: () => ipcRenderer.invoke("globalKeysStatus"),
+    set: (binds: unknown) => ipcRenderer.invoke("globalKeysSet", binds),
+    clear: () => ipcRenderer.send("globalKeysClear"),
+    askPermission: () => ipcRenderer.invoke("globalKeysAskPermission"),
+    onEvent: (
+      callback: (action: string, down: boolean, focused?: boolean) => void,
+    ) => {
+      const listener = (
+        _event: unknown,
+        action: string,
+        down: boolean,
+        focused?: boolean,
+      ) => callback(action, down, focused);
+      ipcRenderer.on("globalKeysEvent", listener);
+      return () => {
+        ipcRenderer.removeListener("globalKeysEvent", listener);
+      };
+    },
+    onStatus: (callback: (status: unknown) => void) => {
+      const listener = (_event: unknown, status: unknown) => callback(status);
+      ipcRenderer.on("globalKeysStatus", listener);
+      return () => {
+        ipcRenderer.removeListener("globalKeysStatus", listener);
+      };
+    },
+  },
 });

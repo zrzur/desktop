@@ -2,6 +2,7 @@
 
 ## Zrzur Desktop (unreleased)
 
+* Keys that work in games: push to talk and push to mute (hold), mute and deafen (press) are heard while a game or any other app is in front, with keyboard keys, combinations, a modifier alone and mouse side buttons. The key is only observed, so the game still gets it. The listener is its own small process that runs only while the app window holds binds (during a call, or the key test in voice settings) and reports nothing but those binds going down and up. New dependency: `uiohook-napi` 1.5.5 (MIT; contains libuiohook, LGPL-3.0), prebuilt, nothing compiled on install. The older Ctrl/Cmd+Shift toggle stays as the fallback where the listener cannot run.
 * Talk from other apps: when the person turns it on, during a push-to-talk call the app holds Ctrl/Cmd+Shift with the push-to-talk key as a global toggle (Electron sees no key release outside the window, so true hold needs a native keyboard hook). Only the app window's top frame may ask for it; editing and navigation combinations are never taken; it is freed on leaving the call, reload, crash, close and quit.
 * The app, tray and installer icons use the laughing face (version B) of the logo.
 * Rebranded to Zrzur (`cc.zrzur.ZrzurDesktop`), loads only approved Zrzur addresses.

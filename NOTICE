@@ -22,3 +22,12 @@ origin of the code.
 
 "Zrzur", "زرزور" and the Zrzur logo are trademarks of the Zrzur project and are
 not covered by the source code licence.
+
+Third-party component for "keys that work in games" (prebuilt binary shipped
+in the app, loaded only by the key listener process):
+  uiohook-napi 1.5.5, MIT, Copyright (c) 2020 Alexander Drozdov
+    https://github.com/SnosMe/uiohook-napi
+  libuiohook (linked into it), LGPL-3.0, Copyright (c) Alexander Barker
+    https://github.com/kwhat/libuiohook
+  The library can be replaced: put another build of uiohook-napi.node in
+  resources/app.asar.unpacked/node_modules/uiohook-napi/prebuilds/.
