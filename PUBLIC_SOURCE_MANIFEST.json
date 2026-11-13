@@ -154,8 +154,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "4747397df7876d45dc7d8273af48a1bd93c5cc2f4551fb186f028e8283a16a08",
-      "bytes": 11462,
+      "sha256": "e7c209720407ea07c6e72280e3b38de9b83f4317b9285945dfdd4fc2ffab6db1",
+      "bytes": 12123,
       "category": "public-documentation"
     },
     {
@@ -184,8 +184,8 @@
     },
     {
       "path": "NOTICE",
-      "sha256": "56b78925c4fdbdc778f3e3341066e130227fe8147edca44eb824e906eac5a4be",
-      "bytes": 1025,
+      "sha256": "fc1e4c8cfceeca9b8199d96150794bdbe817fa88a38ff3b4c53d1f4dee151025",
+      "bytes": 1517,
       "category": "license-and-attribution"
     },
     {
@@ -316,8 +316,8 @@
     },
     {
       "path": "forge.config.ts",
-      "sha256": "679da4eeaa221a7ea453ec953a278922398dc2e42bdfb7fac55da94fc99cb738",
-      "bytes": 6987,
+      "sha256": "869e470079cf19737b66aa9a99cff2a26352934f43e0fcb73c253561217d75e8",
+      "bytes": 8165,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -334,20 +334,20 @@
     },
     {
       "path": "package.json",
-      "sha256": "db0366d3a6afcbdf6a2dd42ee74370087340913472b10005bac6023bb145b2c4",
-      "bytes": 2542,
+      "sha256": "cb92fc084998dd44f9fa4459b50c3566b9bbb55c983b4d01bcffd0d7df01b7b4",
+      "bytes": 2571,
       "category": "product-source-or-build-manifest"
     },
     {
       "path": "pnpm-lock.yaml",
-      "sha256": "639c1d2038a4426ba3767eac54066774d86d69c0fbbe9ffda00eca9dc46c5d36",
-      "bytes": 244203,
+      "sha256": "e8da4df326ab8ec9bbd1a03b870b9a7952168fd8465e267d49e1a2b7c96ce7a1",
+      "bytes": 244517,
       "category": "product-source-or-build-manifest"
     },
     {
       "path": "pnpm-workspace.yaml",
-      "sha256": "24803ff579d36a4e6c1d4e1090a94f3265c9bd774b42513d97542dd7a84d1cf1",
-      "bytes": 675,
+      "sha256": "ba78a1f795e12060f02a2aa91a12211468c1f62d49047d78bcc4396cdd2437eb",
+      "bytes": 697,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -429,6 +429,12 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/hookProcess.ts",
+      "sha256": "e314dc8056e9911d2a44534e5d1e68966dbf4ddb37a5839e21b1125e23db39bc",
+      "bytes": 2901,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/index.css",
       "sha256": "a0e642e757fdf3e6b2fd81146c456babb10bc2d9d0bed49874d499229e80dddb",
       "bytes": 559,
@@ -436,8 +442,8 @@
     },
     {
       "path": "src/main.ts",
-      "sha256": "1b1c7eefae2c3c672929c682e3e558d903d38c47d19f19beba07d5e75f0425ea",
-      "bytes": 6208,
+      "sha256": "d161c40d25ab9c481021573657012919551349e9c6d2e297d103a155a5f04285",
+      "bytes": 6284,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -486,6 +492,24 @@
       "path": "src/native/frameGuard.ts",
       "sha256": "978f8329b383febea97e8530704bf4ff104a4323441344bfc4f7f142d3843579",
       "bytes": 1472,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/globalKeys/binds.ts",
+      "sha256": "5393f68ca3ba4145c0576c6a5c7d69c2ea8cfde90b247543a64b04ea503be929",
+      "bytes": 7954,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/globalKeys/controller.ts",
+      "sha256": "80d72dfe3b0832b46fcadadac1c2389e3e6d3ed52baaebc97bdfc190b1b0c459",
+      "bytes": 5391,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/globalKeys/index.ts",
+      "sha256": "fe4145f3ea27296f833b6c51833d03120174faada2cdd5f001edf3b1a6785b32",
+      "bytes": 3972,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -544,8 +568,8 @@
     },
     {
       "path": "src/world/window.ts",
-      "sha256": "6f4b2c6888d1d000c7bda9284d8b80c164982a278c14ed64876915f031e47e39",
-      "bytes": 1646,
+      "sha256": "badb3c8845e85099e6ce1d06785a36c621dfc7e117d44693ed485aca8988dc8d",
+      "bytes": 2845,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -564,6 +588,12 @@
       "path": "test/deepLink.test.mjs",
       "sha256": "ab4df329d32125266b1f2881d221f0a605d743e379412b30cf5f4f7900e0977c",
       "bytes": 1989,
+      "category": "synthetic-test-source-or-fixture"
+    },
+    {
+      "path": "test/globalKeys.test.mjs",
+      "sha256": "ad4a01ea22ed3ce0921eff8b9f85dc5f7efec4523ca64101b3608b5900a755f3",
+      "bytes": 9511,
       "category": "synthetic-test-source-or-fixture"
     },
     {
@@ -598,8 +628,8 @@
     },
     {
       "path": "vite.main.config.ts",
-      "sha256": "8bf0d595e23d872b9650dfc4775df73ed0bd22268ae0341d9fa8ee2908c3e1e2",
-      "bytes": 968,
+      "sha256": "5ee55f3b79899e9bdceee97d3be50d80c1a5b1ce4323d7941d11882e869ce588",
+      "bytes": 1059,
       "category": "product-source-or-build-manifest"
     },
     {

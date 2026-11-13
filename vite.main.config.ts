@@ -27,7 +27,8 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ["node-pipewire"],
+      // uiohook-napi: the prebuilt key listener, loaded by hookProcess.ts
+      external: ["node-pipewire", "uiohook-napi"],
     },
   },
 });

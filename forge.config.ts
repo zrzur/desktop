@@ -153,7 +153,32 @@ const config: ForgeConfig = {
     generateAssets: async () => {
       generateThirdPartyNotices(path.resolve("."), path.resolve(NOTICES_FILE));
     },
-    packageAfterCopy: async (_config, buildPath, _version, platform) => {
+    packageAfterCopy: async (_config, buildPath, _version, platform, arch) => {
+      // Keys that work in games: the prebuilt listener (uiohook-napi, MIT;
+      // it contains libuiohook, LGPL-3.0) for this system only, and the
+      // small loader it needs. Nothing is compiled here.
+      const prebuilt = `node_modules/uiohook-napi/prebuilds/${platform}-${arch}`;
+      if (fs.existsSync(prebuilt)) {
+        for (const file of ["package.json", "LICENSE", "dist"])
+          fs.cpSync(
+            `node_modules/uiohook-napi/${file}`,
+            path.join(buildPath, "node_modules/uiohook-napi", file),
+            { recursive: true },
+          );
+        fs.cpSync(prebuilt, path.join(buildPath, prebuilt), {
+          recursive: true,
+        });
+        for (const file of [
+          "package.json",
+          "LICENSE",
+          "index.js",
+          "node-gyp-build.js",
+        ])
+          fs.cpSync(
+            `node_modules/node-gyp-build/${file}`,
+            path.join(buildPath, "node_modules/node-gyp-build", file),
+          );
+      }
       if (platform === "linux") {
         fs.cpSync(
           "node_modules/node-pipewire/dist",
@@ -182,6 +207,12 @@ const config: ForgeConfig = {
       build: [
         {
           entry: "src/main.ts",
+          config: "vite.main.config.ts",
+          target: "main",
+        },
+        {
+          // keys that work in games: the listener's own process
+          entry: "src/hookProcess.ts",
           config: "vite.main.config.ts",
           target: "main",
         },

@@ -59,6 +59,7 @@
     "discord-rpc": "^4.0.1",
     "electron-squirrel-startup": "^1.0.1",
     "electron-store": "^10.1.0",
+    "uiohook-napi": "1.5.5",
     "update-electron-app": "^3.1.1",
     "utf-8-validate": "^6.0.5"
   },

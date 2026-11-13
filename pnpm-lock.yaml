@@ -35,6 +35,9 @@ importers:
       electron-store:
         specifier: ^10.1.0
         version: 10.1.0
+      uiohook-napi:
+        specifier: 1.5.5
+        version: 1.5.5
       update-electron-app:
         specifier: ^3.1.1
         version: 3.1.1
@@ -3259,6 +3262,10 @@ packages:
   uint8array-extras@1.5.0:
     resolution: {integrity: sha512-rvKSBiC5zqCCiDZ9kAOszZcDvdAHwwIKJG33Ykj43OKcWsnmcBRL09YTU4nOeHZ8Y2a7l1MgTd08SBe9A8Qj6A==}
     engines: {node: '>=18'}
+
+  uiohook-napi@1.5.5:
+    resolution: {integrity: sha512-oSlTdnECw2GBfsJPTbBQBeE4v/EXP0EZmX6BJq5nzH/JgFaBE8JpFwEA/kLhiEP7HxQw28FViWiYgdIZzWuuJQ==}
+    engines: {node: '>= 16'}
 
   unbox-primitive@1.1.0:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
@@ -7214,6 +7221,10 @@ snapshots:
   typescript@5.4.5: {}
 
   uint8array-extras@1.5.0: {}
+
+  uiohook-napi@1.5.5:
+    dependencies:
+      node-gyp-build: 4.8.4
 
   unbox-primitive@1.1.0:
     dependencies:
