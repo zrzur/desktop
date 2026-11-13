@@ -15,13 +15,19 @@ contextBridge.exposeInMainWorld("native", {
   close: () => ipcRenderer.send("close"),
 
   setBadgeCount: (count: number) => ipcRenderer.send("setBadgeCount", count),
+  // restart the app (after a setting that needs it)
+  relaunch: () => ipcRenderer.send("relaunch"),
 
   onceScreenPicker: (
     onScreenPick: (
       sources: {
         idx: number;
+        kind?: "screen" | "window";
         name: string;
         isFullScreen: boolean;
+        screenNumber?: number;
+        screenCount?: number;
+        thumbnail?: string;
         image?: string;
       }[],
     ) => void,

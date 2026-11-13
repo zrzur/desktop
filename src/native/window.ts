@@ -14,6 +14,7 @@ import {
 import windowIconAsset from "../../assets/desktop/icon.png?asset";
 
 import { resolveApplicationUrl } from "./applicationUrl";
+import { THUMBNAIL_SIZE, describeSources } from "./screenSources";
 import { config } from "./config";
 import { updateTrayMenu } from "./tray";
 
@@ -232,7 +233,12 @@ export function createMainWindow(startPath?: string) {
       pendingPick = undefined;
 
       desktopCapturer
-        .getSources({ types: ["screen", "window"], fetchWindowIcons: true })
+        .getSources({
+          types: ["screen", "window"],
+          fetchWindowIcons: true,
+          // a small picture of each screen and window for the picker
+          thumbnailSize: THUMBNAIL_SIZE,
+        })
         .then((sources) => {
           // Shortcut for linux wayland.
           if (sources.length == 1) {
@@ -262,24 +268,9 @@ export function createMainWindow(startPath?: string) {
                   });
             }
           };
-          mainWindow.webContents.send(
-            "screenPicker",
-            sources.map((source, idx) => {
-              // resize() returns a new image; the original stays full size
-              const icon = source.appIcon;
-              const image = icon
-                ? icon.getAspectRatio() > 1
-                  ? icon.resize({ width: 256 })
-                  : icon.resize({ height: 256 })
-                : undefined;
-              return {
-                idx: idx,
-                name: source.name,
-                isFullScreen: source.id.startsWith("screen"),
-                image: image?.toDataURL(),
-              };
-            }),
-          );
+          // previews and icons; a window whose icon or picture the
+          // system could not read is still listed, with a plain symbol
+          mainWindow.webContents.send("screenPicker", describeSources(sources));
         })
         .catch(() => {
           pendingPick = undefined;
@@ -295,6 +286,12 @@ export function createMainWindow(startPath?: string) {
     mainWindow.isMaximized() ? mainWindow.unmaximize() : mainWindow.maximize(),
   );
   ipcMain.on("close", () => mainWindow.close());
+  // settings that need a restart offer one (Desktop settings page)
+  ipcMain.on("relaunch", (event) => {
+    if (event.sender !== mainWindow.webContents) return;
+    app.relaunch();
+    quitApp();
+  });
 
   // mainWindow.webContents.openDevTools();
 
