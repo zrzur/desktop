@@ -226,62 +226,62 @@
     },
     {
       "path": "assets/desktop/hicolor/128x128.png",
-      "sha256": "7a1e735dcbbe46f17fbf245266a7d253338587c57febbec37560481c1682632e",
-      "bytes": 2604,
+      "sha256": "45d17ece9ac67c4d049d64079d29e017897ebd61f39cf5c52248a39aa7f7409b",
+      "bytes": 2880,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/hicolor/16x16.png",
-      "sha256": "1f27250bac777ec573c557e0974748467aab0bc9c8b8bf9c5dc78e0cf3a8a2e6",
-      "bytes": 417,
+      "sha256": "276f745473afcdd2b527762a0e462fcbfb3f9718276c7ae50542da2b3077acf1",
+      "bytes": 408,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/hicolor/256x256.png",
-      "sha256": "5e2f856779ed5b491ad888d910d42a6dae5486fe6eda8c40b38ad062c6a6d08b",
-      "bytes": 4948,
+      "sha256": "b7aa06a328b7f886968a5a03ac69d9b11b54850fd519b120d2825ebef1d07880",
+      "bytes": 5780,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/hicolor/32x32.png",
-      "sha256": "330163f6feba7e69b5e6ae8dcea9ece57a82dcb662adb28f6e814378099dadbb",
-      "bytes": 737,
+      "sha256": "1cdb56a28a162ddc7bc492dd9b14b708a83bb09a31234230eae8b180ec76b310",
+      "bytes": 751,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/hicolor/512x512.png",
-      "sha256": "501570b9f2882c3fb4e94d414242a5815c3981e574053f3d4c5db1666d789bf2",
-      "bytes": 10352,
+      "sha256": "dfe87410024c7c2e0e5fdff123534268683521856c52ee0665af4908360e49b3",
+      "bytes": 12319,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/hicolor/64x64.png",
-      "sha256": "c9f56bc4df9531a6e2874bcc27e860d1210cbe25d46dd8cc60e25aed9b15437a",
-      "bytes": 1395,
+      "sha256": "0a9a4a563de1f9965e6f34bf6ac576625c396c562c48594c0395f7bdf1b9b0ae",
+      "bytes": 1448,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/icon.icns",
-      "sha256": "198b669e808e33f995f2372c5cade90e2728128d3c820aec9dee23635049f5f2",
-      "bytes": 56229,
+      "sha256": "8ffe422350c79495049aeab6ae2d950594b66832cdde6ef9ac7eceb5485710b1",
+      "bytes": 70963,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/icon.ico",
-      "sha256": "adf3342c235e8165240e4651771858f5751b9fcc4e690682369dfcf1ef8b45e9",
-      "bytes": 381038,
+      "sha256": "8cf660993476d698c8079aea15030d4f957669d0dec79f9c6b8af38a421a19a2",
+      "bytes": 13047,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/icon.png",
-      "sha256": "501570b9f2882c3fb4e94d414242a5815c3981e574053f3d4c5db1666d789bf2",
-      "bytes": 10352,
+      "sha256": "dfe87410024c7c2e0e5fdff123534268683521856c52ee0665af4908360e49b3",
+      "bytes": 12319,
       "category": "reviewed-product-asset"
     },
     {
       "path": "assets/desktop/icon.svg",
-      "sha256": "8761242135b6e1906a96b16747ac536a141533f4ce33d52a33b4f3bae1c5792f",
-      "bytes": 811,
+      "sha256": "a43e826d75888c57aea042a1fa623bd44249dbf880f0d935700dd5be11dcaf60",
+      "bytes": 716,
       "category": "reviewed-product-asset"
     },
     {
