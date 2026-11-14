@@ -436,8 +436,8 @@
     },
     {
       "path": "src/main.ts",
-      "sha256": "d161c40d25ab9c481021573657012919551349e9c6d2e297d103a155a5f04285",
-      "bytes": 6284,
+      "sha256": "c5e05850edde31176e36c0cf79aa6a18030766e8c777483750f4c68bfe37300b",
+      "bytes": 6789,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -522,6 +522,18 @@
       "path": "src/native/screenSources.ts",
       "sha256": "64e8b6c81b9c6919246765f5423ff8f156192582dbb29689d21cefd3a718e41c",
       "bytes": 3753,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/signIn.ts",
+      "sha256": "06e93bb58d3dcfe8f607f6111fe43730935baf233af2c8c2728c816951ef03b8",
+      "bytes": 2585,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/signInRules.ts",
+      "sha256": "4a9eb77279523d6a411b14397be0b95efb4607bea5cb8d8d0caed404e71e9a28",
+      "bytes": 1479,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -618,6 +630,12 @@
       "path": "test/screenSources.test.mjs",
       "sha256": "ed7bdf4ebf17858c5fc48b15122f81e37856c23d053b9c1253ae841f5ddeacee",
       "bytes": 2263,
+      "category": "synthetic-test-source-or-fixture"
+    },
+    {
+      "path": "test/signIn.test.mjs",
+      "sha256": "34bc1e3f3a74d891e9e841076759f296f761d142e38e7c6ba915ff9115a82531",
+      "bytes": 1806,
       "category": "synthetic-test-source-or-fixture"
     },
     {
