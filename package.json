@@ -1,7 +1,7 @@
 {
   "name": "zrzur-desktop",
   "productName": "Zrzur",
-  "version": "26.0.0",
+  "version": "26.1.0-beta.1",
   "description": "Zrzur community chat desktop client",
   "homepage": "https://zrzur.com",
   "main": ".vite/build/main.js",
