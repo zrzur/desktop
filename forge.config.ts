@@ -4,6 +4,7 @@ import { FusesPlugin } from "@electron-forge/plugin-fuses";
 import { VitePlugin } from "@electron-forge/plugin-vite";
 import type { ForgeConfig } from "@electron-forge/shared-types";
 import { FuseV1Options, FuseVersion } from "@electron/fuses";
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
@@ -149,6 +150,31 @@ const config: ForgeConfig = {
   rebuildConfig: {},
   makers,
   hooks: {
+    // macOS: the app is signed again, ad hoc, once packaging is finished.
+    // Packaging changes the bundle after Electron's own signature (fuses,
+    // name, icon, Info.plist, the copied native modules), and a bundle whose
+    // signature no longer matches is reported by macOS as "damaged" with no
+    // way to open it. A valid ad-hoc signature turns that into the ordinary
+    // "unidentified developer" question, which System Settings can answer.
+    // A Developer ID signature (osxSign) replaces this once there is one.
+    postPackage: async (forgeConfig, { platform, outputPaths }) => {
+      if (platform !== "darwin" || process.platform !== "darwin") return;
+      if (forgeConfig.packagerConfig.osxSign) return;
+      for (const out of outputPaths) {
+        for (const entry of fs.readdirSync(out)) {
+          if (!entry.endsWith(".app")) continue;
+          const app = path.join(out, entry);
+          execFileSync("codesign", ["--force", "--deep", "--sign", "-", app], {
+            stdio: "inherit",
+          });
+          execFileSync(
+            "codesign",
+            ["--verify", "--deep", "--strict", "--verbose=2", app],
+            { stdio: "inherit" },
+          );
+        }
+      }
+    },
     // licence text of every production dependency, shipped in the app resources
     generateAssets: async () => {
       generateThirdPartyNotices(path.resolve("."), path.resolve(NOTICES_FILE));

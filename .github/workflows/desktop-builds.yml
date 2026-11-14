@@ -77,6 +77,21 @@ jobs:
           else
             pnpm exec electron-forge make --arch=${{ matrix.arch }} --targets @electron-forge/maker-zip
           fi
+      # the zip people download must hold a validly signed app: an invalid
+      # signature makes macOS call the app "damaged" and refuse to open it
+      - name: macOS app signature in the zip
+        if: runner.os == 'macOS'
+        shell: bash
+        run: |
+          set -euo pipefail
+          zip=$(find out/make -name '*.zip' | head -n 1)
+          test -n "$zip"
+          tmp=$(mktemp -d)
+          ditto -x -k "$zip" "$tmp"
+          app=$(find "$tmp" -maxdepth 2 -name '*.app' | head -n 1)
+          test -n "$app"
+          codesign --verify --deep --strict --verbose=2 "$app"
+          codesign -dv "$app" 2>&1 | grep -E '^(Identifier|Signature)='
       - name: Checksums
         shell: bash
         run: |
