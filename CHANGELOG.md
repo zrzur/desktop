@@ -1,5 +1,9 @@
 # Changelog
 
+## Zrzur Desktop 26.1.0-beta.2 (2026-11-15)
+
+* Linking Steam, Twitch, GitHub or Battle.net (Settings → Connections) works in the app: the service's sign-in opens in a separate window (sandboxed, no preload, an in-memory session of its own), and Zrzur's return page finishes the link in the main window. Before, the window guard blocked the sign-in page without a word and Connect did nothing. Every other address stays blocked.
+
 ## Zrzur Desktop (unreleased)
 
 * Screen share picker: every screen and window comes with a small preview picture; an app icon or preview the system could not read is left out instead of being sent as a broken image; screens are numbered so the app can name them in the person's language (the system's own name, such as "Gesamter Bildschirm", is no longer shown).
