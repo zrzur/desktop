@@ -148,8 +148,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "f02254053f8e1ef4e2314b4d939ed406b3819d5e05b98e2c153b79ea05b8d61a",
-      "bytes": 12617,
+      "sha256": "5eec4f7eabc630aa8601e1d36d02e58e72ecd8024a5dc5ea6c3436af00509085",
+      "bytes": 13048,
       "category": "public-documentation"
     },
     {
@@ -328,7 +328,7 @@
     },
     {
       "path": "package.json",
-      "sha256": "86485560b55bc67e11fea2fe9ef4bab6f7f35bfec95e6ae4716833e0f55a85c3",
+      "sha256": "ebcf3ebdeeb0c1e6ca366bb1ea2bb8350013da47ffe77006ac7a0f2fce415eca",
       "bytes": 2578,
       "category": "product-source-or-build-manifest"
     },
