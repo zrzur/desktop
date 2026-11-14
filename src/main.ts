@@ -17,6 +17,11 @@ import { initDiscordRpc } from "./native/discordRpc";
 import { installFrameGuard } from "./native/frameGuard";
 import { initGlobalKeys } from "./native/globalKeys";
 import { initPushToTalk } from "./native/pushToTalk";
+import {
+  isSignInStart,
+  openSignInWindow,
+  signInContents,
+} from "./native/signIn";
 import { initTray } from "./native/tray";
 import { resolveUpdateFeedUrl } from "./native/updateFeed";
 import { initVirtualMic } from "./native/virtualMic";
@@ -176,15 +181,24 @@ if (acquiredLock) {
 
   // ensure URLs launch in external context
   app.on("web-contents-created", (_, contents) => {
-    // prevent navigation out of build URL origin
+    // a sign-in window has its own rules (native/signIn.ts)
+    const isSignIn = () => signInContents.has(contents.id);
+
+    // prevent navigation out of build URL origin; a service's sign-in page
+    // (Settings → Connections) opens in its own window instead
     contents.on("will-navigate", (event, navigationUrl) => {
+      if (isSignIn()) return;
       if (new URL(navigationUrl).origin !== BUILD_URL.origin) {
         event.preventDefault();
+        if (isSignInStart(navigationUrl) && mainWindow) {
+          openSignInWindow(navigationUrl, mainWindow, BUILD_URL.origin);
+        }
       }
     });
 
     // a server-side redirect must not move the app window to another site
     contents.on("will-redirect", (details) => {
+      if (isSignIn()) return;
       if (
         details.isMainFrame &&
         new URL(details.url).origin !== BUILD_URL.origin
