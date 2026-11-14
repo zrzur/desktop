@@ -52,8 +52,8 @@
     },
     {
       "path": ".github/workflows/desktop-builds.yml",
-      "sha256": "9d88540c18bb537cdea685218e6ab67c90aa37a0341920b95cdbfb4c9336c556",
-      "bytes": 3654,
+      "sha256": "ad5c1b8ba66f4468a2f1bd8c07b5104c51b8fa485e0ce786a07364a7e4c921f9",
+      "bytes": 4317,
       "category": "reviewed-build-and-ci"
     },
     {
@@ -316,8 +316,8 @@
     },
     {
       "path": "forge.config.ts",
-      "sha256": "869e470079cf19737b66aa9a99cff2a26352934f43e0fcb73c253561217d75e8",
-      "bytes": 8165,
+      "sha256": "d619bb29505cf2b50328fe721ea7cd11951958ed6468b69fc45556b30e58c169",
+      "bytes": 9442,
       "category": "product-source-or-build-manifest"
     },
     {
