@@ -9,9 +9,9 @@
  * Only these sign-in pages open such a window; any other address the main
  * window tries to reach stays blocked as before.
  */
-import { BrowserWindow } from "electron";
+import { BrowserWindow, shell } from "electron";
 
-import { signInReturn } from "./signInRules";
+import { isSignInPage, signInReturn } from "./signInRules";
 
 export { isSignInStart } from "./signInRules";
 
@@ -45,14 +45,25 @@ export function openSignInWindow(
     },
   });
   current = window;
+  // nothing to grant here: no camera, microphone, notifications, devices
+  const session = window.webContents.session;
+  session.setPermissionRequestHandler((_contents, _permission, answer) =>
+    answer(false),
+  );
+  session.setPermissionCheckHandler(() => false);
+  session.setDevicePermissionHandler(() => false);
   const id = window.webContents.id;
   signInContents.add(id);
 
   // the service sends the person back to Zrzur: finish in the main window
   const back = (event: Electron.Event, target: string) => {
     if (new URL(target).origin !== appOrigin) {
-      // the service's own pages, over https only
-      if (!target.startsWith("https:")) event.preventDefault();
+      // the services' own sign-in pages only; anything else (a help link,
+      // a sign-up page) opens in the person's browser
+      if (!isSignInPage(target)) {
+        event.preventDefault();
+        if (target.startsWith("https:")) shell.openExternal(target);
+      }
       return;
     }
     event.preventDefault();

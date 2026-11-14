@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-import { isSignInStart, signInReturn } from "../src/native/signInRules.ts";
+import {
+  isSignInPage,
+  isSignInStart,
+  signInReturn,
+} from "../src/native/signInRules.ts";
 
 const APP = "https://app.zrzur.com";
 
@@ -50,5 +54,28 @@ test("only Zrzur's own return page goes back to the main window", () => {
     "https://beta.zrzur.com/connections/steam/return",
   ]) {
     assert.equal(signInReturn(address, APP), undefined, address);
+  }
+});
+
+test("the sign-in window stays on the services' sign-in hosts", () => {
+  for (const address of [
+    "https://steamcommunity.com/login/home",
+    "https://login.steampowered.com/jwt/finalizelogin",
+    "https://www.twitch.tv/login",
+    "https://github.com/sessions/two-factor",
+    "https://account.battle.net/login",
+    "https://eu.battle.net/login/en/",
+  ]) {
+    assert.equal(isSignInPage(address), true, address);
+  }
+  for (const address of [
+    "https://evil.example/",
+    "https://battle.net.evil.example/",
+    "https://evilbattle.net/",
+    "http://github.com/login",
+    "https://github.com:444/login",
+    "https://app.zrzur.com/settings",
+  ]) {
+    assert.equal(isSignInPage(address), false, address);
   }
 });

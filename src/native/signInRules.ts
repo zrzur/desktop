@@ -11,6 +11,39 @@ const SIGN_IN_STARTS: readonly { host: string; path: string }[] = [
   { host: "oauth.battle.net", path: "/authorize" },
 ];
 
+/**
+ * Hosts a sign-in may pass through (its login, two-step and consent pages):
+ * the sign-in window goes nowhere else
+ */
+const SIGN_IN_HOSTS: readonly string[] = [
+  "steamcommunity.com",
+  "login.steampowered.com",
+  "store.steampowered.com",
+  "help.steampowered.com",
+  "id.twitch.tv",
+  "www.twitch.tv",
+  "passport.twitch.tv",
+  "github.com",
+  "battle.net",
+];
+
+/** Whether the sign-in window may show this page: https on a listed host */
+export function isSignInPage(address: string): boolean {
+  try {
+    const url = new URL(address);
+    if (url.protocol !== "https:" || url.username || url.password || url.port)
+      return false;
+    return SIGN_IN_HOSTS.some(
+      (host) =>
+        url.hostname === host ||
+        // the regions of Battle.net (eu.battle.net, account.battle.net, …)
+        (host === "battle.net" && url.hostname.endsWith(".battle.net")),
+    );
+  } catch {
+    return false;
+  }
+}
+
 /** Whether the main window is trying to open a service's sign-in page */
 export function isSignInStart(address: string): boolean {
   try {
