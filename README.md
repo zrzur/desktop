@@ -1,5 +1,19 @@
 <!-- zrzur-publication -->
-# Quick start
+# Zrzur Desktop
+
+The desktop app of [Zrzur](https://zrzur.com) for Windows, macOS and Linux. It shows [Zrzur Web](https://github.com/zrzur/web) inside an Electron window and adds what a browser cannot: a tray icon, system notifications, screen sharing and keys that work while a game is in front.
+
+Part of Zrzur 26. Versions and the other components: [ZRZUR_RELEASE.md](./ZRZUR_RELEASE.md).
+
+## Download
+
+Installers for every system are at [zrzur.com/download](https://zrzur.com/download).
+
+- The apps are not code-signed yet: Windows SmartScreen and macOS Gatekeeper ask before the first start.
+- There is no automatic update yet. New versions are downloaded from the same page.
+- The Linux app needs the system NSS libraries (`libnss3`).
+
+## Quick start
 
 ```bash
 git clone https://github.com/zrzur/desktop.git
@@ -12,64 +26,32 @@ pnpm package
 
 Needs Git and Node.js 24.
 
-Zrzur is an independent, Arabic-first chat platform based on the open-source Stoat software (formerly Revolt), licensed under AGPL-3.0 or later. Zrzur is not affiliated with Stoat, stoat.chat or Revolt Platforms Ltd. Please do not report Zrzur issues to the Stoat team.
-
-Licence and origin: [LICENSE](./LICENSE), [NOTICE](./NOTICE), [MODIFICATIONS.md](./MODIFICATIONS.md). Security: [SECURITY.md](./SECURITY.md). Contributing: [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-> **Zrzur 26.0.0 · main · first release.** See [shared release information](ZRZUR_RELEASE.md).
-
-<div align="center">
-
-# Zrzur Desktop
-
-Electron application for Windows, macOS, and Linux — **Zrzur 26**.
-
-</div>
-
-<br/>
-
-## Purpose
-
-Zrzur Desktop is the desktop client for Zrzur. It runs the web client inside an Electron shell (window, tray, and packaging).
-
-## Architecture
-
-- Electron + Electron Forge
-- Loads a local or remote Zrzur Web build
-- App ID: `cc.zrzur.ZrzurDesktop`
-- Tooling: mise, pnpm
-
-## Supported platforms
-
-| Platform | Notes |
-| --- | --- |
-| Windows | Forge distributables |
-| macOS | Forge distributables |
-| Linux | Forge packages; Flatpak helpers available |
-
-## Installation
-
-Signed public downloads are not published yet. Build from this repository for now.
-
 ## Development
 
-```bash
-git clone https://github.com/zrzur/desktop.git
-cd desktop
+The repository's tasks run with [mise](https://mise.jdx.dev/), which also installs the pinned tools.
 
+```bash
 mise install
 mise install:frozen
-
-mise dev          # run
-mise build        # bundle
-mise make         # distributables
 ```
 
-### Local web client
+| Task | What it does |
+| --- | --- |
+| `mise dev` | Run the app |
+| `mise build` | Bundle it |
+| `mise make` | Build the installers |
+
+### With a local web app
+
+1. Start the [backend](https://github.com/zrzur/backend) (API on port 14702 in the default local layout).
+2. Start [web](https://github.com/zrzur/web) against that API.
+3. Start Desktop and point it at the web app:
 
 ```bash
 mise exec -- pnpm start -- --force-server http://localhost:5173
 ```
+
+A blank window means the address given to `--force-server` cannot be reached.
 
 ### Flatpak
 
@@ -88,33 +70,22 @@ pnpm run:nix
 pnpm run:nix --force-server=http://localhost:5173
 ```
 
-## Local stack
+## What is inside
 
-1. Start the [backend](https://github.com/zrzur/backend) (API on `14702` in the default local layout).
-2. Start [web](https://github.com/zrzur/web) against that API.
-3. Launch Desktop with `--force-server` pointing at the web origin.
+- Electron with Electron Forge
+- App ID: `cc.zrzur.ZrzurDesktop`
+- Installers: Windows (Squirrel installer, zip), macOS (zip, Intel and Apple silicon), Linux (deb, zip; Flatpak helpers)
 
-## Updates
+## Contributing and security
 
-Auto-update is disabled until a Zrzur update channel exists.
+- Contributing: [CONTRIBUTING.md](./CONTRIBUTING.md). Keep changes focused and keep the attribution.
+- Security reports: [SECURITY.md](./SECURITY.md).
+- Changes: [CHANGELOG.md](./CHANGELOG.md).
 
-## Troubleshooting
+## Licence and origin
 
-- Blank window: check that the URL passed to `--force-server` is reachable.
-- Use the mise-managed Node/pnpm versions from this repository.
+Zrzur is an independent, Arabic-first chat platform based on the open-source Stoat software (formerly Revolt), licensed under AGPL-3.0 or later. Zrzur is not affiliated with Stoat, stoat.chat or Revolt Platforms Ltd. Please do not report Zrzur issues to the Stoat team.
 
-## Contributing
-
-Issues and pull requests on this repository after it is published under [github.com/zrzur](https://github.com/zrzur). Keep changes focused and preserve AGPL attribution.
-
-## License
-
-[AGPL](./LICENSE).
-
-## Upstream Project & Attribution
-
-Zrzur Desktop is an independent AGPL desktop client. Open-source history, copyright and licensing are preserved in LICENSE/NOTICE. Upstream projects do not sponsor or endorse Zrzur.
-
-- Upstream: https://github.com/stoatchat/for-desktop
-- Basis tag: `v1.5.4`
-- License: AGPL (see [LICENSE](./LICENSE))
+- Licence: AGPL-3.0-or-later, see [LICENSE](./LICENSE).
+- Upstream: [stoatchat/for-desktop](https://github.com/stoatchat/for-desktop), basis tag `v1.5.4`.
+- Notices and changes: [NOTICE](./NOTICE), [MODIFICATIONS.md](./MODIFICATIONS.md), [THIRD-PARTY-LICENSES.md](./THIRD-PARTY-LICENSES.md).
