@@ -81,3 +81,10 @@ test("one version: RELEASE.json (what the app shows) equals package.json (the in
   const info = readReleaseInfo({ dir: fileURLToPath(new URL("..", import.meta.url)), env: { ZRZUR_GIT_COMMIT: "a".repeat(40) } });
   assert.equal(info.version, pkgJson.version, "the build info reads another version");
 });
+
+test("the Source integrity workflow expects the version in RELEASE.json", () => {
+  // a bump of RELEASE.json alone once failed that workflow on main (2026-11-15)
+  const release = JSON.parse(readFileSync(new URL("../RELEASE.json", import.meta.url), "utf8"));
+  const workflow = readFileSync(new URL("../.github/workflows/source-check.yml", import.meta.url), "utf8");
+  assert.ok(workflow.includes(`assert release['version'] == '${release.version}'`), "source-check.yml names another version");
+});
