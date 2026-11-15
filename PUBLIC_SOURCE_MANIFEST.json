@@ -148,8 +148,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "5eec4f7eabc630aa8601e1d36d02e58e72ecd8024a5dc5ea6c3436af00509085",
-      "bytes": 13048,
+      "sha256": "52ad44da72cf63c5468d38b67e86bae0268a0b50de8db38658716cad7c90315c",
+      "bytes": 13644,
       "category": "public-documentation"
     },
     {
@@ -483,6 +483,12 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/native/displayMedia.ts",
+      "sha256": "b1f7c22dda29b1540957a34c983e0c437b909237bad57657a9d44181947ea3e4",
+      "bytes": 1849,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/native/frameGuard.ts",
       "sha256": "978f8329b383febea97e8530704bf4ff104a4323441344bfc4f7f142d3843579",
       "bytes": 1472,
@@ -556,8 +562,8 @@
     },
     {
       "path": "src/native/window.ts",
-      "sha256": "27fadc115fbeb699c0eee7a272cae21461f09ca884fcddc5372ffa9ecf455b33",
-      "bytes": 9416,
+      "sha256": "bf163770abf5ac049e124213efbb673b2aaa14c37164f77039306853b3f89ab5",
+      "bytes": 9441,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -580,8 +586,8 @@
     },
     {
       "path": "src/world/window.ts",
-      "sha256": "b42ee27fc20e857fd19f12949c7284df0023b43ff2b95b734be12832e5253f7d",
-      "bytes": 3071,
+      "sha256": "4b57d2935852f4998616bdf5121d970ef67e7a02552bd5838fcd09acb973ebc8",
+      "bytes": 3228,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -600,6 +606,12 @@
       "path": "test/deepLink.test.mjs",
       "sha256": "ab4df329d32125266b1f2881d221f0a605d743e379412b30cf5f4f7900e0977c",
       "bytes": 1989,
+      "category": "synthetic-test-source-or-fixture"
+    },
+    {
+      "path": "test/displayMedia.test.mjs",
+      "sha256": "c02a4d4a9d06ed96312ede262423798a12002264a3d7fee18ec6995c1db6daf3",
+      "bytes": 1433,
       "category": "synthetic-test-source-or-fixture"
     },
     {
