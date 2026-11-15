@@ -52,7 +52,7 @@
     },
     {
       "path": ".github/workflows/source-check.yml",
-      "sha256": "e4bf85f562f98db50082ae2bb144b9b06a67572b7ce7a75de1c1de3240324314",
+      "sha256": "6834a1e1dd3446391e0abbcea08bfec8f581b5e1d8a5d7b665711b4f0c37c112",
       "bytes": 1367,
       "category": "reviewed-build-and-ci"
     },
@@ -214,8 +214,8 @@
     },
     {
       "path": "ZRZUR_RELEASE.md",
-      "sha256": "89f9fc053b3c356e2a0d2ba8ba7e7ed42ace2945ba1132a2562573cd530179a1",
-      "bytes": 1368,
+      "sha256": "540bf177f8c680d9f6dc275bb5d8becd166b51199ea25fcec149b8047473e87d",
+      "bytes": 1370,
       "category": "public-documentation"
     },
     {
@@ -622,8 +622,8 @@
     },
     {
       "path": "test/releaseIntegrity.test.mjs",
-      "sha256": "8d650308e0ff61549aeddf22007feaf9b6df897d5391f6bbdf814b981b27f069",
-      "bytes": 4181,
+      "sha256": "13987d8da37afbd5b664273f0cb7ee29abf8f814186648996ca03468e89ed0e5",
+      "bytes": 4681,
       "category": "synthetic-test-source-or-fixture"
     },
     {
