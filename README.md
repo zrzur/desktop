@@ -84,8 +84,8 @@ pnpm run:nix --force-server=http://localhost:5173
 
 ## Licence and origin
 
-Zrzur is an independent, Arabic-first chat platform based on the open-source Stoat software (formerly Revolt), licensed under AGPL-3.0 or later. Zrzur is not affiliated with Stoat, stoat.chat or Revolt Platforms Ltd. Please do not report Zrzur issues to the Stoat team.
+Zrzur is an independent, Arabic-first chat platform based on the open-source Stoat software (formerly Revolt), licensed under the AGPL, version 3 only (the upstream code grants no later versions). Zrzur is not affiliated with Stoat, stoat.chat or Revolt Platforms Ltd. Please do not report Zrzur issues to the Stoat team.
 
-- Licence: AGPL-3.0-or-later, see [LICENSE](./LICENSE).
+- Licence: AGPL-3.0-only, see [LICENSE](./LICENSE).
 - Upstream: [stoatchat/for-desktop](https://github.com/stoatchat/for-desktop), basis tag `v1.5.4`.
 - Notices and changes: [NOTICE](./NOTICE), [MODIFICATIONS.md](./MODIFICATIONS.md), [THIRD-PARTY-LICENSES.md](./THIRD-PARTY-LICENSES.md).
