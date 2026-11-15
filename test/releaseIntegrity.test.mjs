@@ -3,6 +3,7 @@ import { createHash } from "node:crypto";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { test } from "node:test";
 
 import { productionPackageDirs } from "../scripts/dependency-graph.mjs";
@@ -67,4 +68,16 @@ test("the copied shared scripts match their recorded hashes", () => {
     const text = readFileSync(`scripts/${file}`, "utf8").split("\r\n").join("\n");
     assert.equal(createHash("sha256").update(text).digest("hex"), hash, `${file} changed: update every copy and shared-scripts.sha256`);
   }
+});
+
+test("one version: RELEASE.json (what the app shows) equals package.json (the installer names)", () => {
+  // 26.1.0-beta.2 installers once called themselves beta.1 because only
+  // package.json had moved (audit ZR-002)
+  const release = JSON.parse(readFileSync(new URL("../RELEASE.json", import.meta.url), "utf8"));
+  const pkgJson = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
+  assert.match(release.version, /^\d+\.\d+\.\d+(-(alpha|beta|rc)\.\d+)?$/);
+  assert.equal(release.version, pkgJson.version, "RELEASE.json and package.json disagree");
+  assert.equal(release.targetVersion, release.version, "RELEASE.json targetVersion");
+  const info = readReleaseInfo({ dir: fileURLToPath(new URL("..", import.meta.url)), env: { ZRZUR_GIT_COMMIT: "a".repeat(40) } });
+  assert.equal(info.version, pkgJson.version, "the build info reads another version");
 });
