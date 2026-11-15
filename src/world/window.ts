@@ -15,6 +15,8 @@ contextBridge.exposeInMainWorld("native", {
   close: () => ipcRenderer.send("close"),
 
   setBadgeCount: (count: number) => ipcRenderer.send("setBadgeCount", count),
+  /** A call rings (true) or stopped ringing (false): flash the taskbar */
+  callAttention: (on: boolean) => ipcRenderer.send("callAttention", on === true),
   // restart the app (after a setting that needs it)
   relaunch: () => ipcRenderer.send("relaunch"),
 
