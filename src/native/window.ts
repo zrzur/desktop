@@ -15,6 +15,7 @@ import windowIconAsset from "../../assets/desktop/icon.png?asset";
 
 import { resolveApplicationUrl } from "./applicationUrl";
 import { THUMBNAIL_SIZE, describeSources } from "./screenSources";
+import { answerOnce, displayStreams } from "./displayMedia";
 import { config } from "./config";
 import { updateTrayMenu } from "./tray";
 
@@ -214,7 +215,12 @@ export function createMainWindow(startPath?: string) {
   });
 
   session.defaultSession.setDisplayMediaRequestHandler(
-    (request, callback) => {
+    (request, electronCallback) => {
+      // answered once; a refusal is null (an empty object throws in the
+      // main process: see displayMedia.ts)
+      const callback = answerOnce(electronCallback, (error) =>
+        console.error("[screen share] answer failed", error),
+      );
       // Screen capture is only for the app itself, never for another origin
       // that ends up in a frame (embeds, links that slipped through)
       let origin: string | undefined;
@@ -224,7 +230,7 @@ export function createMainWindow(startPath?: string) {
         origin = undefined;
       }
       if (origin !== BUILD_URL.origin) {
-        callback({});
+        callback(null);
         return;
       }
 
@@ -242,39 +248,20 @@ export function createMainWindow(startPath?: string) {
         .then((sources) => {
           // Shortcut for linux wayland.
           if (sources.length == 1) {
-            request.audioRequested
-              ? callback({
-                  video: sources[0],
-                  audio: "loopback",
-                })
-              : callback({
-                  video: sources[0],
-                });
+            callback(displayStreams(sources, 0, true, request.audioRequested));
             return;
           }
-          pendingPick = (idx, audio) => {
-            if (!Number.isInteger(idx) || idx < 0 || idx >= sources.length) {
-              callback({});
-            } else {
-              // loopback audio is whole-system audio (Windows); only sent
-              // when the page asked for audio and the user kept it on
-              audio && request.audioRequested
-                ? callback({
-                    video: sources[idx],
-                    audio: "loopback",
-                  })
-                : callback({
-                    video: sources[idx],
-                  });
-            }
-          };
+          pendingPick = (idx, audio) =>
+            callback(
+              displayStreams(sources, idx, audio, request.audioRequested),
+            );
           // previews and icons; a window whose icon or picture the
           // system could not read is still listed, with a plain symbol
           mainWindow.webContents.send("screenPicker", describeSources(sources));
         })
         .catch(() => {
           pendingPick = undefined;
-          callback({});
+          callback(null);
         });
     },
     { useSystemPicker: true },
@@ -286,6 +273,12 @@ export function createMainWindow(startPath?: string) {
     mainWindow.isMaximized() ? mainWindow.unmaximize() : mainWindow.maximize(),
   );
   ipcMain.on("close", () => mainWindow.close());
+  // a call rings: the taskbar button flashes until the window is used (or
+  // the ringing stops); a focused window does not flash
+  ipcMain.on("callAttention", (event, on: unknown) => {
+    if (event.sender !== mainWindow.webContents) return;
+    mainWindow.flashFrame(on === true && !mainWindow.isFocused());
+  });
   // settings that need a restart offer one (Desktop settings page)
   ipcMain.on("relaunch", (event) => {
     if (event.sender !== mainWindow.webContents) return;
