@@ -40,20 +40,20 @@
     },
     {
       "path": ".github/workflows/ci.yml",
-      "sha256": "a021475e8a2105a3937a1f81ccab2a49cdd02dac5e1769ba1713a89ce308043d",
-      "bytes": 1568,
+      "sha256": "fee99a61aea4920b9534be7a7c8b51b86f51b3f8fd65097ca14cc929c2e1be48",
+      "bytes": 1740,
       "category": "reviewed-build-and-ci"
     },
     {
       "path": ".github/workflows/desktop-builds.yml",
-      "sha256": "ad5c1b8ba66f4468a2f1bd8c07b5104c51b8fa485e0ce786a07364a7e4c921f9",
-      "bytes": 4317,
+      "sha256": "1bcd395abe3be869ff43e056e24ed1346291f6e117d209e89f4cf1c9145d5b95",
+      "bytes": 4489,
       "category": "reviewed-build-and-ci"
     },
     {
       "path": ".github/workflows/source-check.yml",
-      "sha256": "4a759492874aa4fc310ecf3b4077dd781fabfa72b28ad954a179043085d80b7f",
-      "bytes": 1238,
+      "sha256": "e4bf85f562f98db50082ae2bb144b9b06a67572b7ce7a75de1c1de3240324314",
+      "bytes": 1367,
       "category": "reviewed-build-and-ci"
     },
     {
@@ -196,7 +196,7 @@
     },
     {
       "path": "RELEASE.json",
-      "sha256": "f2080bf344719cb98e95d5dfb09127f3189b5e70e8a9952057082634dfcc37d1",
+      "sha256": "c8db254160da24d5a4e59d94dc498f816a3afc10e041db9e935a1b827d0589be",
       "bytes": 299,
       "category": "product-source-or-build-manifest"
     },
@@ -622,8 +622,8 @@
     },
     {
       "path": "test/releaseIntegrity.test.mjs",
-      "sha256": "bd652f67bfb3f7172f7b9ea941cab71f347367033f75d65530e23cf69ec7f9db",
-      "bytes": 3247,
+      "sha256": "8d650308e0ff61549aeddf22007feaf9b6df897d5391f6bbdf814b981b27f069",
+      "bytes": 4181,
       "category": "synthetic-test-source-or-fixture"
     },
     {
