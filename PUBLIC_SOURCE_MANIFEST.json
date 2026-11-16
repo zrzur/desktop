@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".eslintrc.json",
-      "sha256": "77a995ca5494ffe7c6d0ec464454c9c574cb233c01f924abb34c6ed1501fadd3",
-      "bytes": 575,
+      "sha256": "e7d6323a470457c98cdd69502936817cdedd987cb3a195cfdce77b9013479c9b",
+      "bytes": 588,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -148,8 +148,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "52ad44da72cf63c5468d38b67e86bae0268a0b50de8db38658716cad7c90315c",
-      "bytes": 13644,
+      "sha256": "09581218c94c4b03b31ddac0f7c6acbaa1bb2b6e92a901d4ef31be6cca0a861e",
+      "bytes": 15789,
       "category": "public-documentation"
     },
     {
@@ -285,6 +285,78 @@
       "category": "reviewed-product-asset"
     },
     {
+      "path": "assets/desktop/install.gif",
+      "sha256": "9daa2af9d36f2bc40b5f3ff0883ab6eca2bcd2879564c4d7d470dd5df10e8c68",
+      "bytes": 51940,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/startup/README.md",
+      "sha256": "418c3144a0e0ef03ca74371be3e365be47bc7acecd912adce8778e35c6697928",
+      "bytes": 1601,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/startup/fonts/LICENSE-IBM-Plex-Mono-OFL.txt",
+      "sha256": "18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3",
+      "bytes": 4314,
+      "category": "license-and-attribution"
+    },
+    {
+      "path": "assets/startup/fonts/LICENSE-IBM-Plex-Sans-Arabic-OFL.txt",
+      "sha256": "1c32ddc3fc6efd167cdcbe475195287f2dc26ed1a4c92fbe31c87ceaffe44f98",
+      "bytes": 4808,
+      "category": "license-and-attribution"
+    },
+    {
+      "path": "assets/startup/fonts/LICENSE-IBM-Plex-Sans-OFL.txt",
+      "sha256": "18aabf190848725e2576eefb5c29ba06aac1029d02132252a7f312eac2e50cf3",
+      "bytes": 4314,
+      "category": "license-and-attribution"
+    },
+    {
+      "path": "assets/startup/fonts/ibm-plex-mono-latin-400-normal.woff2",
+      "sha256": "3c5a451f9ec27a354b0c2bcca636c6ec17a651281aabf29f8427e210a1d31e85",
+      "bytes": 14812,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/startup/fonts/ibm-plex-sans-arabic-arabic-400-normal.woff2",
+      "sha256": "6010e7fd0dce5d527583951750728cbe3c895efbd16aa0f809ab8c824878c9d8",
+      "bytes": 42848,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/startup/fonts/ibm-plex-sans-arabic-arabic-500-normal.woff2",
+      "sha256": "90aef64fea9794f232332e907d45810ab268d1a11721340025eba2a2cdb36d5c",
+      "bytes": 45296,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/startup/fonts/ibm-plex-sans-cyrillic-wght-normal.woff2",
+      "sha256": "9409ee21811f0f5272b7e1d828fe8838005b0573481ef906e7e55b63f6610ab0",
+      "bytes": 29512,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/startup/fonts/ibm-plex-sans-latin-wght-normal.woff2",
+      "sha256": "e2291e842cf5af167122a22881a740c7f2dda7716f1e8cd76680264f4a859470",
+      "bytes": 45712,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/startup/logo-glide.svg",
+      "sha256": "c70f54909704ad1292be6cfe57a5211a3b0679041a9c89c7ac16f6190dbf448c",
+      "bytes": 1147,
+      "category": "reviewed-product-asset"
+    },
+    {
+      "path": "assets/startup/logo.svg",
+      "sha256": "3334f08a7fe6d943900bb631d71aee964f2b83363864282fbe0c0ded484b6475",
+      "bytes": 744,
+      "category": "reviewed-product-asset"
+    },
+    {
       "path": "cc.zrzur.ZrzurDesktop.desktop",
       "sha256": "85741231fb36e4a179665454db08561e796ad1da6758313831ebe1da178ab94d",
       "bytes": 325,
@@ -310,14 +382,14 @@
     },
     {
       "path": "forge.config.ts",
-      "sha256": "d619bb29505cf2b50328fe721ea7cd11951958ed6468b69fc45556b30e58c169",
-      "bytes": 9442,
+      "sha256": "8d67d3d930f85e57a4dbbde4fdd8b14645f1799eb8349fee6f7162de69f3d425",
+      "bytes": 10006,
       "category": "product-source-or-build-manifest"
     },
     {
       "path": "forge.env.d.ts",
-      "sha256": "ec2bad95561e66c386ff3fee4b24998f3b8e0cbb0ff169a3cfb943ad8401ad33",
-      "bytes": 195,
+      "sha256": "de742a4ed1ef2f4cf1e6af76fb6d9dd94a242d2f46abc89874d94f3134f8a093",
+      "bytes": 431,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -412,8 +484,8 @@
     },
     {
       "path": "src/config.d.ts",
-      "sha256": "bf57222173f78eb84a594c675e9a120e8af6f9ccc6a37e0c7c1e459abd894981",
-      "bytes": 307,
+      "sha256": "b329ae67d8cbf512151e4969536bce5c95e1c376cb2d5fe32f75cc5fe81267d3",
+      "bytes": 360,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -436,8 +508,8 @@
     },
     {
       "path": "src/main.ts",
-      "sha256": "c5e05850edde31176e36c0cf79aa6a18030766e8c777483750f4c68bfe37300b",
-      "bytes": 6789,
+      "sha256": "edf317bfe6d9437a287832631c119b3b250ee2ba0790c427ee007b59f3187609",
+      "bytes": 7644,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -454,8 +526,8 @@
     },
     {
       "path": "src/native/badges.ts",
-      "sha256": "d7c0af2903f633f37be536bfb9784efd44542e624c80ac80d7c6680111a68870",
-      "bytes": 1998,
+      "sha256": "fe3394edd4c8061c2a149630e56e503febb672a503c0e87e655dce1ca2880f1f",
+      "bytes": 2287,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -466,8 +538,8 @@
     },
     {
       "path": "src/native/config.ts",
-      "sha256": "dd81abb1f81e0364f2660a674faec069345aac2bcd558b0325f6eeb6d07dfb04",
-      "bytes": 4984,
+      "sha256": "4b7bdebb492b2d83cdd4daa13dc7a2a051dc5f284a79814ef0e32d603bad0133",
+      "bytes": 6538,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -513,6 +585,12 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/native/locale.ts",
+      "sha256": "0b0194bfade4886288c4ff5c2ab00e578a2c19176fd69e50c30ad0e58a8b5a3c",
+      "bytes": 520,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/native/pushToTalk.ts",
       "sha256": "6fcc19e872dd64e065943407458448064131d7b12df4e247e9312970b1af4d20",
       "bytes": 1097,
@@ -522,6 +600,12 @@
       "path": "src/native/pushToTalkKeys.ts",
       "sha256": "a4b2c8ba0da5a11317eeb1f85b911a20695e7b2e68b2fd76f9aa82d11a76e71f",
       "bytes": 5369,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/retryDelay.ts",
+      "sha256": "a2eeb1cde2fc2406a20ad8b228f23e7b23f09dd2b5ab5790d8ea27b5bc454acd",
+      "bytes": 462,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -543,15 +627,57 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/native/startup/index.ts",
+      "sha256": "7424f4ef6e026ecb2da6116c05dde17b8f9941b320a08bfb671808bd0a374afe",
+      "bytes": 10515,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/startup/page.ts",
+      "sha256": "93480f6a032b38f6ecb37809184bdbb528f7ce2c4fbdbf60ad47916a3a646270",
+      "bytes": 9709,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/startup/startupFlow.ts",
+      "sha256": "0d10dfc260bff71a6879377e5ece17e133828acb3bbcf6f0887108ac1d2201da",
+      "bytes": 3829,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/startup/startupStrings.ts",
+      "sha256": "67c53119e7febfcbf31c8df8102bf513c6bbeafb18e40df68baaa1db587a4276",
+      "bytes": 15520,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/startup/updateCheck.ts",
+      "sha256": "ef403b1d8fc3168bdcfcd61979ed5005ed1a999aceec19eb24f0c85c148fc22c",
+      "bytes": 4305,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/startup/updateDownload.ts",
+      "sha256": "f9ae7ad240e8737778c14e6d6f1ca992aed94e45f230bc6582ddcc640114cb94",
+      "bytes": 4867,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/native/tray.ts",
-      "sha256": "9d466299af78080040b603cf76d1228b472a19e66b1f39c930e3c9869e23e73e",
-      "bytes": 2328,
+      "sha256": "8c7f1dde0d83ea067435212ee3a4ecd343cd00dcc6b59c225cdeb49840eb3a45",
+      "bytes": 2875,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/unreachable.ts",
+      "sha256": "f77a99e7ef49167a740567bff6ce979f191bf7ce596194265cdd7cecc8ad7d75",
+      "bytes": 8456,
       "category": "product-source-or-build-manifest"
     },
     {
       "path": "src/native/updateFeed.ts",
-      "sha256": "771f2e402c883e7e962bbf1ff0de696707951ca10684e9fe325b028b59ea6f9f",
-      "bytes": 2640,
+      "sha256": "8e10dc01f91e83182bafcc89f211a9d26260fb3a8a6caa8e32d585f99826cd54",
+      "bytes": 3000,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -562,8 +688,8 @@
     },
     {
       "path": "src/native/window.ts",
-      "sha256": "bf163770abf5ac049e124213efbb673b2aaa14c37164f77039306853b3f89ab5",
-      "bytes": 9441,
+      "sha256": "1d3e404033d5dd95bef79c7f30552264bcee7438038c6d9581b0b55d0939ef84",
+      "bytes": 11892,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -579,15 +705,21 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/startupPreload.ts",
+      "sha256": "32f03f7f451636e3f2797412796cbd1cd1ee532f8502c21ca870e51f8a1d678b",
+      "bytes": 751,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/world/config.ts",
-      "sha256": "ce92a7f42abe5fcde0201baf168ede86aa08516f2a20e617d1f3f7335773e61e",
-      "bytes": 490,
+      "sha256": "17f19df4b7788a711838246d978f792810a272760357ecce0c76b887e9345bf0",
+      "bytes": 597,
       "category": "product-source-or-build-manifest"
     },
     {
       "path": "src/world/window.ts",
-      "sha256": "4b57d2935852f4998616bdf5121d970ef67e7a02552bd5838fcd09acb973ebc8",
-      "bytes": 3228,
+      "sha256": "7f6663d416b77c82aef9a117c926e0da87f1b5a1e6350c519a4e707d01a2944f",
+      "bytes": 3347,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -648,6 +780,12 @@
       "path": "test/signIn.test.mjs",
       "sha256": "1b9bb51c9ca708fad4b601474c69c469368656a48c433ed70c1e11f8f45eebeb",
       "bytes": 2557,
+      "category": "synthetic-test-source-or-fixture"
+    },
+    {
+      "path": "test/startup.test.mjs",
+      "sha256": "431d825d0dfef930e17eeb83268cc9b454f6f8ab2b4360b46741e06be9489c18",
+      "bytes": 23719,
       "category": "synthetic-test-source-or-fixture"
     },
     {
