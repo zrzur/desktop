@@ -1,10 +1,6 @@
 # Changelog
 
-## Zrzur Desktop 26.1.0-beta.2 (2026-11-15)
-
-* Linking Steam, Twitch, GitHub or Battle.net (Settings → Connections) works in the app: the service's sign-in opens in a separate window (sandboxed, no preload, an in-memory session of its own), and Zrzur's return page finishes the link in the main window. Before, the window guard blocked the sign-in page without a word and Connect did nothing. Every other address stays blocked.
-
-## Zrzur Desktop (unreleased)
+## Zrzur Desktop 26.1.0-beta.3 (2026-11-16)
 
 * Fixed: closing the screen share picker without choosing showed "A JavaScript error occurred in the main process" ("Video was requested, but no video stream was provided"). Electron 44 refuses a request only with `null`; the app answered with an empty object. Every refusal (picker closed, another request replacing it, a frame of another site, the system list failing) now answers `null`, and the answer is given once and never throws in the main process.
 * Incoming calls flash the taskbar button until the window is used or the ringing stops (`window.native.callAttention`, app window only).
@@ -19,6 +15,11 @@
 * `zrzur://` links (from discover.zrzur.com and designs.zrzur.com) open the app on that server or design; only Discover, Designs, invite, server, channel and bot pages can be opened this way.
 
 Entries below are the upstream Stoat for Desktop history.
+
+
+## Zrzur Desktop 26.1.0-beta.2 (2026-11-15)
+
+* Linking Steam, Twitch, GitHub or Battle.net (Settings → Connections) works in the app: the service's sign-in opens in a separate window (sandboxed, no preload, an in-memory session of its own), and Zrzur's return page finishes the link in the main window. Before, the window guard blocked the sign-in page without a word and Connect did nothing. Every other address stays blocked.
 
 ## [1.5.4](https://github.com/stoatchat/for-desktop/compare/v1.5.3...v1.5.4) (2026-09-15)
 

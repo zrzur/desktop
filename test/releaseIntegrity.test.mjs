@@ -71,7 +71,7 @@ test("the copied shared scripts match their recorded hashes", () => {
 });
 
 test("one version: RELEASE.json (what the app shows) equals package.json (the installer names)", () => {
-  // 26.1.0-beta.2 installers once called themselves beta.1 because only
+  // 26.1.0-beta.3 installers once called themselves beta.1 because only
   // package.json had moved (audit ZR-002)
   const release = JSON.parse(readFileSync(new URL("../RELEASE.json", import.meta.url), "utf8"));
   const pkgJson = JSON.parse(readFileSync(new URL("../package.json", import.meta.url), "utf8"));
