@@ -1,8 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
-import { UpdateSourceType, updateElectronApp } from "update-electron-app";
 
-import { BrowserWindow, Notification, app, shell } from "electron";
+import { BrowserWindow, app, shell } from "electron";
 import started from "electron-squirrel-startup";
 
 import { initAutoLaunch } from "./native/autoLaunch";
@@ -22,14 +21,24 @@ import {
   openSignInWindow,
   signInContents,
 } from "./native/signIn";
+import {
+  closeStartupWindow,
+  focusStartupWindow,
+  openStartupWindow,
+  restartIntoUpdate,
+  runStartup,
+  startupRunning,
+} from "./native/startup";
 import { initTray } from "./native/tray";
-import { resolveUpdateFeedUrl } from "./native/updateFeed";
 import { initVirtualMic } from "./native/virtualMic";
 import {
   BUILD_URL,
   appPageUrl,
   createMainWindow,
+  loadMainWindow,
   mainWindow,
+  revealMainWindow,
+  startsHidden,
 } from "./native/window";
 
 // In Flatpak, we have to update the temp dir to a shared directory across host and sandbox;
@@ -82,8 +91,11 @@ let pendingPath = appPathFromLink(
 function openLink(link: string | undefined) {
   const target = link ? appPathFromLink(link, LINK_SCHEME) : undefined;
   if (!target) return;
-  if (!mainWindow) {
+  // before the app page is loaded (start-up window still up), the link is
+  // kept and the app opens on it
+  if (!mainWindow || startupRunning()) {
     pendingPath = target;
+    focusStartupWindow();
     return;
   }
   mainWindow.loadURL(appPageUrl(target));
@@ -99,28 +111,6 @@ app.on("open-url", (event, link) => {
 });
 
 if (acquiredLock) {
-  // Auto-update stays off unless ZRZUR_ENABLE_UPDATES=1 and a Zrzur HTTPS
-  // static feed is set. Never use GitHub / update.electronjs.org defaults.
-  const updateFeed = resolveUpdateFeedUrl(
-    process.env.ZRZUR_ENABLE_UPDATES,
-    process.env.ZRZUR_UPDATE_FEED_URL,
-  );
-  if (updateFeed) {
-    updateElectronApp({
-      updateSource: {
-        type: UpdateSourceType.StaticStorage,
-        baseUrl: updateFeed,
-      },
-      onNotifyUser: () => {
-        new Notification({
-          title: "Update Available",
-          body: "Restart the app to install the update.",
-          silent: true,
-        }).show();
-      },
-    });
-  }
-
   // create and configure the app when electron is ready
   app.on("ready", () => {
     // About panel links to the source of this exact build
@@ -128,9 +118,39 @@ if (acquiredLock) {
     // device permissions for the app origin only (never plugin frames)
     installFrameGuard();
 
-    // create window and application contexts
-    createMainWindow(pendingPath);
-    pendingPath = undefined;
+    // Auto-update stays off unless ZRZUR_ENABLE_UPDATES=1 and a Zrzur HTTPS
+    // static feed is set (native/updateFeed.ts). Never GitHub or
+    // update.electronjs.org defaults.
+    if (startsHidden()) {
+      // asked to start in the tray: no window of any kind, no update step
+      createMainWindow(pendingPath);
+      pendingPath = undefined;
+    } else {
+      // The start-up window is on screen first. The main window exists but
+      // stays hidden; with no update step its page loads at once, otherwise
+      // only after the check says this version stays.
+      const feed = openStartupWindow();
+      createMainWindow(undefined, { load: false });
+      const openApp = () => {
+        loadMainWindow(pendingPath);
+        pendingPath = undefined;
+        revealMainWindow(closeStartupWindow);
+      };
+      if (!feed) {
+        openApp();
+      } else {
+        runStartup(feed)
+          .then((outcome) => {
+            // a source run has no installer to restart into
+            if (outcome === "restart" && app.isPackaged) restartIntoUpdate();
+            else openApp();
+          })
+          .catch((error) => {
+            console.error("[startup]", error);
+            openApp();
+          });
+      }
+    }
 
     // save first launch state
     if (config.firstLaunch) {
@@ -154,9 +174,12 @@ if (acquiredLock) {
 
   // focus the window if we try to launch again
   app.on("second-instance", (_event, argv) => {
-    mainWindow.show();
-    mainWindow.restore();
-    mainWindow.focus();
+    // while the start-up window is up, it is the app's window
+    if (!focusStartupWindow()) {
+      mainWindow.show();
+      mainWindow.restore();
+      mainWindow.focus();
+    }
     // Windows and Linux start a second copy with the link as an argument
     openLink(linkFromArgs(argv, LINK_SCHEME));
   });
@@ -165,7 +188,7 @@ if (acquiredLock) {
   // (irrespective of the minimise-to-tray option)
 
   app.on("window-all-closed", () => {
-    if (process.platform !== "darwin") {
+    if (process.platform !== "darwin" && !startupRunning()) {
       app.quit();
     }
   });
@@ -173,7 +196,7 @@ if (acquiredLock) {
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) {
       createMainWindow();
-    } else {
+    } else if (!focusStartupWindow()) {
       mainWindow.show();
       mainWindow.focus();
     }

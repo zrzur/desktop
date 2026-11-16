@@ -5,7 +5,29 @@ import macOsTrayIconAsset from "../../assets/desktop/iconTemplate.png?asset";
 import { version } from "../../package.json";
 
 import { buildInfo } from "./buildInfo";
-import { mainWindow, quitApp } from "./window";
+import { whenLanguageChanges } from "./config";
+import { shellLanguage } from "./locale";
+import { focusStartupWindow } from "./startup";
+import {
+  type ShellStringKey,
+  displayVersion,
+  shellString,
+} from "./startup/startupStrings";
+import { mainWindow, mainWindowRevealed, quitApp } from "./window";
+
+/** Tray words in the shell's language (native/locale.ts) */
+const t = (key: ShellStringKey) => shellString(shellLanguage(), key);
+
+/** Show or hide the app window; while the start-up window is up, that one */
+function toggleMainWindow() {
+  if (!mainWindowRevealed() && focusStartupWindow()) return;
+  if (mainWindow.isVisible()) {
+    mainWindow.hide();
+  } else {
+    mainWindow.show();
+    mainWindow.focus();
+  }
+}
 
 // internal tray state
 let tray: Tray | null = null;
@@ -26,16 +48,13 @@ export function initTray() {
   const trayIcon = createTrayIcon();
   tray = new Tray(trayIcon);
   updateTrayMenu();
-  tray.setToolTip("Zrzur for Desktop");
+  tray.setToolTip(t("trayTitle"));
   tray.setImage(trayIcon);
-  tray.on("click", () => {
-    if (mainWindow.isVisible()) {
-      mainWindow.hide();
-    } else {
-      mainWindow.show();
-      mainWindow.focus();
-    }
+  whenLanguageChanges(() => {
+    tray?.setToolTip(t("trayTitle"));
+    updateTrayMenu();
   });
+  tray.on("click", toggleMainWindow);
 }
 
 export function updateTrayMenu() {
@@ -43,27 +62,27 @@ export function updateTrayMenu() {
   if (!tray) return;
   tray.setContextMenu(
     Menu.buildFromTemplate([
-      { label: "Zrzur for Desktop", type: "normal", enabled: false },
+      { label: t("trayTitle"), type: "normal", enabled: false },
       {
-        label: "Version",
+        label: t("trayVersion"),
         type: "submenu",
         submenu: Menu.buildFromTemplate([
           {
-            label: version,
+            label: displayVersion(version),
             type: "normal",
             enabled: false,
           },
         ]),
       },
       {
-        label: "About Zrzur",
+        label: t("trayAbout"),
         type: "normal",
         click() {
           app.showAboutPanel();
         },
       },
       {
-        label: "Source code",
+        label: t("traySource"),
         type: "normal",
         click() {
           // the exact source of this build (tag or commit)
@@ -72,18 +91,12 @@ export function updateTrayMenu() {
       },
       { type: "separator" },
       {
-        label: mainWindow.isVisible() ? "Hide App" : "Show App",
+        label: mainWindow.isVisible() ? t("trayHide") : t("trayShow"),
         type: "normal",
-        click() {
-          if (mainWindow.isVisible()) {
-            mainWindow.hide();
-          } else {
-            mainWindow.show();
-          }
-        },
+        click: toggleMainWindow,
       },
       {
-        label: "Quit App",
+        label: t("trayQuit"),
         type: "normal",
         click: quitApp,
       },

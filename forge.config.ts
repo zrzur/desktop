@@ -40,6 +40,11 @@ const makers: ForgeConfig["makers"] = [
       // Local Zrzur .ico — never remote Electron/Stoat icon hosts.
       iconUrl: pathToFileURL(zrzurIco).href,
       setupIcon: zrzurIco,
+      // First install: Squirrel shows this while it unpacks, instead of its
+      // stock animation. The Zrzur logo with its glide motion on the app's
+      // ground, the same size and place as in the start-up window that
+      // follows it. No words: an image cannot follow the device language.
+      loadingGif: path.resolve(ASSET_DIR, "install.gif"),
       description: STRINGS.description,
       exe: `${STRINGS.execName}.exe`,
       copyright:
@@ -244,6 +249,12 @@ const config: ForgeConfig = {
         },
         {
           entry: "src/preload.ts",
+          config: "vite.preload.config.ts",
+          target: "preload",
+        },
+        {
+          // the start-up window's own small preload (native/startup)
+          entry: "src/startupPreload.ts",
           config: "vite.preload.config.ts",
           target: "preload",
         },

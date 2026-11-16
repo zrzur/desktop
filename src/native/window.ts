@@ -14,10 +14,13 @@ import {
 import windowIconAsset from "../../assets/desktop/icon.png?asset";
 
 import { resolveApplicationUrl } from "./applicationUrl";
-import { THUMBNAIL_SIZE, describeSources } from "./screenSources";
-import { answerOnce, displayStreams } from "./displayMedia";
 import { config } from "./config";
+import { answerOnce, displayStreams } from "./displayMedia";
+import { shellLanguage } from "./locale";
+import { THUMBNAIL_SIZE, describeSources } from "./screenSources";
+import { shellString } from "./startup/startupStrings";
 import { updateTrayMenu } from "./tray";
+import { installUnreachablePage } from "./unreachable";
 
 // global reference to main window
 export let mainWindow: BrowserWindow;
@@ -40,6 +43,23 @@ export function appPageUrl(path?: string) {
 
 // internal window state
 let shouldQuit = false;
+// the window has been put on screen (or was asked to start hidden)
+let revealed = false;
+// the page has painted, failed to load, or took too long: nothing to wait for
+let pageReady = false;
+let whenPageReady: (() => void) | undefined;
+
+function markPageReady() {
+  if (pageReady) return;
+  pageReady = true;
+  whenPageReady?.();
+  whenPageReady = undefined;
+}
+
+/** False while the start-up window is still in front of a hidden main window */
+export function mainWindowRevealed() {
+  return revealed;
+}
 
 // load the window icon
 const windowIcon = nativeImage.createFromDataURL(windowIconAsset);
@@ -49,10 +69,24 @@ const windowIcon = nativeImage.createFromDataURL(windowIconAsset);
 /**
  * Create the main application window
  */
-export function createMainWindow(startPath?: string) {
-  // (CLI arg --hidden or config)
-  const startHidden =
-    app.commandLine.hasSwitch("hidden") || config.startMinimisedToTray;
+/** Started with --hidden or "start minimised to tray": no window at start */
+export function startsHidden() {
+  return app.commandLine.hasSwitch("hidden") || config.startMinimisedToTray;
+}
+
+/**
+ * Create the main application window. It is never shown empty: it stays
+ * hidden until `revealMainWindow`, which waits for the page's first paint.
+ * With `load: false` the page is loaded later by `loadMainWindow` (the
+ * start-up window first finds out whether an update replaces this version).
+ */
+export function createMainWindow(
+  startPath?: string,
+  options: { load?: boolean } = {},
+) {
+  const startHidden = startsHidden();
+  revealed = startHidden;
+  pageReady = false;
   const isMacOS = process.platform === "darwin";
 
   // create the window
@@ -61,12 +95,13 @@ export function createMainWindow(startPath?: string) {
     minHeight: 300,
     width: 1280,
     height: 720,
-    backgroundColor: "#191919",
+    // the app's own ground (--surface-frame), so no other colour flashes
+    backgroundColor: "#0D0E16",
     frame: isMacOS ? true : !config.customFrame,
     titleBarStyle: isMacOS ? "hidden" : "default",
     trafficLightPosition: isMacOS ? { x: 8, y: 8 } : undefined,
     icon: windowIcon,
-    show: !startHidden,
+    show: false,
     webPreferences: {
       // relative to `.vite/build`
       preload: join(__dirname, "preload.js"),
@@ -99,15 +134,18 @@ export function createMainWindow(startPath?: string) {
     );
   }
 
-  // maximise the window if it was maximised before
-  if (config.windowState.isMaximised && !startHidden) {
-    mainWindow.maximize();
-  }
+  // first paint is ready
+  mainWindow.once("ready-to-show", markPageReady);
+  // The address does not load (no network, site down, gateway error): the
+  // window shows Zrzur's own page, keeps trying and opens the app by itself.
+  // Never a browser error, never an empty window.
+  installUnreachablePage(mainWindow, BUILD_URL, {
+    controls: !isMacOS && config.customFrame,
+    ready: markPageReady,
+  });
 
   // load the entrypoint
-  mainWindow
-    .loadURL(appPageUrl(startPath))
-    .then(() => mainWindow.webContents.reload());
+  if (options.load !== false) loadMainWindow(startPath);
 
   // minimise window to tray
   mainWindow.on("close", (event) => {
@@ -164,7 +202,8 @@ export function createMainWindow(startPath?: string) {
     }
   });
 
-  // send the config
+  // send the config (the preload also reads it once, synchronously, before
+  // the page's first script: see world/config.ts)
   mainWindow.webContents.on("did-finish-load", () => config.sync());
 
   // Only show native spelling suggestions for an actual misspelling in an
@@ -189,7 +228,7 @@ export function createMainWindow(startPath?: string) {
     if (params.misspelledWord) {
       menu.append(
         new MenuItem({
-          label: "Add to dictionary",
+          label: shellString(shellLanguage(), "addToDictionary"),
           click: () =>
             mainWindow.webContents.session.addWordToSpellCheckerDictionary(
               params.misspelledWord,
@@ -290,6 +329,33 @@ export function createMainWindow(startPath?: string) {
 
   // let i = 0;
   // setInterval(() => setBadgeCount((++i % 30) + 1), 1000);
+}
+
+/** Loads the app page into the main window (once) */
+export function loadMainWindow(startPath?: string) {
+  // never wait longer than this for a first paint
+  setTimeout(markPageReady, 10_000);
+  mainWindow.loadURL(appPageUrl(startPath)).catch(() => markPageReady());
+}
+
+/**
+ * Puts the main window on screen as soon as its page has painted, then calls
+ * `shown`. A start that asked for a hidden window stays hidden.
+ */
+export function revealMainWindow(shown?: () => void) {
+  const reveal = () => {
+    if (mainWindow.isDestroyed()) return;
+    if (!revealed) {
+      revealed = true;
+      // maximise the window if it was maximised before (this also shows it)
+      if (config.windowState.isMaximised) mainWindow.maximize();
+      mainWindow.show();
+      mainWindow.focus();
+    }
+    shown?.();
+  };
+  if (pageReady) reveal();
+  else whenPageReady = reveal;
 }
 
 /**
