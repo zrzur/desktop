@@ -2,6 +2,8 @@ import dbus from "@homebridge/dbus-native";
 
 import { NativeImage, app, ipcMain, nativeImage } from "electron";
 
+import { shellLanguage } from "./locale";
+import { shellString } from "./startup/startupStrings";
 import { mainWindow } from "./window";
 
 // internal state
@@ -13,7 +15,10 @@ export async function setBadgeCount(count: number) {
     case "win32":
     case "linux":
       if (count === 0) {
-        mainWindow.setOverlayIcon(null, "No Notifications");
+        mainWindow.setOverlayIcon(
+          null,
+          shellString(shellLanguage(), "badgeNone"),
+        );
         break;
       }
 
@@ -26,7 +31,12 @@ export async function setBadgeCount(count: number) {
 
       mainWindow.setOverlayIcon(
         nativeIcons[count],
-        count === -1 ? `Unread Messages` : `${count} Notifications`,
+        count === -1
+          ? shellString(shellLanguage(), "badgeUnread")
+          : shellString(shellLanguage(), "badgeCount").replace(
+              "{n}",
+              String(count),
+            ),
       );
 
       break;

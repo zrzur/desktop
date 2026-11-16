@@ -1,6 +1,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 
-let config: DesktopConfig;
+// read once, synchronously, so the page's first script already has it
+let config: DesktopConfig = ipcRenderer.sendSync("configNow");
 
 ipcRenderer.on("config", (_, data) => (config = data));
 

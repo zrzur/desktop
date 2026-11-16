@@ -52,6 +52,9 @@ function updatesFeedEnv(): string | undefined {
 export function resolveUpdateFeedUrl(
   enableFlag: string | undefined = updatesEnabledFlag(),
   feedUrl: string | undefined = updatesFeedEnv(),
+  // a source run (never an installed app) may test against a local feed
+  // over plain HTTP: http://127.0.0.1:<port>/
+  options: { allowLoopbackHttp?: boolean } = {},
 ): string | null {
   if (enableFlag !== "1") {
     return null;
@@ -71,7 +74,15 @@ export function resolveUpdateFeedUrl(
     );
     return null;
   }
-  if (url.protocol !== "https:" || url.username || url.password) {
+  const localTest =
+    options.allowLoopbackHttp === true &&
+    url.protocol === "http:" &&
+    LOOPBACK.has(url.hostname.replace(/\.$/, "").toLowerCase());
+  if (
+    (url.protocol !== "https:" && !localTest) ||
+    url.username ||
+    url.password
+  ) {
     console.warn(
       "ZRZUR_UPDATE_FEED_URL must be HTTPS without credentials; auto-update stays off.",
     );

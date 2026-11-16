@@ -28,6 +28,12 @@ const schema = {
   discordRpc: {
     type: "boolean",
   } as JSONSchema.Boolean,
+  // the language chosen in the app ("" until the app says), for the shell's
+  // own words
+  language: {
+    type: "string",
+    maxLength: 16,
+  } as JSONSchema.String,
   windowState: {
     type: "object",
     properties: {
@@ -62,6 +68,7 @@ const store = new Store({
     spellchecker: true,
     hardwareAcceleration: true,
     discordRpc: true,
+    language: "",
     windowState: {
       x: 0,
       y: 0,
@@ -72,12 +79,19 @@ const store = new Store({
   } as DesktopConfig,
 });
 
+let onLanguageChange: (() => void) | undefined;
+/** Called when the app tells the shell another language (the tray redraws) */
+export function whenLanguageChanges(run: () => void) {
+  onLanguageChange = run;
+}
+
 /**
  * Shim for `electron-store` because typings are broken
  */
 class Config {
-  sync() {
-    mainWindow.webContents.send("config", {
+  /** Everything the page may read */
+  snapshot(): DesktopConfig {
+    return {
       firstLaunch: this.firstLaunch,
       customFrame: this.customFrame,
       minimiseToTray: this.minimiseToTray,
@@ -85,8 +99,15 @@ class Config {
       spellchecker: this.spellchecker,
       hardwareAcceleration: this.hardwareAcceleration,
       discordRpc: this.discordRpc,
+      language: this.language,
       windowState: this.windowState,
-    });
+    };
+  }
+
+  sync() {
+    // a setting can change before the window exists (first launch)
+    if (!mainWindow || mainWindow.isDestroyed()) return;
+    mainWindow.webContents.send("config", this.snapshot());
   }
 
   get firstLaunch() {
@@ -194,6 +215,27 @@ class Config {
     this.sync();
   }
 
+  get language() {
+    return (store as never as { get(k: string): string }).get("language") ?? "";
+  }
+
+  set language(value: string) {
+    // a language tag and nothing else ("fr", "zh-Hans", "es-419")
+    const tag =
+      typeof value === "string" &&
+      /^[A-Za-z]{2,3}(-[A-Za-z0-9]{2,8})*$/.test(value)
+        ? value
+        : "";
+    if (tag === this.language) return;
+    (store as never as { set(k: string, value: string): void }).set(
+      "language",
+      tag,
+    );
+    // the tray menu is in this language from now on
+    onLanguageChange?.();
+    this.sync();
+  }
+
   get windowState() {
     return (
       store as never as { get(k: string): DesktopConfig["windowState"] }
@@ -212,6 +254,15 @@ class Config {
 }
 
 export const config = new Config();
+
+// The preload asks once, before the page's first script, so the page has
+// its settings on the first load (it used to need a second load for that)
+ipcMain.on("configNow", (event) => {
+  event.returnValue =
+    mainWindow && event.sender === mainWindow.webContents
+      ? config.snapshot()
+      : null;
+});
 
 ipcMain.on("config", (_, newConfig: Partial<DesktopConfig>) => {
   console.info("Received new configuration", newConfig);
