@@ -1,6 +1,6 @@
 # Changelog
 
-## Zrzur Desktop (unreleased)
+## Zrzur Desktop 26.2.0 (2026-11-20)
 
 * Start-up window: the app opens with a small upright window (320 × 380) that says what is happening, in the device's language (Arabic, English, German, French, Spanish, Turkish or Russian; English otherwise): checking for an update, downloading it (the bar and percentage are the bytes received, with megabytes beside them), installing, opening. With no network it says so and opens the app; when an update fails it says so in plain words, keeps the technical part under "Details", offers "Try again" and "Open Zrzur", and opens the app by itself after ten seconds. The app's main window is no longer shown empty: it appears when its page has painted.
 * Updates (Windows): the app reads the feed's `RELEASES` itself, downloads the newest full package, checks its size and SHA-1, and hands the local folder to Squirrel to install; nothing is installed that does not match the list. Still off unless `ZRZUR_ENABLE_UPDATES=1` and a Zrzur HTTPS feed are set: no feed is built in. The background check of `update-electron-app` and its English notification are no longer used. A source run may test against `http://127.0.0.1` (never an installed app).

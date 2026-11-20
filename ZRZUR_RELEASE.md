@@ -1,6 +1,6 @@
-# Zrzur 26 — release 26.1.0 Beta
+# Zrzur 26 — release 26.2.0
 
-This repository is one component of Zrzur. The shared product version is **26.1.0-beta.3** (shown as "26.1.0 Beta 3"), on **main** (tag `v26.1.0-beta.3`). It is a public beta: what runs on app.zrzur.com, with features that may still change. The previous release is 26.0.0 (tag `v26.0.0`). Original dependency, SDK and protocol versions remain compatibility identifiers.
+This repository is one component of Zrzur. The shared product version is **26.2.0**, the official release for everyone, on **main** (tag `v26.2.0`). The previous official release is 26.0.0 (tag `v26.0.0`); the desktop test versions before this one are 26.1.0-beta.1 to 26.1.0-beta.3. Original dependency, SDK and protocol versions remain compatibility identifiers.
 
 | Component | Source |
 |---|---|
@@ -13,9 +13,9 @@ This repository is one component of Zrzur. The shared product version is **26.1.
 
 Upstream licences, copyright notices and attribution are retained (see NOTICE). Git history was not carried over: this repository starts with a single initial commit.
 
-## Known limits of 26.1.0 Beta
+## Known limits of 26.2.0
 
-- It is a beta: features and wording may still change before the next stable release.
-- Desktop apps are not code-signed: Windows SmartScreen and macOS Gatekeeper ask before the first start. There is no automatic update yet; new versions are downloaded from zrzur.com/download.
+- Desktop apps are not code-signed yet: Windows SmartScreen and macOS Gatekeeper ask before the first start.
+- Automatic updates are not switched on yet: new versions are downloaded from zrzur.com/download or GitHub Releases.
 - The Linux app needs the system NSS libraries (`libnss3`).
 - Do not publish development configuration or reuse demo credentials in production.
