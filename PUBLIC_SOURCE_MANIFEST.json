@@ -717,9 +717,15 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/world/platform.ts",
+      "sha256": "4874590571edeeb3f467fa7a1eb7676ea6837c4f2ef287c581f6e8c9f2f5f64c",
+      "bytes": 282,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/world/window.ts",
-      "sha256": "7f6663d416b77c82aef9a117c926e0da87f1b5a1e6350c519a4e707d01a2944f",
-      "bytes": 3347,
+      "sha256": "55de5590deee0f5f1ef406087d9c9be8b8deef4be1247bf799270e7a0ff277a8",
+      "bytes": 3499,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -756,6 +762,12 @@
       "path": "test/identity.test.mjs",
       "sha256": "ef7a8c747c8cf7303b0be7609e4b8e06bb7029ecf0b44b3e696b72eecb8b2d4d",
       "bytes": 1006,
+      "category": "synthetic-test-source-or-fixture"
+    },
+    {
+      "path": "test/platform.test.mjs",
+      "sha256": "e02cb3bd701fe5fb418cafb3ae900e7a4c86a52dd209b7c5d5c993449553178c",
+      "bytes": 790,
       "category": "synthetic-test-source-or-fixture"
     },
     {
