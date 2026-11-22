@@ -138,15 +138,15 @@ test("ids of Zrzur's own parts are reserved", () => {
 });
 
 test("texts follow the server's rule: hidden and reordering characters go", () => {
-  assert.equal(cleanText("Game‮gnp.exe"), "Gamegnp.exe", "right-to-left override");
-  assert.equal(cleanText("Ga​me"), "Game", "zero-width space");
-  assert.equal(cleanText("Ga﻿me⁦"), "Game", "byte order mark, isolate");
-  assert.equal(cleanText("Line break"), "Line break", "line separator");
-  assert.equal(cleanText("Para graph"), "Para graph", "paragraph separator");
+  assert.equal(cleanText("Game\u202Egnp.exe"), "Gamegnp.exe", "right-to-left override");
+  assert.equal(cleanText("Ga\u200Bme"), "Game", "zero-width space");
+  assert.equal(cleanText("Ga\uFEFFme\u2066"), "Game", "byte order mark, isolate");
+  assert.equal(cleanText("Line\u2028break"), "Line break", "line separator");
+  assert.equal(cleanText("Para\u2029graph"), "Para graph", "paragraph separator");
   assert.equal(cleanText("Tab\there"), "Tab here");
-  assert.equal(cleanText("می‌خواهم"), "می‌خواهم", "the non-joiner stays");
-  assert.equal(cleanText("👩‍💻"), "👩‍💻", "the joiner stays");
-  const activity = toDataActivity({ details: "Lev‮el 3", state: "​" });
+  assert.equal(cleanText("می\u200Cخواهم"), "می\u200Cخواهم", "the non-joiner stays");
+  assert.equal(cleanText("👩\u200D💻"), "👩\u200D💻", "the joiner stays");
+  const activity = toDataActivity({ details: "Lev\u202Eel 3", state: "\u200B" });
   assert.equal(activity.details, "Level 3");
   assert.equal(activity.state, undefined, "nothing left: left out");
 });
@@ -448,8 +448,8 @@ test("the extension reports a domain only", () => {
   assert.equal(siteActivity("youtube.com", "", "Dancing").type, "Using");
   assert.equal(siteActivity("youtube.com", "", "Dancing").name, "youtube.com");
   assert.equal(siteActivity("https://youtube.com/x", "Y", "Watching"), null);
-  assert.equal(siteActivity("youtube.com", "You‮Tube", "Watching").name, "YouTube", "the server's text rule");
-  assert.equal(siteActivity("youtube.com", "​", "Watching").name, "youtube.com");
+  assert.equal(siteActivity("youtube.com", "You\u202ETube", "Watching").name, "YouTube", "the server's text rule");
+  assert.equal(siteActivity("youtube.com", "\u200B", "Watching").name, "youtube.com");
 });
 
 /* A real pipe: the frame reader and the protocol behind a socket */
