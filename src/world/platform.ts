@@ -8,3 +8,8 @@ export function shortcutPlatform(
 ): string {
   return platform;
 }
+
+/** What the preload adds to `window.native` for the shortcuts */
+export function platformBridge(platform: string = process.platform) {
+  return { platform: shortcutPlatform(platform) };
+}
