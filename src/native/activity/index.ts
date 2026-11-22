@@ -123,6 +123,9 @@ let wsServer: Server | undefined;
 let wsPort: number | undefined;
 let pairingCode: string | undefined;
 let pairingUntil = 0;
+/** Wrong codes since the code was shown; the code is dropped at the limit */
+let pairingMisses = 0;
+const PAIRING_TRIES = 5;
 const sockets = new Set<Socket>();
 let lastSent = "";
 
@@ -533,6 +536,12 @@ function serveExtension(socket: Socket) {
           sendState();
           reply({ type: "paired" });
         } else {
+          // a code cannot be guessed: a few wrong tries and it is gone
+          pairingMisses++;
+          if (pairingMisses >= PAIRING_TRIES) {
+            pairingCode = undefined;
+            sendState();
+          }
           reply({ type: "pairFailed" });
         }
         continue;
@@ -765,6 +774,7 @@ export function initActivity() {
   });
 
   ipcMain.handle("activityStartPairing", () => {
+    pairingMisses = 0;
     pairingCode = newPairingCode();
     pairingUntil = Date.now() + PAIRING_MS;
     return state();
