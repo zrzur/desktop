@@ -413,3 +413,67 @@ test("the extension reports a domain only", () => {
   assert.equal(siteActivity("youtube.com", "", "Dancing").name, "youtube.com");
   assert.equal(siteActivity("https://youtube.com/x", "Y", "Watching"), null);
 });
+
+/* A real pipe: the frame reader and the protocol behind a socket */
+
+test("over a real pipe: handshake, an activity, a bad frame closes", async (t) => {
+  const { createServer, connect } = await import("node:net");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const path =
+    process.platform === "win32"
+      ? `\\\\?\\pipe\\zrzur-ipc-test-${process.pid}`
+      : join(tmpdir(), `zrzur-ipc-test-${process.pid}`);
+  const changes = [];
+  const server = createServer((socket) => {
+    const reader = new FrameReader();
+    const connection = new RpcConnection();
+    socket.on("data", (chunk) => {
+      let frames;
+      try {
+        frames = reader.push(chunk);
+      } catch {
+        socket.destroy();
+        return;
+      }
+      for (const frame of frames) {
+        const step = connection.receive(frame);
+        for (const out of step.send) socket.write(encodeFrame(out.op, out.data));
+        changes.push(...step.changes);
+        if (step.close) socket.end();
+      }
+    });
+  });
+  await new Promise((resolve) => server.listen(path, resolve));
+  t.after(() => server.close());
+
+  const client = connect(path);
+  const answers = [];
+  const reader = new FrameReader();
+  client.on("data", (chunk) => answers.push(...reader.push(chunk)));
+  await new Promise((resolve) => client.once("connect", resolve));
+  client.write(encodeFrame(OP_HANDSHAKE, { v: 1, client_id: "pipe-test" }));
+  client.write(
+    encodeFrame(OP_FRAME, {
+      cmd: "SET_ACTIVITY",
+      nonce: "7",
+      args: { pid: 1, activity: { details: "Over a pipe", type: 0 } },
+    }),
+  );
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  assert.equal(answers[0].data.evt, "READY");
+  assert.equal(answers[1].data.nonce, "7");
+  assert.deepEqual(
+    changes.map((c) => c.kind),
+    ["ready", "activity"],
+  );
+  assert.equal(changes[1].activity.details, "Over a pipe");
+
+  // an oversized header closes the connection
+  const closed = new Promise((resolve) => client.once("close", resolve));
+  const huge = Buffer.alloc(8);
+  huge.writeUInt32LE(OP_FRAME, 0);
+  huge.writeUInt32LE(MAX_PAYLOAD + 1, 4);
+  client.write(huge);
+  await closed;
+});
