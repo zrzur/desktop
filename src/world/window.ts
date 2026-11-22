@@ -61,6 +61,49 @@ contextBridge.exposeInMainWorld("native", {
     },
   },
 
+  // What the person is doing right now (rich presence): programs running,
+  // apps over the local RPC and the paired browser extension. Runs only
+  // while the page says the person shares their activity.
+  activity: {
+    state: () => ipcRenderer.invoke("activityState"),
+    current: () => ipcRenderer.invoke("activityCurrent"),
+    setSharing: (on: boolean) =>
+      ipcRenderer.invoke("activitySetSharing", on === true),
+    setDetection: (on: boolean) =>
+      ipcRenderer.invoke("activitySetDetection", on === true),
+    setEntry: (id: string, change: { name?: string; off?: boolean }) =>
+      ipcRenderer.invoke("activitySetEntry", String(id), {
+        name: typeof change?.name === "string" ? change.name : undefined,
+        off: typeof change?.off === "boolean" ? change.off : undefined,
+      }),
+    running: () => ipcRenderer.invoke("activityRunning"),
+    add: (pid: number, name: string, kind: string) =>
+      ipcRenderer.invoke("activityAdd", Number(pid), String(name), String(kind)),
+    removeAdded: (id: string) =>
+      ipcRenderer.invoke("activityRemoveAdded", String(id)),
+    blockApp: (id: string, blocked: boolean) =>
+      ipcRenderer.invoke("activityBlockApp", String(id), blocked === true),
+    forgetApp: (id: string) => ipcRenderer.invoke("activityForgetApp", String(id)),
+    setCompat: (on: boolean) =>
+      ipcRenderer.invoke("activitySetCompat", on === true),
+    startPairing: () => ipcRenderer.invoke("activityStartPairing"),
+    stopPairing: () => ipcRenderer.invoke("activityStopPairing"),
+    onUpdate: (callback: (update: unknown) => void) => {
+      const listener = (_event: unknown, update: unknown) => callback(update);
+      ipcRenderer.on("activityUpdate", listener);
+      return () => {
+        ipcRenderer.removeListener("activityUpdate", listener);
+      };
+    },
+    onState: (callback: (state: unknown) => void) => {
+      const listener = (_event: unknown, state: unknown) => callback(state);
+      ipcRenderer.on("activityState", listener);
+      return () => {
+        ipcRenderer.removeListener("activityState", listener);
+      };
+    },
+  },
+
   // Keys that work in games: push to talk, push to mute, mute and deafen
   // from any app. The listener runs only while the page holds binds, and
   // the page hears only its own binds going down and up.

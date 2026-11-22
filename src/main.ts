@@ -12,6 +12,7 @@ import {
   linkFromArgs,
   linkProtocolFor,
 } from "./native/deepLink";
+import { initActivity } from "./native/activity";
 import { initDiscordRpc } from "./native/discordRpc";
 import { installFrameGuard } from "./native/frameGuard";
 import { initGlobalKeys } from "./native/globalKeys";
@@ -165,6 +166,7 @@ if (acquiredLock) {
     initAutoLaunch();
     initPushToTalk();
     initGlobalKeys();
+    initActivity();
 
     // Windows specific fix for notifications
     if (process.platform === "win32") {
