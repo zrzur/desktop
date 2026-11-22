@@ -116,6 +116,29 @@ export function detect(
   return undefined;
 }
 
+/**
+ * Program names of the chat app whose presence pipe name the opt-in
+ * compatibility uses (its stable, test and canary builds, every system).
+ * Never shown to the person.
+ */
+const OTHER_CHAT_APP = [
+  "discord",
+  "discord.exe",
+  "discordptb",
+  "discordptb.exe",
+  "discordcanary",
+  "discordcanary.exe",
+  "discord-ptb",
+  "discord-canary",
+  "discorddevelopment",
+  "discorddevelopment.exe",
+];
+
+/** Whether that app runs now: then Zrzur steps aside (legal RP-06) */
+export function otherChatAppRunning(processes: RunningProcess[], _platform?: Platform) {
+  return processes.some((process) => OTHER_CHAT_APP.includes(process.name.toLowerCase()));
+}
+
 /** Executable names worth a path lookup: named by an entry with a hint */
 export function namesNeedingPath(list: Detectable[], platform: Platform) {
   const names = new Set<string>();

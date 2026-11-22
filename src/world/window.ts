@@ -83,6 +83,16 @@ contextBridge.exposeInMainWorld("native", {
       ipcRenderer.invoke("activityRemoveAdded", String(id)),
     blockApp: (id: string, blocked: boolean) =>
       ipcRenderer.invoke("activityBlockApp", String(id), blocked === true),
+    // a new app asked to show what you do: Show (true) or Block (false)
+    decideApp: (id: string, show: boolean) =>
+      ipcRenderer.invoke("activityDecideApp", String(id), show === true),
+    onAsk: (callback: (id: string) => void) => {
+      const listener = (_event: unknown, id: unknown) => callback(String(id));
+      ipcRenderer.on("activityAsk", listener);
+      return () => {
+        ipcRenderer.removeListener("activityAsk", listener);
+      };
+    },
     forgetApp: (id: string) => ipcRenderer.invoke("activityForgetApp", String(id)),
     setCompat: (on: boolean) =>
       ipcRenderer.invoke("activitySetCompat", on === true),

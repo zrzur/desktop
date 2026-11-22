@@ -7,6 +7,7 @@ import {
   detect,
   matches,
   namesNeedingPath,
+  otherChatAppRunning,
   parseGetProcess,
   parsePaths,
   parsePs,
@@ -28,7 +29,9 @@ import {
   encodeFrame,
 } from "../src/native/activity/frames.ts";
 import {
+  RESERVED_CLIENT_IDS,
   RpcConnection,
+  cleanText,
   timeOf,
   toDataActivity,
 } from "../src/native/activity/rpcProtocol.ts";
@@ -114,13 +117,46 @@ function hello(connection, clientId = "1234567890") {
   return connection.receive({ op: OP_HANDSHAKE, data: { v: 1, client_id: clientId } });
 }
 
-test("the handshake answers READY with a placeholder user, never the account", () => {
-  const connection = new RpcConnection();
-  const step = hello(connection);
-  assert.equal(step.close, undefined);
-  assert.equal(step.send[0].data.evt, "READY");
-  assert.deepEqual(step.send[0].data.data.user.id, "0");
-  assert.deepEqual(step.changes, [{ kind: "ready", clientId: "1234567890" }]);
+test("READY on Zrzur's own pipe carries the version alone; the common pipe a placeholder, never the account", () => {
+  const own = hello(new RpcConnection());
+  assert.equal(own.close, undefined);
+  assert.equal(own.send[0].data.evt, "READY");
+  assert.deepEqual(own.send[0].data.data, { v: 1 });
+  assert.deepEqual(own.changes, [{ kind: "ready", clientId: "1234567890" }]);
+
+  const compat = hello(new RpcConnection({ compat: true }));
+  assert.equal(compat.send[0].data.data.user.id, "0");
+  assert.equal(compat.send[0].data.data.config.api_endpoint, "", "no host of any other service");
+});
+
+test("ids of Zrzur's own parts are reserved", () => {
+  for (const id of RESERVED_CLIENT_IDS) {
+    assert.equal(new RpcConnection().receive({ op: OP_HANDSHAKE, data: { v: 1, client_id: id } }).close, true, id);
+    assert.equal(new RpcConnection().receive({ op: OP_HANDSHAKE, data: { v: 1, client_id: id.toUpperCase() } }).close, true, id);
+  }
+  assert.equal(hello(new RpcConnection(), "zrzur-vscode").close, undefined);
+});
+
+test("texts follow the server's rule: hidden and reordering characters go", () => {
+  assert.equal(cleanText("Game‮gnp.exe"), "Gamegnp.exe", "right-to-left override");
+  assert.equal(cleanText("Ga​me"), "Game", "zero-width space");
+  assert.equal(cleanText("Ga﻿me⁦"), "Game", "byte order mark, isolate");
+  assert.equal(cleanText("Line break"), "Line break", "line separator");
+  assert.equal(cleanText("Para graph"), "Para graph", "paragraph separator");
+  assert.equal(cleanText("Tab\there"), "Tab here");
+  assert.equal(cleanText("می‌خواهم"), "می‌خواهم", "the non-joiner stays");
+  assert.equal(cleanText("👩‍💻"), "👩‍💻", "the joiner stays");
+  const activity = toDataActivity({ details: "Lev‮el 3", state: "​" });
+  assert.equal(activity.details, "Level 3");
+  assert.equal(activity.state, undefined, "nothing left: left out");
+});
+
+test("the other chat app running is seen on every system, by its builds' names", () => {
+  for (const name of ["Discord.exe", "DiscordPTB.exe", "DiscordCanary.exe", "Discord", "discord", "discord-canary"]) {
+    assert.equal(otherChatAppRunning([{ pid: 1, name }]), true, name);
+  }
+  assert.equal(otherChatAppRunning([{ pid: 1, name: "Code.exe" }, { pid: 2, name: "discordbot.exe" }]), false);
+  assert.equal(otherChatAppRunning([]), false);
 });
 
 test("nothing before the handshake, one handshake only, a plain client id", () => {
@@ -412,6 +448,8 @@ test("the extension reports a domain only", () => {
   assert.equal(siteActivity("youtube.com", "", "Dancing").type, "Using");
   assert.equal(siteActivity("youtube.com", "", "Dancing").name, "youtube.com");
   assert.equal(siteActivity("https://youtube.com/x", "Y", "Watching"), null);
+  assert.equal(siteActivity("youtube.com", "You‮Tube", "Watching").name, "YouTube", "the server's text rule");
+  assert.equal(siteActivity("youtube.com", "​", "Watching").name, "youtube.com");
 });
 
 /* A real pipe: the frame reader and the protocol behind a socket */
@@ -476,4 +514,29 @@ test("over a real pipe: handshake, an activity, a bad frame closes", async (t) =
   huge.writeUInt32LE(MAX_PAYLOAD + 1, 4);
   client.write(huge);
   await closed;
+});
+
+/* The common-name pipe steps aside (legal RP-06) */
+
+test("the common-name pipe opens only while wanted, shared and the other app is not running", async () => {
+  const { compatStep } = await import("../src/native/activity/compat.ts");
+  const base = { sharing: true, wanted: true, otherRunning: false };
+  assert.equal(compatStep({ ...base, open: false }), "open");
+  assert.equal(compatStep({ ...base, open: true }), "keep");
+  // the other app starts after Zrzur: step aside at once
+  assert.equal(compatStep({ ...base, otherRunning: true, open: true }), "close");
+  assert.equal(compatStep({ ...base, otherRunning: true, open: false }), "keep", "and stay closed while it runs");
+  // it is gone again: come back
+  assert.equal(compatStep({ ...base, otherRunning: false, open: false }), "open");
+  assert.equal(compatStep({ ...base, sharing: false, open: true }), "close", "sharing off");
+  assert.equal(compatStep({ ...base, wanted: false, open: true }), "close", "option off");
+  assert.equal(compatStep({ ...base, wanted: false, open: false }), "keep");
+});
+
+test("only Zrzur's own left-over socket file may be removed, and only when nobody answers", async () => {
+  const { mayRemoveSocketFile } = await import("../src/native/activity/compat.ts");
+  assert.equal(mayRemoveSocketFile("zrzur-ipc-0", false), true);
+  assert.equal(mayRemoveSocketFile("zrzur-ipc-0", true), false);
+  assert.equal(mayRemoveSocketFile("discord-ipc-0", false), false, "never another app's file");
+  assert.equal(mayRemoveSocketFile("other", false), false);
 });

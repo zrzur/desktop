@@ -68,13 +68,24 @@ const TYPES: Record<number, ActivityType> = {
   5: "Competing",
 };
 
+/**
+ * The server's rule for shown text (backend `util::activity::hidden_char`):
+ * control characters and line or paragraph separators become spaces,
+ * format characters (bidi overrides and isolates, zero-width spaces, the
+ * byte order mark, tags) go; the zero-width joiner and non-joiner stay.
+ */
+export function cleanText(value: string): string {
+  return value
+    .replace(/[\p{Cc}\p{Zl}\p{Zp}]/gu, " ")
+    .replace(/(?![‌‍])\p{Cf}/gu, "")
+    .trim();
+}
+
 function text(value: unknown, max = TEXT_MAX): string | undefined {
   if (typeof value !== "string") return undefined;
-  // one line, no control characters
-  // eslint-disable-next-line no-control-regex
-  const clean = value.replace(/[\u0000-\u001f\u007f]/g, " ").trim();
+  const clean = cleanText(value);
   if (!clean) return undefined;
-  return Array.from(clean).slice(0, max).join("");
+  return Array.from(clean).slice(0, max).join("").trim();
 }
 
 function httpsUrl(value: unknown): string | undefined {
@@ -180,17 +191,31 @@ function error(nonce: unknown, code: number, message: string): Frame {
   };
 }
 
+/** Ids only Zrzur's own parts may use */
+export const RESERVED_CLIENT_IDS = ["zrzur", "zrzur-browser-extension"];
+
 /** A client id: what the app calls itself; short and plain */
 function clientIdOf(value: unknown): string | undefined {
   if (typeof value !== "string" && typeof value !== "number") return undefined;
   const id = String(value).trim();
   if (!id || id.length > 64 || !/^[A-Za-z0-9._-]+$/.test(id)) return undefined;
+  if (RESERVED_CLIENT_IDS.includes(id.toLowerCase())) return undefined;
   return id;
 }
 
 /** The state of one connection */
 export class RpcConnection {
   clientId?: string;
+  /**
+   * On the common-name pipe, games expect a fuller `READY` answer (a
+   * placeholder user and empty hosts), kept only there for interop; Zrzur's
+   * own pipe answers with the version alone.
+   */
+  private compat: boolean;
+
+  constructor(options: { compat?: boolean } = {}) {
+    this.compat = options.compat === true;
+  }
 
   /** Handle one frame */
   receive(frame: Frame): RpcStep {
@@ -222,11 +247,13 @@ export class RpcConnection {
               cmd: "DISPATCH",
               evt: "READY",
               nonce: null,
-              data: {
-                v: 1,
-                config: { cdn_host: "", api_endpoint: "", environment: "production" },
-                user: PLACEHOLDER_USER,
-              },
+              data: this.compat
+                ? {
+                    v: 1,
+                    config: { cdn_host: "", api_endpoint: "", environment: "production" },
+                    user: PLACEHOLDER_USER,
+                  }
+                : { v: 1 },
             },
           },
         ],

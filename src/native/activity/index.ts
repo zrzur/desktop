@@ -20,16 +20,25 @@
  */
 
 import { ChildProcess, execFile, spawn } from "node:child_process";
-import { existsSync, readFileSync, readdirSync, readlinkSync, unlinkSync } from "node:fs";
+import {
+  chmodSync,
+  existsSync,
+  readFileSync,
+  readdirSync,
+  readlinkSync,
+  unlinkSync,
+} from "node:fs";
 import { Server, Socket, connect, createServer } from "node:net";
 import { tmpdir } from "node:os";
-import { join } from "node:path";
+import { basename, join } from "node:path";
 
-import { app, ipcMain } from "electron";
+import { IpcMainInvokeEvent, Notification, app, ipcMain } from "electron";
 import Store from "electron-store";
 
+import { shellLanguage } from "../locale";
 import { mainWindow } from "../window";
 
+import { compatStep, mayRemoveSocketFile } from "./compat";
 import detectableList from "./detectable.json";
 import {
   Detectable,
@@ -38,6 +47,7 @@ import {
   RunningProcess,
   detect,
   namesNeedingPath,
+  otherChatAppRunning,
   parseGetProcess,
   parsePaths,
   parsePs,
@@ -67,7 +77,15 @@ const MAX_CONNECTIONS = 16;
 export const EXTENSION_PORTS = [48653, 48654, 48655];
 const PAIRING_MS = 5 * 60_000;
 
-type SeenApp = { id: string; name: string; blocked: boolean };
+/** An app that reported once. `decided` false: held until Show or Block. */
+type SeenApp = {
+  id: string;
+  name: string;
+  blocked: boolean;
+  decided?: boolean;
+  /** The program behind it, when the system said */
+  path?: string;
+};
 
 type Settings = {
   detection: boolean;
@@ -90,14 +108,20 @@ const store = new Store<Settings>({
   },
 });
 
+/** Typed access to the store (electron-store's typings are broken, as in config.ts) */
+const kv = store as never as {
+  get<K extends keyof Settings>(key: K): Settings[K];
+  set<K extends keyof Settings>(key: K, value: Settings[K]): void;
+};
+
 function settings(): Settings {
   return {
-    detection: store.get("detection"),
-    overrides: store.get("overrides"),
-    added: store.get("added"),
-    apps: store.get("apps"),
-    discordCompat: store.get("discordCompat"),
-    pairedOrigins: store.get("pairedOrigins"),
+    detection: kv.get("detection"),
+    overrides: kv.get("overrides"),
+    added: kv.get("added"),
+    apps: kv.get("apps"),
+    discordCompat: kv.get("discordCompat"),
+    pairedOrigins: kv.get("pairedOrigins"),
   };
 }
 
@@ -119,7 +143,11 @@ type RpcSource = {
 /** Activities from apps right now, newest last */
 let rpcSources: RpcSource[] = [];
 let scanTimer: NodeJS.Timeout | undefined;
-let pipeServers: Server[] = [];
+let ownServer: Server | undefined;
+let compatServer: Server | undefined;
+let compatPath: string | undefined;
+let compatTimer: NodeJS.Timeout | undefined;
+const compatSockets = new Set<Socket>();
 let wsServer: Server | undefined;
 let wsPort: number | undefined;
 let pairingCode: string | undefined;
@@ -140,8 +168,12 @@ export type ActivityUpdate = {
 
 function current(): ActivityUpdate {
   const { apps } = settings();
-  const blocked = new Set(apps.filter((a) => a.blocked).map((a) => a.id));
-  const live = rpcSources.filter((s) => !blocked.has(s.appId));
+  // blocked apps never show; a new app is held until the person decides
+  // (apps from before the question existed count as decided)
+  const held = new Set(
+    apps.filter((a) => a.blocked || a.decided === false).map((a) => a.id),
+  );
+  const live = rpcSources.filter((s) => !held.has(s.appId));
   const top = live[live.length - 1];
   let desktop: DataActivity | null = null;
   if (detected) {
@@ -337,6 +369,7 @@ function stopScanning() {
 
 function pipePath(name: string, index: number) {
   if (process.platform === "win32") return `\\\\?\\pipe\\${name}-${index}`;
+  // the per-user runtime folder first: only this user can reach it
   const base =
     process.env.XDG_RUNTIME_DIR || process.env.TMPDIR || process.env.TMP || process.env.TEMP || tmpdir();
   return join(base, `${name}-${index}`);
@@ -356,9 +389,12 @@ function answers(path: string): Promise<boolean> {
   });
 }
 
-async function otherAppRunning() {
+/** Whether another app answers on a `discord-ipc-N` pipe that is not ours */
+async function otherPipeAnswers() {
   for (let i = 0; i < PIPE_COUNT; i++) {
-    if (await answers(pipePath("discord-ipc", i))) return true;
+    const path = pipePath("discord-ipc", i);
+    if (path === compatPath) continue;
+    if (await answers(path)) return true;
   }
   return false;
 }
@@ -376,11 +412,57 @@ function appName(clientId: string, pid: number | undefined): string {
   return clientId;
 }
 
-function remember(clientId: string, name: string) {
+/** The program behind a pid, if the system says */
+function programPath(pid: number | undefined): string | undefined {
+  if (!pid) return undefined;
+  return running.find((p) => p.pid === pid)?.path ?? pathCache.get(pid);
+}
+
+/** Whether a pid is a program on Zrzur's own list (shown without asking) */
+function shippedProgram(pid: number | undefined) {
+  const process = pid ? running.find((p) => p.pid === pid) : undefined;
+  return !!process && !!detect([process], detectableList as Detectable[], {}, platform);
+}
+
+/** Keep the list of apps: blocked ones always stay, the others up to 50 */
+function keepApps(apps: SeenApp[]) {
+  const blocked = apps.filter((a) => a.blocked);
+  const others = apps.filter((a) => !a.blocked).slice(-50);
+  return apps.filter((a) => blocked.includes(a) || others.includes(a));
+}
+
+/** Words of the "new app" notice (legal T-4), in the shell's language */
+function askText(app: string) {
+  const language = shellLanguage();
+  if (language === "ar") return `يريد ${app} أن يُظهر ما تفعله على زرزور.`;
+  if (language === "de") return `${app} möchte auf Zrzur zeigen, was du gerade machst.`;
+  return `${app} wants to show what you are doing on Zrzur.`;
+}
+
+/**
+ * Note an app the first time it reports. A new app is held: nothing it
+ * sends is shown until the person picks Show or Block (legal RP-03).
+ * Programs on Zrzur's own list and the paired browser extension are shown
+ * without asking.
+ */
+function remember(clientId: string, name: string, path: string | undefined, allow: boolean) {
   const apps = settings().apps;
   if (apps.some((a) => a.id === clientId)) return;
-  store.set("apps", [...apps, { id: clientId, name, blocked: false }].slice(-50));
+  kv.set(
+    "apps",
+    keepApps([...apps, { id: clientId, name, blocked: false, decided: allow, path }]),
+  );
   sendState();
+  if (!allow && Notification.isSupported()) {
+    const notice = new Notification({ title: "Zrzur", body: askText(name) });
+    notice.on("click", () => {
+      if (mainWindow && !mainWindow.isDestroyed()) {
+        mainWindow.show();
+        mainWindow.webContents.send("activityAsk", clientId);
+      }
+    });
+    notice.show();
+  }
 }
 
 function dropSource(key: string) {
@@ -391,74 +473,92 @@ function dropSource(key: string) {
 
 let connectionCount = 0;
 
-function serveRpc(socket: Socket) {
-  if (connectionCount >= MAX_CONNECTIONS) {
-    socket.destroy();
-    return;
-  }
-  connectionCount++;
-  sockets.add(socket);
-  const key = `${Date.now()}-${Math.random()}`;
-  const reader = new FrameReader();
-  const connection = new RpcConnection();
-  const end = () => {
-    if (socket.destroyed) return;
-    socket.end();
-    setTimeout(() => socket.destroy(), 200).unref?.();
-  };
-  socket.on("data", (chunk: Buffer) => {
-    let frames;
-    try {
-      frames = reader.push(chunk);
-    } catch (error) {
-      if (error instanceof FrameError) end();
+function serveRpc(compat: boolean) {
+  return (socket: Socket) => {
+    if (connectionCount >= MAX_CONNECTIONS) {
+      socket.destroy();
       return;
     }
-    for (const frame of frames) {
-      const step = connection.receive(frame);
-      for (const out of step.send) socket.write(encodeFrame(out.op, out.data));
-      for (const change of step.changes) {
-        if (change.kind === "activity") {
-          const name = change.activity?.name ?? appName(change.clientId, change.pid);
-          remember(change.clientId, appName(change.clientId, change.pid));
+    connectionCount++;
+    sockets.add(socket);
+    if (compat) compatSockets.add(socket);
+    const key = `${Date.now()}-${Math.random()}`;
+    const reader = new FrameReader();
+    const connection = new RpcConnection({ compat });
+    const end = () => {
+      if (socket.destroyed) return;
+      socket.end();
+      setTimeout(() => socket.destroy(), 200).unref?.();
+    };
+    socket.on("data", (chunk: Buffer) => {
+      let frames;
+      try {
+        frames = reader.push(chunk);
+      } catch (error) {
+        if (error instanceof FrameError) end();
+        return;
+      }
+      for (const frame of frames) {
+        const step = connection.receive(frame);
+        for (const out of step.send) socket.write(encodeFrame(out.op, out.data));
+        for (const change of step.changes) {
+          if (change.kind !== "activity") continue;
+          const shownName = appName(change.clientId, change.pid);
+          remember(change.clientId, shownName, programPath(change.pid), shippedProgram(change.pid));
           if (!change.activity) {
             dropSource(key);
-          } else {
-            rpcSources = [
-              ...rpcSources.filter((s) => s.key !== key),
-              {
-                key,
-                appId: change.clientId,
-                appName: appName(change.clientId, change.pid),
-                pid: change.pid,
-                activity: { ...change.activity, name },
-                at: Date.now(),
-              },
-            ];
-            notify();
+            continue;
           }
+          rpcSources = [
+            ...rpcSources.filter((s) => s.key !== key),
+            {
+              key,
+              appId: change.clientId,
+              appName: shownName,
+              pid: change.pid,
+              activity: {
+                ...change.activity,
+                name: change.activity.name ?? shownName,
+                // the app's own id: Trust & Safety can stop an app by it
+                application_id: change.clientId,
+              },
+              at: Date.now(),
+            },
+          ];
+          notify();
+        }
+        if (step.close) {
+          end();
+          break;
         }
       }
-      if (step.close) {
-        end();
-        break;
-      }
-    }
-  });
-  const gone = () => {
-    if (!sockets.delete(socket)) return;
-    connectionCount--;
-    dropSource(key);
+    });
+    const gone = () => {
+      if (!sockets.delete(socket)) return;
+      compatSockets.delete(socket);
+      connectionCount--;
+      dropSource(key);
+    };
+    socket.on("close", gone);
+    socket.on("error", gone);
+    socket.setTimeout(0);
   };
-  socket.on("close", gone);
-  socket.on("error", gone);
-  socket.setTimeout(0);
 }
 
-function listenOn(path: string): Promise<Server | undefined> {
+/**
+ * Listen on one pipe or socket. A socket file left by a crash is removed
+ * only for Zrzur's own name and only when nobody answers on it; a file of
+ * another app's name is never touched (legal RP-06). On macOS and Linux the
+ * socket is the user's alone (0600).
+ */
+function listenOn(path: string, own: boolean, compat: boolean): Promise<Server | undefined> {
   return new Promise((resolve) => {
     if (process.platform !== "win32" && existsSync(path)) {
-      // a socket file left by a crash; only ever our own name
+      // answers() was asked just before: nobody is on it
+      if (!own || !mayRemoveSocketFile(basename(path), false)) {
+        resolve(undefined);
+        return;
+      }
       try {
         unlinkSync(path);
       } catch {
@@ -466,36 +566,86 @@ function listenOn(path: string): Promise<Server | undefined> {
         return;
       }
     }
-    const server = createServer(serveRpc);
+    const server = createServer(serveRpc(compat));
     server.maxConnections = MAX_CONNECTIONS;
     server.once("error", () => resolve(undefined));
-    server.listen(path, () => resolve(server));
+    server.listen(path, () => {
+      if (process.platform !== "win32") {
+        try {
+          chmodSync(path, 0o600);
+        } catch {
+          server.close();
+          resolve(undefined);
+          return;
+        }
+      }
+      resolve(server);
+    });
   });
 }
 
-async function listenFirstFree(name: string) {
+async function listenFirstFree(name: string, own: boolean, compat: boolean) {
   for (let i = 0; i < PIPE_COUNT; i++) {
     const path = pipePath(name, i);
     if (await answers(path)) continue;
-    const server = await listenOn(path);
-    if (server) return server;
+    const server = await listenOn(path, own, compat);
+    if (server) return { server, path };
   }
   return undefined;
 }
 
 async function startRpc() {
-  if (pipeServers.length) return;
-  const own = await listenFirstFree("zrzur-ipc");
-  if (own) pipeServers.push(own);
-  if (settings().discordCompat && !(await otherAppRunning())) {
-    const compat = await listenFirstFree("discord-ipc");
-    if (compat) pipeServers.push(compat);
+  if (!ownServer) {
+    const own = await listenFirstFree("zrzur-ipc", true, false);
+    ownServer = own?.server;
+  }
+  await refreshCompat();
+  startCompatWatch();
+}
+
+/** Close the common-name pipe and the games connected to it */
+function closeCompat() {
+  compatServer?.close();
+  compatServer = undefined;
+  compatPath = undefined;
+  for (const socket of compatSockets) socket.destroy();
+  compatSockets.clear();
+}
+
+/**
+ * The common-name pipe is open only while the person wants it, shares,
+ * and the other chat app is not running: checked at start and every scan.
+ * When that app starts, even after Zrzur, Zrzur steps aside at once and
+ * comes back only after it is gone (legal RP-06).
+ */
+async function refreshCompat() {
+  const wanted = sharing && settings().discordCompat;
+  let otherRunning = false;
+  if (wanted) {
+    if (!scanTimer) running = await processList();
+    otherRunning = otherChatAppRunning(running, platform) || (await otherPipeAnswers());
+  }
+  const step = compatStep({ sharing, wanted, otherRunning, open: !!compatServer });
+  if (step === "close") closeCompat();
+  if (step === "open") {
+    const compat = await listenFirstFree("discord-ipc", false, true);
+    compatServer = compat?.server;
+    compatPath = compat?.path;
   }
 }
 
+function startCompatWatch() {
+  if (compatTimer) return;
+  compatTimer = setInterval(() => void refreshCompat(), SCAN_EVERY_MS);
+  compatTimer.unref?.();
+}
+
 function stopRpc() {
-  for (const server of pipeServers) server.close();
-  pipeServers = [];
+  if (compatTimer) clearInterval(compatTimer);
+  compatTimer = undefined;
+  closeCompat();
+  ownServer?.close();
+  ownServer = undefined;
   for (const socket of sockets) socket.destroy();
   sockets.clear();
   connectionCount = 0;
@@ -581,9 +731,10 @@ function serveExtension(socket: Socket) {
       }
       if (data.type === "pair") {
         if (pairing() && codeMatches(pairingCode, data.code)) {
-          store.set("pairedOrigins", [...new Set([...settings().pairedOrigins, origin])].slice(-4));
+          kv.set("pairedOrigins", [...new Set([...settings().pairedOrigins, origin])].slice(-4));
           pairingCode = undefined;
-          remember("zrzur-browser-extension", "Zrzur browser extension");
+          // paired on purpose with a code: shown without asking again
+          remember("zrzur-browser-extension", "Zrzur browser extension", undefined, true);
           sendState();
           reply({ type: "paired" });
         } else {
@@ -695,7 +846,9 @@ function state() {
       paired: s.pairedOrigins.length,
       pairingCode: pairing() ? pairingCode : undefined,
     },
-    pipes: pipeServers.length,
+    pipes: (ownServer ? 1 : 0) + (compatServer ? 1 : 0),
+    /** The common-name pipe is open now (closed while the other app runs) */
+    compatOpen: !!compatServer,
   };
 }
 
@@ -718,10 +871,34 @@ function addable() {
 }
 
 export function initActivity() {
-  ipcMain.handle("activityState", () => state());
-  ipcMain.handle("activityCurrent", () => current());
+  // only the app's own page, in the main window's top frame, may ask:
+  // never another window, a frame inside it, or a sign-in page
+  const handle = (
+    channel: string,
+    listener: (event: IpcMainInvokeEvent, ...args: any[]) => unknown,
+  ) =>
+    ipcMain.handle(channel, (event, ...args) => {
+      if (!mainWindow || mainWindow.isDestroyed() || event.senderFrame !== mainWindow.webContents.mainFrame)
+        throw new Error("activity: not the app window");
+      return listener(event, ...args);
+    });
 
-  ipcMain.handle("activitySetSharing", async (_event, on: unknown) => {
+  handle("activityDecideApp", (_event, id: unknown, show: unknown) => {
+    kv.set(
+      "apps",
+      settings().apps.map((a) =>
+        a.id === id ? { ...a, decided: true, blocked: show !== true } : a,
+      ),
+    );
+    lastSent = "";
+    notify();
+    return state();
+  });
+
+  handle("activityState", () => state());
+  handle("activityCurrent", () => current());
+
+  handle("activitySetSharing", async (_event, on: unknown) => {
     const next = on === true;
     if (next === sharing) return state();
     sharing = next;
@@ -730,8 +907,8 @@ export function initActivity() {
     return state();
   });
 
-  ipcMain.handle("activitySetDetection", (_event, on: unknown) => {
-    store.set("detection", on === true);
+  handle("activitySetDetection", (_event, on: unknown) => {
+    kv.set("detection", on === true);
     if (on === true && sharing) startScanning();
     else {
       stopScanning();
@@ -740,7 +917,7 @@ export function initActivity() {
     return state();
   });
 
-  ipcMain.handle("activitySetEntry", (_event, id: unknown, change: unknown) => {
+  handle("activitySetEntry", (_event, id: unknown, change: unknown) => {
     if (typeof id !== "string" || !list().some((entry) => entry.id === id)) return state();
     const c = (change ?? {}) as { name?: unknown; off?: unknown };
     const overrides = { ...settings().overrides };
@@ -753,12 +930,12 @@ export function initActivity() {
     if (typeof c.off === "boolean") next.off = c.off;
     if (!next.name && !next.off) delete overrides[id];
     else overrides[id] = next;
-    store.set("overrides", overrides);
+    kv.set("overrides", overrides);
     void scan();
     return state();
   });
 
-  ipcMain.handle("activityRunning", async () => {
+  handle("activityRunning", async () => {
     if (!running.length) running = await processList();
     return addable();
   });
@@ -774,7 +951,7 @@ export function initActivity() {
       const withPath = { ...process, path: process.path ?? pathCache.get(process.pid) };
       const added = settings().added;
       const index = added.reduce((n, e) => Math.max(n, Number(e.id.slice(5)) + 1), 0);
-      store.set(
+      kv.set(
         "added",
         [...added, userEntry(index, withPath, platform, name, kind as DetectableKind)].slice(-100),
       );
@@ -783,55 +960,55 @@ export function initActivity() {
     },
   );
 
-  ipcMain.handle("activityRemoveAdded", (_event, id: unknown) => {
-    store.set(
+  handle("activityRemoveAdded", (_event, id: unknown) => {
+    kv.set(
       "added",
       settings().added.filter((entry) => entry.id !== id),
     );
     const overrides = { ...settings().overrides };
     if (typeof id === "string") delete overrides[id];
-    store.set("overrides", overrides);
+    kv.set("overrides", overrides);
     void scan();
     return state();
   });
 
-  ipcMain.handle("activityBlockApp", (_event, id: unknown, blocked: unknown) => {
-    store.set(
+  handle("activityBlockApp", (_event, id: unknown, blocked: unknown) => {
+    kv.set(
       "apps",
-      settings().apps.map((a) => (a.id === id ? { ...a, blocked: blocked === true } : a)),
+      settings().apps.map((a) =>
+        a.id === id ? { ...a, blocked: blocked === true, decided: true } : a,
+      ),
     );
     notify();
     return state();
   });
 
-  ipcMain.handle("activityForgetApp", (_event, id: unknown) => {
-    store.set(
+  handle("activityForgetApp", (_event, id: unknown) => {
+    // a blocked app is never forgotten: it would come back unasked
+    kv.set(
       "apps",
-      settings().apps.filter((a) => a.id !== id),
+      settings().apps.filter((a) => a.id !== id || a.blocked),
     );
-    if (id === "zrzur-browser-extension") store.set("pairedOrigins", []);
+    if (id === "zrzur-browser-extension") kv.set("pairedOrigins", []);
     notify();
     return state();
   });
 
-  ipcMain.handle("activitySetCompat", async (_event, on: unknown) => {
-    store.set("discordCompat", on === true);
-    if (sharing) {
-      stopRpc();
-      await startRpc();
-      notify();
-    }
+  handle("activitySetCompat", async (_event, on: unknown) => {
+    kv.set("discordCompat", on === true);
+    await refreshCompat();
+    notify();
     return state();
   });
 
-  ipcMain.handle("activityStartPairing", () => {
+  handle("activityStartPairing", () => {
     pairingMisses = 0;
     pairingCode = newPairingCode();
     pairingUntil = Date.now() + PAIRING_MS;
     return state();
   });
 
-  ipcMain.handle("activityStopPairing", () => {
+  handle("activityStopPairing", () => {
     pairingCode = undefined;
     return state();
   });

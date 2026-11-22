@@ -26,8 +26,15 @@ export function siteActivity(
 ): DataActivity | null {
   const domain = cleanDomain(site);
   if (!domain) return null;
-  const shown =
-    typeof name === "string" && name.trim() ? name.trim().slice(0, 64) : domain;
+  // the server's text rule (see rpcProtocol `cleanText`)
+  const clean =
+    typeof name === "string"
+      ? name
+          .replace(/[\p{Cc}\p{Zl}\p{Zp}]/gu, " ")
+          .replace(/(?![‌‍])\p{Cf}/gu, "")
+          .trim()
+      : "";
+  const shown = clean ? Array.from(clean).slice(0, 64).join("").trim() : domain;
   const type = KINDS.includes(kind as (typeof KINDS)[number])
     ? (kind as DataActivity["type"])
     : "Using";
