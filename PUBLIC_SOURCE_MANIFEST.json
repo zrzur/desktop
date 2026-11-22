@@ -778,8 +778,8 @@
     },
     {
       "path": "test/activity.test.mjs",
-      "sha256": "449f2bd1c235072e7191446a92a9b6a7a794c4cf9dacb931e63e3ca148c4ee63",
-      "bytes": 24855,
+      "sha256": "c3e44a53e19a41816997492a0497a258f72a71591d4939f34b1a34b3d88b8aaa",
+      "bytes": 24897,
       "category": "synthetic-test-source-or-fixture"
     },
     {
