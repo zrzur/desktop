@@ -19,7 +19,7 @@
  * programs added, apps blocked, the paired extension).
  */
 
-import { execFile } from "node:child_process";
+import { ChildProcess, execFile, spawn } from "node:child_process";
 import { existsSync, readFileSync, readdirSync, readlinkSync, unlinkSync } from "node:fs";
 import { Server, Socket, connect, createServer } from "node:net";
 import { tmpdir } from "node:os";
@@ -38,8 +38,9 @@ import {
   RunningProcess,
   detect,
   namesNeedingPath,
+  parseGetProcess,
+  parsePaths,
   parsePs,
-  parseTasklist,
   platformOf,
   procEntry,
   userEntry,
@@ -194,30 +195,79 @@ function run(file: string, args: string[]): Promise<string> {
   });
 }
 
+/*
+ * Windows: one PowerShell, started while scanning and kept, answers
+ * Get-Process in about 0.2 s (measured 2026-11-22; `tasklist` took 6 to 25 s
+ * on the same busy computer). It runs with the person's rights; no admin.
+ */
+let shell: ChildProcess | undefined;
+let shellOut = "";
+let shellTurn: Promise<unknown> = Promise.resolve();
+const END = "<<zrzur-end>>";
+
+function stopShell() {
+  shell?.kill();
+  shell = undefined;
+  shellOut = "";
+}
+
+function askShell(command: string): Promise<string> {
+  return new Promise<string>((resolve) => {
+    if (!shell || shell.exitCode !== null) {
+      shell = spawn(
+        "powershell.exe",
+        ["-NoProfile", "-NonInteractive", "-Command", "-"],
+        { windowsHide: true, stdio: ["pipe", "pipe", "ignore"] },
+      );
+      shell.stdout?.setEncoding("utf8");
+      shell.on("exit", () => (shell = undefined));
+      shell.stdin?.write("[Console]::OutputEncoding = [Text.Encoding]::UTF8\n");
+    }
+    const current = shell;
+    const timer = setTimeout(() => {
+      current.stdout?.off("data", onData);
+      stopShell();
+      resolve("");
+    }, 10_000);
+    function onData(chunk: string) {
+      shellOut += chunk;
+      const at = shellOut.indexOf(END);
+      if (at < 0) return;
+      const out = shellOut.slice(0, at);
+      shellOut = shellOut.slice(at + END.length);
+      clearTimeout(timer);
+      current.stdout?.off("data", onData);
+      resolve(out);
+    }
+    current.stdout?.on("data", onData);
+    current.stdin?.write(`${command}; "${END}"\n`);
+  });
+}
+
+/** One question at a time to the shell */
+function powershell(command: string): Promise<string> {
+  const turn = shellTurn.then(() => askShell(command));
+  shellTurn = turn.catch(() => undefined);
+  return turn;
+}
+
 async function windowsPaths(pids: number[]) {
-  const ask = pids.filter((pid) => !pathCache.has(pid));
+  const ask = pids.filter((pid) => Number.isInteger(pid) && !pathCache.has(pid));
   if (!ask.length) return;
-  // one PowerShell call for the new ones only; no admin needed for the
-  // person's own programs (others answer without a path)
-  const out = await run("powershell.exe", [
-    "-NoProfile",
-    "-NonInteractive",
-    "-Command",
-    `Get-Process -Id ${ask.join(",")} -ErrorAction SilentlyContinue | ForEach-Object { "$($_.Id)|$($_.Path)" }`,
-  ]);
-  for (const pid of ask) pathCache.set(pid, undefined);
-  for (const line of out.split(/\r?\n/)) {
-    const at = line.indexOf("|");
-    if (at <= 0) continue;
-    const pid = Number(line.slice(0, at));
-    const path = line.slice(at + 1).trim();
-    if (Number.isInteger(pid)) pathCache.set(pid, path || undefined);
-  }
+  // the new ones only; the person's own programs answer with a path
+  const paths = parsePaths(
+    await powershell(
+      `Get-Process -Id ${ask.join(",")} -ErrorAction SilentlyContinue | ForEach-Object { "$($_.Id)|$($_.Path)" }`,
+    ),
+  );
+  for (const pid of ask) pathCache.set(pid, paths.get(pid));
 }
 
 async function processList(): Promise<RunningProcess[]> {
   if (platform === "win") {
-    const processes = parseTasklist(await run("tasklist.exe", ["/fo", "csv", "/nh"]));
+    const processes = parseGetProcess(
+      await powershell('Get-Process | ForEach-Object { "$($_.Id)|$($_.ProcessName)" }'),
+    );
     const want = namesNeedingPath(list(), platform);
     const needPath = processes.filter((p) => want.has(p.name.toLowerCase()));
     await windowsPaths(needPath.map((p) => p.pid));
@@ -277,6 +327,7 @@ function startScanning() {
 function stopScanning() {
   if (scanTimer) clearInterval(scanTimer);
   scanTimer = undefined;
+  stopShell();
   detected = undefined;
   running = [];
   pathCache.clear();

@@ -176,6 +176,36 @@ export function parseTasklist(output: string): RunningProcess[] {
   return out;
 }
 
+/**
+ * Windows `Get-Process` lines written as `<id>|<name>` or `<id>|<path>`:
+ * the process name has no `.exe`, so it is added back
+ */
+export function parseGetProcess(output: string): RunningProcess[] {
+  const out: RunningProcess[] = [];
+  for (const line of output.split(/\r?\n/)) {
+    const at = line.indexOf("|");
+    if (at <= 0) continue;
+    const pid = Number(line.slice(0, at));
+    const name = line.slice(at + 1).trim();
+    if (!Number.isInteger(pid) || pid <= 0 || !name || /[\\/]/.test(name)) continue;
+    out.push({ pid, name: /\.exe$/i.test(name) ? name : `${name}.exe` });
+  }
+  return out;
+}
+
+/** `<id>|<path>` lines from `Get-Process -Id ...`: the paths by id */
+export function parsePaths(output: string): Map<number, string | undefined> {
+  const paths = new Map<number, string | undefined>();
+  for (const line of output.split(/\r?\n/)) {
+    const at = line.indexOf("|");
+    if (at <= 0) continue;
+    const pid = Number(line.slice(0, at));
+    const path = line.slice(at + 1).trim();
+    if (Number.isInteger(pid) && pid > 0) paths.set(pid, path || undefined);
+  }
+  return paths;
+}
+
 /** `ps -axo pid=,comm=` (macOS): the command is the full path */
 export function parsePs(output: string): RunningProcess[] {
   const out: RunningProcess[] = [];

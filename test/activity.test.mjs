@@ -7,6 +7,8 @@ import {
   detect,
   matches,
   namesNeedingPath,
+  parseGetProcess,
+  parsePaths,
   parsePs,
   parseTasklist,
   platformOf,
@@ -279,6 +281,24 @@ test("tasklist output is read without paths and names that need one are known", 
   const names = namesNeedingPath(list, "win");
   assert.ok(names.has("cs2.exe"));
   assert.ok(!names.has("explorer.exe"));
+});
+
+test("Get-Process lines become processes with their .exe, paths by id", () => {
+  const processes = parseGetProcess(
+    ["4242|cs2", "10|League of Legends", "11|osu!", "bad line", "0|Idle", "12|C:\\x\\y", "13|Code.exe", ""].join("\r\n"),
+  );
+  assert.deepEqual(processes, [
+    { pid: 4242, name: "cs2.exe" },
+    { pid: 10, name: "League of Legends.exe" },
+    { pid: 11, name: "osu!.exe" },
+    { pid: 13, name: "Code.exe" },
+  ]);
+  const paths = parsePaths(["4242|D:\\Steam\\steamapps\\common\\cs2.exe", "10|", ""].join("\r\n"));
+  assert.equal(paths.get(4242), "D:\\Steam\\steamapps\\common\\cs2.exe");
+  assert.equal(paths.has(10), true);
+  assert.equal(paths.get(10), undefined, "no path for another user's program");
+  const found = detect(processes.map((p) => ({ ...p, path: paths.get(p.pid) })), list, {}, "win");
+  assert.equal(found.entry.id, "game.counter-strike-2");
 });
 
 test("a program the person adds keeps its folder as the hint", () => {
