@@ -1,6 +1,7 @@
 import { contextBridge, ipcRenderer } from "electron";
 
 import { version } from "../../package.json";
+import { shortcutPlatform } from "./platform";
 
 contextBridge.exposeInMainWorld("native", {
   versions: {
@@ -9,6 +10,9 @@ contextBridge.exposeInMainWorld("native", {
     electron: () => process.versions.electron,
     desktop: () => version,
   },
+
+  // the system, so the app shows the macOS, Windows or Linux shortcuts
+  platform: shortcutPlatform(),
 
   minimise: () => ipcRenderer.send("minimise"),
   maximise: () => ipcRenderer.send("maximise"),
