@@ -148,8 +148,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "453b66a9aff6c7050511cc4524f8e30b760cc97fc36cd141e112ce0850549208",
-      "bytes": 18173,
+      "sha256": "2918d038dd380171f867360888c9c890315dd1b29f8b0a24a95dfb457f8040de",
+      "bytes": 18291,
       "category": "public-documentation"
     },
     {
@@ -520,8 +520,8 @@
     },
     {
       "path": "src/native/activity/detection.ts",
-      "sha256": "a005912a1d3030a93c0040a01c24fc9b2b96ef2d88d15a2a2a06851a6a948672",
-      "bytes": 7706,
+      "sha256": "11a10ab9dbb12c974b712536132208e2721258d605a32d8d7249652b260f8fb2",
+      "bytes": 8819,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -532,8 +532,8 @@
     },
     {
       "path": "src/native/activity/index.ts",
-      "sha256": "405516b5578d419c0bf9e3ccef305018790b4a865a8904dd4f125c52e8424b81",
-      "bytes": 22475,
+      "sha256": "0016fda1aab37af022a6c7c075b346a1637dca74027161addeaa2299b0376826",
+      "bytes": 24352,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -772,8 +772,8 @@
     },
     {
       "path": "test/activity.test.mjs",
-      "sha256": "8760cd547a5d1b6ecf730258455c7196129bb29865a1cdda704f8ee0c4e7e861",
-      "bytes": 17976,
+      "sha256": "3b504a568bbd81eae338587e7a0ddc95006a3e27c2dfee4dc0edba492c099e97",
+      "bytes": 21086,
       "category": "synthetic-test-source-or-fixture"
     },
     {
