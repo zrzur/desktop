@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+* The app tells the page which system it runs on (`window.native.platform`: `darwin`, `win32` or `linux`), so the keyboard shortcuts follow the macOS, Windows or Linux set.
+
 ## Zrzur Desktop 26.2.0 (2026-11-20)
 
 * Start-up window: the app opens with a small upright window (320 × 380) that says what is happening, in the device's language (Arabic, English, German, French, Spanish, Turkish or Russian; English otherwise): checking for an update, downloading it (the bar and percentage are the bytes received, with megabytes beside them), installing, opening. With no network it says so and opens the app; when an update fails it says so in plain words, keeps the technical part under "Details", offers "Try again" and "Open Zrzur", and opens the app by itself after ten seconds. The app's main window is no longer shown empty: it appears when its page has painted.
