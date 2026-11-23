@@ -148,8 +148,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "b0fe2ea7c3ab361c84faef225cd10c774eb578d6babc263ec543c3cb35bd975d",
-      "bytes": 19461,
+      "sha256": "9643ed2a1bce5bf45aee3ced6dc95bb24c17d7ec568a442fb3e6fb85fbe1b788",
+      "bytes": 19635,
       "category": "public-documentation"
     },
     {
@@ -765,9 +765,15 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": "src/world/platform.ts",
+      "sha256": "8b9eeab7591ada2eb510f406c36b0da9a8ec37915df2db517e874209ac869228",
+      "bytes": 472,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": "src/world/window.ts",
-      "sha256": "d85009111e2eb5642e16601b3ffe9bf9c1786b5943365639a2e0ef04d911cbe2",
-      "bytes": 5921,
+      "sha256": "adfbeff8076123f30cc3e9e016367b7e792977dbab1cacfcd74659e1893cf173",
+      "bytes": 6062,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -810,6 +816,12 @@
       "path": "test/identity.test.mjs",
       "sha256": "ef7a8c747c8cf7303b0be7609e4b8e06bb7029ecf0b44b3e696b72eecb8b2d4d",
       "bytes": 1006,
+      "category": "synthetic-test-source-or-fixture"
+    },
+    {
+      "path": "test/platform.test.mjs",
+      "sha256": "87f532f2d6ee67e65d2e467a2fdc066ef5e817feafe08a10ee81f06cdaf1a8b2",
+      "bytes": 809,
       "category": "synthetic-test-source-or-fixture"
     },
     {
