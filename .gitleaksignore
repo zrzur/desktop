@@ -1,0 +1,6 @@
+# Reviewed false positives only. Each line is a gitleaks fingerprint.
+#
+# test/activity.test.mjs: the WebSocket handshake key from RFC 6455
+# section 1.3 ("the sample nonce" in base64), used to test the
+# Sec-WebSocket-Accept answer. It is a public example value, not a secret.
+ba3d27819592c479d2961a7c0f600fd0e0d93077:test/activity.test.mjs:generic-api-key:297

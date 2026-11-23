@@ -350,7 +350,7 @@ test("a program the person adds keeps its folder as the hint", () => {
 
 /* The extension's WebSocket */
 
-const KEY = "dGhlIHNhbXBsZSBub25jZQ==";
+const KEY = "dGhlIHNhbXBsZSBub25jZQ=="; // RFC 6455 sample nonce, not a secret. gitleaks:allow
 function request(headers) {
   return ["GET / HTTP/1.1", ...Object.entries(headers).map(([k, v]) => `${k}: ${v}`)].join("\r\n");
 }

@@ -63,6 +63,12 @@
       "category": "product-source-or-build-manifest"
     },
     {
+      "path": ".gitleaksignore",
+      "sha256": "d1072a19b389c4883049e42a4ec3c1b5928671ff08d72ae442961625e335d8d3",
+      "bytes": 362,
+      "category": "product-source-or-build-manifest"
+    },
+    {
       "path": ".mise/config.toml",
       "sha256": "d69e7c3d89fac7fa9e51cc09c43a2441c0ec1b55bee773067c42a0f0eb7024b3",
       "bytes": 151,
@@ -784,8 +790,8 @@
     },
     {
       "path": "test/activity.test.mjs",
-      "sha256": "c3e44a53e19a41816997492a0497a258f72a71591d4939f34b1a34b3d88b8aaa",
-      "bytes": 24897,
+      "sha256": "67d034b54ca9db5eb38bf8aae5e863f73775256cedc16fa9a6a511d0296c3d5d",
+      "bytes": 24952,
       "category": "synthetic-test-source-or-fixture"
     },
     {
