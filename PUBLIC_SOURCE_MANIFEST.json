@@ -52,14 +52,20 @@
     },
     {
       "path": ".github/workflows/source-check.yml",
-      "sha256": "358e5a4097b47799b027d10bfcba84e690652f45475469d729b69b8d30e1bab6",
-      "bytes": 1372,
+      "sha256": "0518e2395c89bded9ef13aa6ba0fb01aac68b7ef84abb8a9e75f54eb9c5fd434",
+      "bytes": 1379,
       "category": "reviewed-build-and-ci"
     },
     {
       "path": ".gitignore",
       "sha256": "dd74ac7825938a13654ea4a0deb16bb3ccbd7e61ac550af7d3c323f19c91468a",
       "bytes": 1820,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": ".gitleaksignore",
+      "sha256": "d1072a19b389c4883049e42a4ec3c1b5928671ff08d72ae442961625e335d8d3",
+      "bytes": 362,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -148,8 +154,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "9b75d0f5acaf23581434388d75bb84078380f7fb826f8d6c43b0f6ef999c646f",
-      "bytes": 16031,
+      "sha256": "9643ed2a1bce5bf45aee3ced6dc95bb24c17d7ec568a442fb3e6fb85fbe1b788",
+      "bytes": 19635,
       "category": "public-documentation"
     },
     {
@@ -196,8 +202,8 @@
     },
     {
       "path": "RELEASE.json",
-      "sha256": "f05e72f577fea7b314927f1ce73ea3147c80971b1b95aeb5d8b765f5a8f15713",
-      "bytes": 285,
+      "sha256": "fb6352ebda81be93ee8d61aa2c62f51cffd0e3dc37aad09318f7ac8ace016b2d",
+      "bytes": 299,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -214,8 +220,8 @@
     },
     {
       "path": "ZRZUR_RELEASE.md",
-      "sha256": "084274bdb245ccc5d0d0368500ad4d688fc021897c2aa92e1075f721e14f2b46",
-      "bytes": 1303,
+      "sha256": "347aa952e6f580088d7b44db0dca70cabbba98428d7038c99fe7df59f77cd466",
+      "bytes": 1618,
       "category": "public-documentation"
     },
     {
@@ -400,8 +406,8 @@
     },
     {
       "path": "package.json",
-      "sha256": "54ed421e5cae0b28daa479a61c21d1ed90bba6646e840a4bedeea3a9d493723d",
-      "bytes": 2601,
+      "sha256": "982d437859dd4c5934c03ba604e9bd9983526ca7862c2706bf2263d584ca99f4",
+      "bytes": 2608,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -508,8 +514,56 @@
     },
     {
       "path": "src/main.ts",
-      "sha256": "edf317bfe6d9437a287832631c119b3b250ee2ba0790c427ee007b59f3187609",
-      "bytes": 7644,
+      "sha256": "5ce9bbfe3c15c56a1ada7b48912bd97d727d37e5daf5a6c47f7d7b1453219b9e",
+      "bytes": 7714,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/activity/compat.ts",
+      "sha256": "1eca6e3de19f642b9ac6cb8de9c3ef3281afa79845048ee6529298581ed17c53",
+      "bytes": 1106,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/activity/detectable.json",
+      "sha256": "b0cc26039e003cb4d098c09ca980aa27ab7bdcb73d84711ad3e163f994ed125d",
+      "bytes": 24269,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/activity/detection.ts",
+      "sha256": "4eb88159b3e4a8f85bbbfa0d6dddf729f11fea105286931fde0f153c4dd1a6a3",
+      "bytes": 9480,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/activity/frames.ts",
+      "sha256": "e086198a5cf2ad5d818f1c5fbb2637f1eedcb4817a49f6f65d036285deef9346",
+      "bytes": 3113,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/activity/index.ts",
+      "sha256": "4ae1b9bbd3c993a26831d3622e738970a1d69db924bcb6bf702edae89f3fcf6f",
+      "bytes": 30575,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/activity/rpcProtocol.ts",
+      "sha256": "08feed8347fa8bc35e962c30c14dc85655ab99a2e09b3c5b8d534fd9c791ef09",
+      "bytes": 10437,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/activity/sites.ts",
+      "sha256": "276f31c37bd7f892bb1a0b1e17716d1f2ab95d12bc9e1798deab4a62954b1cf8",
+      "bytes": 1524,
+      "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "src/native/activity/websocket.ts",
+      "sha256": "b0cfb210844cc8b214484e8840dbadc469c406240bee1f0278c027f3568ff39a",
+      "bytes": 7690,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -724,8 +778,8 @@
     },
     {
       "path": "src/world/window.ts",
-      "sha256": "9565ca706fec1982e0eecf2151d736935ebfa2251f8ece9976d621692a8a3e4e",
-      "bytes": 3488,
+      "sha256": "adfbeff8076123f30cc3e9e016367b7e792977dbab1cacfcd74659e1893cf173",
+      "bytes": 6062,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -733,6 +787,12 @@
       "sha256": "38112cb9c11723ef70ea481e79e98ea1236466c48ed234d2a6ac6da78b9b3271",
       "bytes": 288,
       "category": "product-source-or-build-manifest"
+    },
+    {
+      "path": "test/activity.test.mjs",
+      "sha256": "67d034b54ca9db5eb38bf8aae5e863f73775256cedc16fa9a6a511d0296c3d5d",
+      "bytes": 24952,
+      "category": "synthetic-test-source-or-fixture"
     },
     {
       "path": "test/applicationUrl.test.mjs",

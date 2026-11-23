@@ -1,0 +1,1531 @@
+[
+  {
+    "id": "game.counter-strike-2",
+    "name": "Counter-Strike 2",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "cs2.exe"
+      ],
+      "linux": [
+        "cs2"
+      ]
+    },
+    "hint": [
+      "steamapps"
+    ]
+  },
+  {
+    "id": "game.dota-2",
+    "name": "Dota 2",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "dota2.exe"
+      ],
+      "mac": [
+        "dota2"
+      ],
+      "linux": [
+        "dota2"
+      ]
+    },
+    "hint": [
+      "steamapps"
+    ]
+  },
+  {
+    "id": "game.team-fortress-2",
+    "name": "Team Fortress 2",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "tf_win64.exe",
+        "tf.exe"
+      ],
+      "linux": [
+        "tf_linux64"
+      ]
+    },
+    "hint": [
+      "steamapps"
+    ]
+  },
+  {
+    "id": "game.deadlock",
+    "name": "Deadlock",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "deadlock.exe"
+      ]
+    },
+    "hint": [
+      "steamapps"
+    ]
+  },
+  {
+    "id": "game.apex-legends",
+    "name": "Apex Legends",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "r5apex.exe",
+        "r5apex_dx12.exe"
+      ]
+    },
+    "hint": [
+      "apex"
+    ]
+  },
+  {
+    "id": "game.valorant",
+    "name": "VALORANT",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "VALORANT-Win64-Shipping.exe"
+      ]
+    },
+    "hint": [
+      "riot games"
+    ]
+  },
+  {
+    "id": "game.league-of-legends",
+    "name": "League of Legends",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "League of Legends.exe"
+      ],
+      "mac": [
+        "LeagueofLegends"
+      ]
+    },
+    "hint": [
+      "riot games",
+      "league of legends"
+    ]
+  },
+  {
+    "id": "game.fortnite",
+    "name": "Fortnite",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "FortniteClient-Win64-Shipping.exe"
+      ]
+    },
+    "hint": [
+      "fortnite"
+    ]
+  },
+  {
+    "id": "game.rocket-league",
+    "name": "Rocket League",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "RocketLeague.exe"
+      ]
+    },
+    "hint": [
+      "rocketleague",
+      "rocket league"
+    ]
+  },
+  {
+    "id": "game.minecraft",
+    "name": "Minecraft",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Minecraft.Windows.exe",
+        "MinecraftLauncher.exe"
+      ],
+      "mac": [
+        "Minecraft"
+      ],
+      "linux": [
+        "minecraft-launcher"
+      ]
+    },
+    "hint": [
+      "minecraft"
+    ]
+  },
+  {
+    "id": "game.roblox",
+    "name": "Roblox",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "RobloxPlayerBeta.exe"
+      ],
+      "mac": [
+        "RobloxPlayer"
+      ]
+    },
+    "hint": [
+      "roblox"
+    ]
+  },
+  {
+    "id": "game.gta-v",
+    "name": "Grand Theft Auto V",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "GTA5.exe",
+        "GTA5_Enhanced.exe"
+      ]
+    },
+    "hint": [
+      "grand theft auto v",
+      "gtav",
+      "gta v"
+    ]
+  },
+  {
+    "id": "game.red-dead-redemption-2",
+    "name": "Red Dead Redemption 2",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "RDR2.exe"
+      ]
+    },
+    "hint": [
+      "red dead redemption 2"
+    ]
+  },
+  {
+    "id": "game.overwatch-2",
+    "name": "Overwatch 2",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Overwatch.exe"
+      ]
+    },
+    "hint": [
+      "overwatch"
+    ]
+  },
+  {
+    "id": "game.world-of-warcraft",
+    "name": "World of Warcraft",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Wow.exe",
+        "WowClassic.exe"
+      ],
+      "mac": [
+        "World of Warcraft"
+      ]
+    },
+    "hint": [
+      "world of warcraft"
+    ]
+  },
+  {
+    "id": "game.hearthstone",
+    "name": "Hearthstone",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Hearthstone.exe"
+      ],
+      "mac": [
+        "Hearthstone"
+      ]
+    },
+    "hint": [
+      "hearthstone"
+    ]
+  },
+  {
+    "id": "game.diablo-iv",
+    "name": "Diablo IV",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Diablo IV.exe"
+      ]
+    },
+    "hint": [
+      "diablo iv"
+    ]
+  },
+  {
+    "id": "game.call-of-duty",
+    "name": "Call of Duty",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "cod.exe",
+        "cod24-cod.exe"
+      ]
+    },
+    "hint": [
+      "call of duty"
+    ]
+  },
+  {
+    "id": "game.pubg",
+    "name": "PUBG: Battlegrounds",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "TslGame.exe"
+      ]
+    },
+    "hint": [
+      "pubg"
+    ]
+  },
+  {
+    "id": "game.rainbow-six-siege",
+    "name": "Rainbow Six Siege",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "RainbowSix.exe",
+        "RainbowSix_Vulkan.exe"
+      ]
+    },
+    "hint": [
+      "rainbow six"
+    ]
+  },
+  {
+    "id": "game.elden-ring",
+    "name": "Elden Ring",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "eldenring.exe"
+      ]
+    },
+    "hint": [
+      "elden ring"
+    ]
+  },
+  {
+    "id": "game.baldurs-gate-3",
+    "name": "Baldur's Gate 3",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "bg3.exe",
+        "bg3_dx11.exe"
+      ],
+      "mac": [
+        "Baldur's Gate 3"
+      ]
+    },
+    "hint": [
+      "baldurs gate 3",
+      "baldur's gate 3"
+    ]
+  },
+  {
+    "id": "game.cyberpunk-2077",
+    "name": "Cyberpunk 2077",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Cyberpunk2077.exe"
+      ]
+    },
+    "hint": [
+      "cyberpunk 2077"
+    ]
+  },
+  {
+    "id": "game.the-witcher-3",
+    "name": "The Witcher 3: Wild Hunt",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "witcher3.exe"
+      ]
+    },
+    "hint": [
+      "witcher 3"
+    ]
+  },
+  {
+    "id": "game.terraria",
+    "name": "Terraria",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Terraria.exe"
+      ],
+      "mac": [
+        "Terraria"
+      ],
+      "linux": [
+        "Terraria"
+      ]
+    },
+    "hint": [
+      "terraria"
+    ]
+  },
+  {
+    "id": "game.stardew-valley",
+    "name": "Stardew Valley",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Stardew Valley.exe",
+        "StardewModdingAPI.exe"
+      ],
+      "mac": [
+        "Stardew Valley"
+      ],
+      "linux": [
+        "StardewValley"
+      ]
+    },
+    "hint": [
+      "stardew valley"
+    ]
+  },
+  {
+    "id": "game.among-us",
+    "name": "Among Us",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Among Us.exe"
+      ]
+    },
+    "hint": [
+      "among us"
+    ]
+  },
+  {
+    "id": "game.fall-guys",
+    "name": "Fall Guys",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "FallGuys_client_game.exe"
+      ]
+    },
+    "hint": [
+      "fallguys",
+      "fall guys"
+    ]
+  },
+  {
+    "id": "game.genshin-impact",
+    "name": "Genshin Impact",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "GenshinImpact.exe",
+        "YuanShen.exe"
+      ]
+    },
+    "hint": [
+      "genshin impact"
+    ]
+  },
+  {
+    "id": "game.honkai-star-rail",
+    "name": "Honkai: Star Rail",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "StarRail.exe"
+      ]
+    },
+    "hint": [
+      "star rail"
+    ]
+  },
+  {
+    "id": "game.rust",
+    "name": "Rust",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "RustClient.exe"
+      ]
+    },
+    "hint": [
+      "steamapps"
+    ]
+  },
+  {
+    "id": "game.valheim",
+    "name": "Valheim",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "valheim.exe"
+      ],
+      "linux": [
+        "valheim.x86_64"
+      ]
+    },
+    "hint": [
+      "steamapps"
+    ]
+  },
+  {
+    "id": "game.palworld",
+    "name": "Palworld",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Palworld-Win64-Shipping.exe"
+      ]
+    },
+    "hint": [
+      "palworld"
+    ]
+  },
+  {
+    "id": "game.helldivers-2",
+    "name": "Helldivers 2",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "helldivers2.exe"
+      ]
+    },
+    "hint": [
+      "helldivers"
+    ]
+  },
+  {
+    "id": "game.marvel-rivals",
+    "name": "Marvel Rivals",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Marvel-Win64-Shipping.exe"
+      ]
+    },
+    "hint": [
+      "marvel"
+    ]
+  },
+  {
+    "id": "game.ea-sports-fc",
+    "name": "EA SPORTS FC",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "FC25.exe",
+        "FC26.exe"
+      ]
+    },
+    "hint": [
+      "fc 25",
+      "fc 26",
+      "fc25",
+      "fc26"
+    ]
+  },
+  {
+    "id": "game.efootball",
+    "name": "eFootball",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "eFootball.exe"
+      ]
+    },
+    "hint": [
+      "efootball"
+    ]
+  },
+  {
+    "id": "game.dead-by-daylight",
+    "name": "Dead by Daylight",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "DeadByDaylight-Win64-Shipping.exe"
+      ]
+    },
+    "hint": [
+      "dead by daylight"
+    ]
+  },
+  {
+    "id": "game.warframe",
+    "name": "Warframe",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Warframe.x64.exe"
+      ]
+    },
+    "hint": [
+      "warframe"
+    ]
+  },
+  {
+    "id": "game.path-of-exile-2",
+    "name": "Path of Exile 2",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "PathOfExile.exe",
+        "PathOfExileSteam.exe"
+      ]
+    },
+    "hint": [
+      "path of exile"
+    ]
+  },
+  {
+    "id": "game.lethal-company",
+    "name": "Lethal Company",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Lethal Company.exe"
+      ]
+    },
+    "hint": [
+      "lethal company"
+    ]
+  },
+  {
+    "id": "game.phasmophobia",
+    "name": "Phasmophobia",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "Phasmophobia.exe"
+      ]
+    },
+    "hint": [
+      "phasmophobia"
+    ]
+  },
+  {
+    "id": "game.sea-of-thieves",
+    "name": "Sea of Thieves",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "SoTGame.exe"
+      ]
+    },
+    "hint": [
+      "sea of thieves",
+      "seaofthieves"
+    ]
+  },
+  {
+    "id": "game.the-sims-4",
+    "name": "The Sims 4",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "TS4_x64.exe"
+      ],
+      "mac": [
+        "The Sims 4"
+      ]
+    },
+    "hint": [
+      "sims 4"
+    ]
+  },
+  {
+    "id": "game.age-of-empires-ii",
+    "name": "Age of Empires II: Definitive Edition",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "AoE2DE_s.exe"
+      ]
+    },
+    "hint": [
+      "aoe2de",
+      "age of empires ii"
+    ]
+  },
+  {
+    "id": "game.civilization-vi",
+    "name": "Sid Meier's Civilization VI",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "CivilizationVI.exe",
+        "CivilizationVI_DX12.exe"
+      ],
+      "mac": [
+        "Civ6"
+      ],
+      "linux": [
+        "Civ6"
+      ]
+    },
+    "hint": [
+      "civilization vi"
+    ]
+  },
+  {
+    "id": "game.osu",
+    "name": "osu!",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "osu!.exe"
+      ]
+    },
+    "hint": [
+      "osu"
+    ]
+  },
+  {
+    "id": "game.geometry-dash",
+    "name": "Geometry Dash",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "GeometryDash.exe"
+      ]
+    },
+    "hint": [
+      "geometry dash"
+    ]
+  },
+  {
+    "id": "game.hollow-knight",
+    "name": "Hollow Knight",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "hollow_knight.exe"
+      ],
+      "mac": [
+        "Hollow Knight"
+      ],
+      "linux": [
+        "hollow_knight.x86_64"
+      ]
+    },
+    "hint": [
+      "hollow knight"
+    ]
+  },
+  {
+    "id": "game.factorio",
+    "name": "Factorio",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "factorio.exe"
+      ],
+      "mac": [
+        "factorio"
+      ],
+      "linux": [
+        "factorio"
+      ]
+    },
+    "hint": [
+      "factorio"
+    ]
+  },
+  {
+    "id": "game.satisfactory",
+    "name": "Satisfactory",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "FactoryGameSteam-Win64-Shipping.exe",
+        "FactoryGameEGS-Win64-Shipping.exe"
+      ]
+    },
+    "hint": [
+      "satisfactory"
+    ]
+  },
+  {
+    "id": "game.euro-truck-simulator-2",
+    "name": "Euro Truck Simulator 2",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "eurotrucks2.exe"
+      ],
+      "mac": [
+        "eurotrucks2"
+      ],
+      "linux": [
+        "eurotrucks2"
+      ]
+    },
+    "hint": [
+      "euro truck simulator 2"
+    ]
+  },
+  {
+    "id": "game.war-thunder",
+    "name": "War Thunder",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "aces.exe"
+      ]
+    },
+    "hint": [
+      "war thunder"
+    ]
+  },
+  {
+    "id": "game.world-of-tanks",
+    "name": "World of Tanks",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "WorldOfTanks.exe"
+      ]
+    },
+    "hint": [
+      "world_of_tanks",
+      "world of tanks"
+    ]
+  },
+  {
+    "id": "game.mobile-legends",
+    "name": "Mobile Legends: Bang Bang",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "MobileLegends.exe"
+      ]
+    },
+    "hint": [
+      "mobile legends"
+    ]
+  },
+  {
+    "id": "game.free-fire",
+    "name": "Free Fire",
+    "category": "game",
+    "kind": "Playing",
+    "exe": {
+      "win": [
+        "FreeFireTH.exe"
+      ]
+    },
+    "hint": [
+      "free fire"
+    ]
+  },
+  {
+    "id": "app.visual-studio-code",
+    "name": "Visual Studio Code",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Code.exe"
+      ],
+      "mac": [
+        "Electron",
+        "Code"
+      ],
+      "linux": [
+        "code"
+      ]
+    },
+    "hint": [
+      "microsoft vs code",
+      "visual studio code.app",
+      "/usr/share/code",
+      "/opt/visual-studio-code",
+      "/snap/code"
+    ]
+  },
+  {
+    "id": "app.visual-studio",
+    "name": "Visual Studio",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "devenv.exe"
+      ]
+    },
+    "hint": [
+      "microsoft visual studio"
+    ]
+  },
+  {
+    "id": "app.intellij-idea",
+    "name": "IntelliJ IDEA",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "idea64.exe"
+      ],
+      "mac": [
+        "idea"
+      ],
+      "linux": [
+        "idea.sh",
+        "idea"
+      ]
+    },
+    "hint": [
+      "intellij idea",
+      "idea"
+    ]
+  },
+  {
+    "id": "app.android-studio",
+    "name": "Android Studio",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "studio64.exe"
+      ],
+      "mac": [
+        "studio"
+      ],
+      "linux": [
+        "studio.sh",
+        "studio"
+      ]
+    },
+    "hint": [
+      "android studio"
+    ]
+  },
+  {
+    "id": "app.pycharm",
+    "name": "PyCharm",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "pycharm64.exe"
+      ],
+      "mac": [
+        "pycharm"
+      ],
+      "linux": [
+        "pycharm.sh",
+        "pycharm"
+      ]
+    },
+    "hint": [
+      "pycharm"
+    ]
+  },
+  {
+    "id": "app.google-chrome",
+    "name": "Google Chrome",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "chrome.exe"
+      ],
+      "mac": [
+        "Google Chrome"
+      ],
+      "linux": [
+        "chrome"
+      ]
+    },
+    "hint": [
+      "google/chrome",
+      "google chrome.app",
+      "/opt/google/chrome"
+    ]
+  },
+  {
+    "id": "app.microsoft-edge",
+    "name": "Microsoft Edge",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "msedge.exe"
+      ],
+      "mac": [
+        "Microsoft Edge"
+      ],
+      "linux": [
+        "msedge"
+      ]
+    },
+    "hint": [
+      "microsoft/edge",
+      "microsoft edge.app",
+      "/opt/microsoft/msedge"
+    ]
+  },
+  {
+    "id": "app.firefox",
+    "name": "Firefox",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "firefox.exe"
+      ],
+      "mac": [
+        "firefox"
+      ],
+      "linux": [
+        "firefox",
+        "firefox-bin"
+      ]
+    },
+    "hint": [
+      "mozilla firefox",
+      "firefox.app",
+      "firefox"
+    ]
+  },
+  {
+    "id": "app.brave",
+    "name": "Brave",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "brave.exe"
+      ],
+      "mac": [
+        "Brave Browser"
+      ],
+      "linux": [
+        "brave"
+      ]
+    },
+    "hint": [
+      "bravesoftware",
+      "brave browser.app",
+      "brave"
+    ]
+  },
+  {
+    "id": "app.opera",
+    "name": "Opera",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "opera.exe"
+      ],
+      "mac": [
+        "Opera"
+      ],
+      "linux": [
+        "opera"
+      ]
+    },
+    "hint": [
+      "opera"
+    ]
+  },
+  {
+    "id": "app.photoshop",
+    "name": "Adobe Photoshop",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Photoshop.exe"
+      ],
+      "mac": [
+        "Adobe Photoshop 2025",
+        "Adobe Photoshop 2026"
+      ]
+    },
+    "hint": [
+      "adobe"
+    ]
+  },
+  {
+    "id": "app.illustrator",
+    "name": "Adobe Illustrator",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Illustrator.exe"
+      ],
+      "mac": [
+        "Adobe Illustrator"
+      ]
+    },
+    "hint": [
+      "adobe"
+    ]
+  },
+  {
+    "id": "app.premiere-pro",
+    "name": "Adobe Premiere Pro",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Adobe Premiere Pro.exe"
+      ],
+      "mac": [
+        "Adobe Premiere Pro 2025",
+        "Adobe Premiere Pro 2026"
+      ]
+    },
+    "hint": [
+      "adobe"
+    ]
+  },
+  {
+    "id": "app.after-effects",
+    "name": "Adobe After Effects",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "AfterFX.exe"
+      ],
+      "mac": [
+        "After Effects"
+      ]
+    },
+    "hint": [
+      "adobe"
+    ]
+  },
+  {
+    "id": "app.blender",
+    "name": "Blender",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "blender.exe"
+      ],
+      "mac": [
+        "Blender"
+      ],
+      "linux": [
+        "blender"
+      ]
+    },
+    "hint": [
+      "blender"
+    ]
+  },
+  {
+    "id": "app.figma",
+    "name": "Figma",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Figma.exe"
+      ],
+      "mac": [
+        "Figma"
+      ]
+    },
+    "hint": [
+      "figma"
+    ]
+  },
+  {
+    "id": "app.gimp",
+    "name": "GIMP",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "gimp-2.10.exe",
+        "gimp-3.0.exe",
+        "gimp.exe"
+      ],
+      "mac": [
+        "gimp"
+      ],
+      "linux": [
+        "gimp",
+        "gimp-2.10",
+        "gimp-3.0"
+      ]
+    },
+    "hint": [
+      "gimp"
+    ]
+  },
+  {
+    "id": "app.krita",
+    "name": "Krita",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "krita.exe"
+      ],
+      "mac": [
+        "krita"
+      ],
+      "linux": [
+        "krita"
+      ]
+    },
+    "hint": [
+      "krita"
+    ]
+  },
+  {
+    "id": "app.inkscape",
+    "name": "Inkscape",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "inkscape.exe"
+      ],
+      "mac": [
+        "inkscape"
+      ],
+      "linux": [
+        "inkscape"
+      ]
+    },
+    "hint": [
+      "inkscape"
+    ]
+  },
+  {
+    "id": "app.davinci-resolve",
+    "name": "DaVinci Resolve",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Resolve.exe"
+      ],
+      "mac": [
+        "Resolve"
+      ],
+      "linux": [
+        "resolve"
+      ]
+    },
+    "hint": [
+      "davinci resolve",
+      "blackmagic"
+    ]
+  },
+  {
+    "id": "app.obs-studio",
+    "name": "OBS Studio",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "obs64.exe"
+      ],
+      "mac": [
+        "obs",
+        "OBS"
+      ],
+      "linux": [
+        "obs"
+      ]
+    },
+    "hint": [
+      "obs-studio",
+      "obs.app",
+      "obs"
+    ]
+  },
+  {
+    "id": "app.audacity",
+    "name": "Audacity",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Audacity.exe"
+      ],
+      "mac": [
+        "Audacity"
+      ],
+      "linux": [
+        "audacity"
+      ]
+    },
+    "hint": [
+      "audacity"
+    ]
+  },
+  {
+    "id": "app.unity",
+    "name": "Unity Editor",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Unity.exe"
+      ],
+      "mac": [
+        "Unity"
+      ],
+      "linux": [
+        "Unity"
+      ]
+    },
+    "hint": [
+      "unity"
+    ]
+  },
+  {
+    "id": "app.unreal-editor",
+    "name": "Unreal Editor",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "UnrealEditor.exe"
+      ],
+      "mac": [
+        "UnrealEditor"
+      ],
+      "linux": [
+        "UnrealEditor"
+      ]
+    },
+    "hint": [
+      "epic games",
+      "unreal"
+    ]
+  },
+  {
+    "id": "app.godot",
+    "name": "Godot Engine",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Godot.exe",
+        "Godot_v4.exe"
+      ],
+      "mac": [
+        "Godot"
+      ],
+      "linux": [
+        "godot",
+        "godot4"
+      ]
+    },
+    "hint": [
+      "godot"
+    ]
+  },
+  {
+    "id": "app.notion",
+    "name": "Notion",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Notion.exe"
+      ],
+      "mac": [
+        "Notion"
+      ]
+    },
+    "hint": [
+      "notion"
+    ]
+  },
+  {
+    "id": "app.obsidian",
+    "name": "Obsidian",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "Obsidian.exe"
+      ],
+      "mac": [
+        "Obsidian"
+      ],
+      "linux": [
+        "obsidian"
+      ]
+    },
+    "hint": [
+      "obsidian"
+    ]
+  },
+  {
+    "id": "app.libreoffice",
+    "name": "LibreOffice",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "soffice.exe"
+      ],
+      "mac": [
+        "soffice"
+      ],
+      "linux": [
+        "soffice.bin"
+      ]
+    },
+    "hint": [
+      "libreoffice"
+    ]
+  },
+  {
+    "id": "app.microsoft-word",
+    "name": "Microsoft Word",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "WINWORD.EXE"
+      ],
+      "mac": [
+        "Microsoft Word"
+      ]
+    },
+    "hint": [
+      "microsoft office",
+      "microsoft word.app"
+    ]
+  },
+  {
+    "id": "app.microsoft-excel",
+    "name": "Microsoft Excel",
+    "category": "app",
+    "kind": "Using",
+    "exe": {
+      "win": [
+        "EXCEL.EXE"
+      ],
+      "mac": [
+        "Microsoft Excel"
+      ]
+    },
+    "hint": [
+      "microsoft office",
+      "microsoft excel.app"
+    ]
+  },
+  {
+    "id": "app.spotify",
+    "name": "Spotify",
+    "category": "app",
+    "kind": "Listening",
+    "exe": {
+      "win": [
+        "Spotify.exe"
+      ],
+      "mac": [
+        "Spotify"
+      ],
+      "linux": [
+        "spotify"
+      ]
+    },
+    "hint": [
+      "spotify"
+    ]
+  },
+  {
+    "id": "app.vlc",
+    "name": "VLC media player",
+    "category": "app",
+    "kind": "Watching",
+    "exe": {
+      "win": [
+        "vlc.exe"
+      ],
+      "mac": [
+        "VLC"
+      ],
+      "linux": [
+        "vlc"
+      ]
+    },
+    "hint": [
+      "videolan",
+      "vlc"
+    ]
+  }
+]
