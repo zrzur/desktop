@@ -70,6 +70,8 @@ contextBridge.exposeInMainWorld("native", {
   // while the page says the person shares their activity.
   activity: {
     state: () => ipcRenderer.invoke("activityState"),
+    /** The system's icons of programs on this computer, as data URLs */
+    icons: () => ipcRenderer.invoke("activityIcons"),
     current: () => ipcRenderer.invoke("activityCurrent"),
     setSharing: (on: boolean) =>
       ipcRenderer.invoke("activitySetSharing", on === true),
