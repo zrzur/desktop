@@ -4,7 +4,10 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
+  desktopActivity,
   detect,
+  isOff,
+  linkLabel,
   matches,
   namesNeedingPath,
   otherChatAppRunning,
@@ -14,8 +17,10 @@ import {
   parseTasklist,
   platformOf,
   procEntry,
+  nextOverride,
   userEntry,
   validateList,
+  withListPicture,
 } from "../src/native/activity/detection.ts";
 import {
   FrameError,
@@ -346,6 +351,95 @@ test("a program the person adds keeps its folder as the hint", () => {
   assert.equal(matches(entry, { pid: 6, name: "mygame.exe", path: "C:\\Games\\My Game\\MyGame.exe" }, "win"), true);
   assert.equal(matches(entry, { pid: 7, name: "MyGame.exe", path: "C:\\Temp\\MyGame.exe" }, "win"), false);
   assert.equal(userEntry(0, { pid: 1, name: "tool" }, "linux", "", "Using").name, "tool");
+});
+
+/* Pictures, links and browsers (activity v2) */
+
+test("every entry links its official page; nearly all carry a picture and say where it comes from", () => {
+  for (const entry of list) {
+    assert.ok(entry.url?.startsWith("https://"), `${entry.id} has no https url`);
+    if (entry.icon) {
+      assert.ok(entry.icon.startsWith("https://"), `${entry.id} icon`);
+      assert.ok(entry.iconSource?.length > 5, `${entry.id} has a picture without its source`);
+    }
+  }
+  assert.ok(list.filter((e) => e.icon).length >= 80);
+  assert.deepEqual(
+    list.filter((e) => e.browser).map((e) => e.id).sort(),
+    ["app.brave", "app.firefox", "app.google-chrome", "app.microsoft-edge", "app.opera"],
+  );
+});
+
+test("the list checker refuses plain-http pictures, pictures without a source and browser games", () => {
+  const base = { id: "app.x", name: "X", category: "app", kind: "Using", exe: { win: ["x.exe"] } };
+  const problems = validateList([
+    { ...base, icon: "http://example.com/x.png", iconSource: "somewhere" },
+    { ...base, id: "app.y", icon: "https://example.com/y.png" },
+    { ...base, id: "app.z", url: "javascript:alert(1)" },
+    { ...base, id: "game.w", category: "game", kind: "Playing", browser: true },
+  ]);
+  assert.ok(problems.some((p) => p.includes("app.x") && p.includes("icon")));
+  assert.ok(problems.some((p) => p.includes("app.y") && p.includes("source")));
+  assert.ok(problems.some((p) => p.includes("app.z") && p.includes("url")));
+  assert.ok(problems.some((p) => p.includes("game.w") && p.includes("browser")));
+});
+
+const chrome = list.find((e) => e.id === "app.google-chrome");
+const chromeRunning = [{ pid: 30, name: "chrome.exe", path: "C:/Program Files/Google/Chrome/Application/chrome.exe" }];
+
+test("browsers stay hidden until the person turns them on", () => {
+  assert.equal(isOff(chrome, undefined), true);
+  assert.equal(isOff(chrome, { off: false }), false);
+  assert.equal(isOff(cs2, undefined), false);
+  assert.equal(isOff(cs2, { off: true }), true);
+  assert.equal(detect(chromeRunning, list, {}, "win"), undefined);
+  assert.equal(detect(chromeRunning, list, { "app.google-chrome": { off: false } }, "win").entry.id, "app.google-chrome");
+});
+
+test("a change that matches the default is not stored", () => {
+  assert.deepEqual(nextOverride(chrome, undefined, { off: false }), { off: false });
+  assert.equal(nextOverride(chrome, { off: false }, { off: true }), undefined);
+  assert.deepEqual(nextOverride(cs2, undefined, { off: true }), { off: true });
+  assert.equal(nextOverride(cs2, { off: true }, { off: false }), undefined);
+  assert.deepEqual(nextOverride(cs2, undefined, { name: "  CS  " }), { name: "CS" });
+  assert.equal(nextOverride(cs2, { name: "CS" }, { name: "" }), undefined);
+  assert.deepEqual(nextOverride(chrome, { off: false }, { name: "Web" }), { off: false, name: "Web" });
+});
+
+test("others see the list's picture and official page, never for a renamed or added program", () => {
+  const since = "2026-11-25T10:00:00.000Z";
+  assert.deepEqual(desktopActivity(cs2, false, since), {
+    type: "Playing",
+    name: "Counter-Strike 2",
+    started_at: since,
+    large_image: cs2.icon,
+    buttons: [{ label: "store.steampowered.com", url: cs2.url }],
+  });
+  // a new name hides what it really is: no picture, no link that would say it
+  assert.deepEqual(desktopActivity({ ...cs2, name: "Something" }, true, since), {
+    type: "Playing",
+    name: "Something",
+    started_at: since,
+  });
+  const added = userEntry(0, { pid: 5, name: "Mine.exe", path: "C:/Games/Mine.exe" }, "win", "Mine", "Playing");
+  assert.deepEqual(desktopActivity(added, false, since), { type: "Playing", name: "Mine", started_at: since });
+  assert.equal(linkLabel("https://www.blackmagicdesign.com/products/davinciresolve"), "blackmagicdesign.com");
+  assert.equal(linkLabel("https://a-very-long-subdomain-name.example-company-website.com/"), undefined);
+  assert.equal(linkLabel("not a url"), undefined);
+});
+
+test("an app's own report without a picture gets the list's picture, never over its own", () => {
+  const own = { type: "Playing", name: "Counter-Strike 2", large_image: "https://cdn.example/own.png" };
+  assert.equal(withListPicture(own, cs2).large_image, "https://cdn.example/own.png");
+  assert.equal(withListPicture({ type: "Playing", name: "CS2" }, cs2).large_image, cs2.icon);
+  assert.equal(withListPicture({ type: "Playing", name: "CS2" }, undefined).large_image, undefined);
+  assert.equal(withListPicture({ type: "Using", name: "Chrome" }, { ...chrome, id: "user.1" }).large_image, undefined);
+});
+
+test("a program the person adds keeps its own path, on this computer only", () => {
+  const entry = userEntry(1, { pid: 5, name: "Mine.exe", path: "C:/Games/Mine.exe" }, "win", "Mine", "Using");
+  assert.equal(entry.path, "C:/Games/Mine.exe");
+  assert.equal(desktopActivity(entry, false, "2026-11-25T10:00:00.000Z").large_image, undefined);
 });
 
 /* The extension's WebSocket */

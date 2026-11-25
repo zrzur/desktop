@@ -14,7 +14,10 @@
     },
     "hint": [
       "steamapps"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/730/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/730/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 730 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.dota-2",
@@ -34,7 +37,10 @@
     },
     "hint": [
       "steamapps"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/570/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/570/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 570 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.team-fortress-2",
@@ -52,7 +58,10 @@
     },
     "hint": [
       "steamapps"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/440/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/440/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 440 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.deadlock",
@@ -66,7 +75,10 @@
     },
     "hint": [
       "steamapps"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1422450/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1422450/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1422450 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.apex-legends",
@@ -81,7 +93,10 @@
     },
     "hint": [
       "apex"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1172470/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1172470/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1172470 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.valorant",
@@ -95,7 +110,10 @@
     },
     "hint": [
       "riot games"
-    ]
+    ],
+    "url": "https://playvalorant.com/",
+    "icon": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/cbf4460132cdfeb2a97fad5f9dd25ba0bc058f76-128x128.png",
+    "iconSource": "Riot Games, playvalorant.com site icon"
   },
   {
     "id": "game.league-of-legends",
@@ -113,7 +131,10 @@
     "hint": [
       "riot games",
       "league of legends"
-    ]
+    ],
+    "url": "https://www.leagueoflegends.com/",
+    "icon": "https://cmsassets.rgpub.io/sanity/images/dsfx7636/content_organization_live/fe7ae6c859e8c5a66324d6eea597f23bdc1f354a-104x104.png",
+    "iconSource": "Riot Games, leagueoflegends.com site icon"
   },
   {
     "id": "game.fortnite",
@@ -127,7 +148,10 @@
     },
     "hint": [
       "fortnite"
-    ]
+    ],
+    "url": "https://www.fortnite.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f3/68/0a/f3680a12-042c-a886-4724-b4714629eaaf/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Fortnite\" by Epic Games Sweden AB (Apple CDN, app 6483539426)"
   },
   {
     "id": "game.rocket-league",
@@ -142,7 +166,10 @@
     "hint": [
       "rocketleague",
       "rocket league"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/252950/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/252950/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 252950 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.minecraft",
@@ -163,7 +190,10 @@
     },
     "hint": [
       "minecraft"
-    ]
+    ],
+    "url": "https://www.minecraft.net/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/fb/a7/be/fba7bef5-248f-e255-da11-dd06a30e3828/AppIcon-0-0-1x_U007emarketing-0-10-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Minecraft: Play with Friends!\" by Mojang AB (Apple CDN, app 479516143)"
   },
   {
     "id": "game.roblox",
@@ -180,7 +210,10 @@
     },
     "hint": [
       "roblox"
-    ]
+    ],
+    "url": "https://www.roblox.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/05/b8/b8/05b8b8cc-1410-a32b-eb2c-3e24acd99189/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Roblox\" by Roblox Corporation (Apple CDN, app 431946152)"
   },
   {
     "id": "game.gta-v",
@@ -197,7 +230,10 @@
       "grand theft auto v",
       "gtav",
       "gta v"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/271590/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/271590/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 271590 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.red-dead-redemption-2",
@@ -211,7 +247,10 @@
     },
     "hint": [
       "red dead redemption 2"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1174180/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1174180/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1174180 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.overwatch-2",
@@ -225,7 +264,10 @@
     },
     "hint": [
       "overwatch"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/2357570/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/2357570/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 2357570 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.world-of-warcraft",
@@ -243,7 +285,8 @@
     },
     "hint": [
       "world of warcraft"
-    ]
+    ],
+    "url": "https://worldofwarcraft.blizzard.com/"
   },
   {
     "id": "game.hearthstone",
@@ -260,7 +303,10 @@
     },
     "hint": [
       "hearthstone"
-    ]
+    ],
+    "url": "https://hearthstone.blizzard.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c3/ef/57/c3ef5751-c50e-3be1-c5b4-7e8dbc48b133/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Hearthstone\" by Blizzard Entertainment, Inc. (Apple CDN, app 625257520)"
   },
   {
     "id": "game.diablo-iv",
@@ -274,7 +320,10 @@
     },
     "hint": [
       "diablo iv"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/2344520/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/2344520/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 2344520 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.call-of-duty",
@@ -289,7 +338,10 @@
     },
     "hint": [
       "call of duty"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1938090/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1938090/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1938090 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.pubg",
@@ -303,7 +355,10 @@
     },
     "hint": [
       "pubg"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/578080/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/578080/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 578080 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.rainbow-six-siege",
@@ -318,7 +373,10 @@
     },
     "hint": [
       "rainbow six"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/359550/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/359550/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 359550 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.elden-ring",
@@ -332,7 +390,10 @@
     },
     "hint": [
       "elden ring"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1245620/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1245620/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1245620 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.baldurs-gate-3",
@@ -351,7 +412,10 @@
     "hint": [
       "baldurs gate 3",
       "baldur's gate 3"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1086940/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1086940/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1086940 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.cyberpunk-2077",
@@ -365,7 +429,10 @@
     },
     "hint": [
       "cyberpunk 2077"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1091500/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1091500/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1091500 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.the-witcher-3",
@@ -379,7 +446,10 @@
     },
     "hint": [
       "witcher 3"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/292030/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/292030/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 292030 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.terraria",
@@ -399,7 +469,10 @@
     },
     "hint": [
       "terraria"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/105600/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/105600/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 105600 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.stardew-valley",
@@ -420,7 +493,10 @@
     },
     "hint": [
       "stardew valley"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/413150/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/413150/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 413150 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.among-us",
@@ -434,7 +510,10 @@
     },
     "hint": [
       "among us"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/945360/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/945360/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 945360 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.fall-guys",
@@ -449,7 +528,10 @@
     "hint": [
       "fallguys",
       "fall guys"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1097150/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1097150/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1097150 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.genshin-impact",
@@ -464,7 +546,10 @@
     },
     "hint": [
       "genshin impact"
-    ]
+    ],
+    "url": "https://genshin.hoyoverse.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/15/9e/b1/159eb1a7-fc58-2b43-b330-c5e619a77e2d/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Genshin Impact\" by COGNOSPHERE PTE. LTD. (Apple CDN, app 1517783697)"
   },
   {
     "id": "game.honkai-star-rail",
@@ -478,7 +563,10 @@
     },
     "hint": [
       "star rail"
-    ]
+    ],
+    "url": "https://hsr.hoyoverse.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b9/19/0a/b9190ac1-9dfc-6d88-5ac4-96dd4e6d6ff4/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Honkai: Star Rail\" by COGNOSPHERE PTE. LTD. (Apple CDN, app 1599719154)"
   },
   {
     "id": "game.rust",
@@ -492,7 +580,10 @@
     },
     "hint": [
       "steamapps"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/252490/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/252490/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 252490 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.valheim",
@@ -509,7 +600,10 @@
     },
     "hint": [
       "steamapps"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/892970/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/892970/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 892970 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.palworld",
@@ -523,7 +617,10 @@
     },
     "hint": [
       "palworld"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1623730/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1623730/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1623730 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.helldivers-2",
@@ -537,7 +634,10 @@
     },
     "hint": [
       "helldivers"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/553850/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/553850/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 553850 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.marvel-rivals",
@@ -551,7 +651,10 @@
     },
     "hint": [
       "marvel"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/2767030/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/2767030/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 2767030 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.ea-sports-fc",
@@ -569,7 +672,8 @@
       "fc 26",
       "fc25",
       "fc26"
-    ]
+    ],
+    "url": "https://www.ea.com/games/ea-sports-fc"
   },
   {
     "id": "game.efootball",
@@ -583,7 +687,10 @@
     },
     "hint": [
       "efootball"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1665460/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1665460/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1665460 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.dead-by-daylight",
@@ -597,7 +704,10 @@
     },
     "hint": [
       "dead by daylight"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/381210/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/381210/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 381210 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.warframe",
@@ -611,7 +721,10 @@
     },
     "hint": [
       "warframe"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/230410/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/230410/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 230410 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.path-of-exile-2",
@@ -626,7 +739,10 @@
     },
     "hint": [
       "path of exile"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/2694490/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/2694490/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 2694490 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.lethal-company",
@@ -640,7 +756,10 @@
     },
     "hint": [
       "lethal company"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1966720/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1966720/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1966720 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.phasmophobia",
@@ -654,7 +773,10 @@
     },
     "hint": [
       "phasmophobia"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/739630/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/739630/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 739630 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.sea-of-thieves",
@@ -669,7 +791,10 @@
     "hint": [
       "sea of thieves",
       "seaofthieves"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1172620/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1172620/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1172620 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.the-sims-4",
@@ -686,7 +811,10 @@
     },
     "hint": [
       "sims 4"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1222670/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1222670/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1222670 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.age-of-empires-ii",
@@ -701,7 +829,10 @@
     "hint": [
       "aoe2de",
       "age of empires ii"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/813780/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/813780/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 813780 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.civilization-vi",
@@ -722,7 +853,10 @@
     },
     "hint": [
       "civilization vi"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/289070/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/289070/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 289070 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.osu",
@@ -736,7 +870,10 @@
     },
     "hint": [
       "osu"
-    ]
+    ],
+    "url": "https://osu.ppy.sh/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Osu%21_Logo_2016.svg/250px-Osu%21_Logo_2016.svg.png",
+    "iconSource": "Wikimedia Commons File:Osu! Logo 2016.svg (Public domain)"
   },
   {
     "id": "game.geometry-dash",
@@ -750,7 +887,10 @@
     },
     "hint": [
       "geometry dash"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/322170/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/322170/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 322170 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.hollow-knight",
@@ -770,7 +910,10 @@
     },
     "hint": [
       "hollow knight"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/367520/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/367520/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 367520 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.factorio",
@@ -790,7 +933,10 @@
     },
     "hint": [
       "factorio"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/427520/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/427520/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 427520 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.satisfactory",
@@ -805,7 +951,10 @@
     },
     "hint": [
       "satisfactory"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/526870/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/526870/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 526870 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.euro-truck-simulator-2",
@@ -825,7 +974,10 @@
     },
     "hint": [
       "euro truck simulator 2"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/227300/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/227300/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 227300 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.war-thunder",
@@ -839,7 +991,10 @@
     },
     "hint": [
       "war thunder"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/236390/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/236390/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 236390 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.world-of-tanks",
@@ -854,7 +1009,10 @@
     "hint": [
       "world_of_tanks",
       "world of tanks"
-    ]
+    ],
+    "url": "https://store.steampowered.com/app/1407200/",
+    "icon": "https://shared.steamstatic.com/store_item_assets/steam/apps/1407200/library_600x900.jpg",
+    "iconSource": "Steam store library capsule of app 1407200 (Valve CDN), publisher artwork"
   },
   {
     "id": "game.mobile-legends",
@@ -868,7 +1026,10 @@
     },
     "hint": [
       "mobile legends"
-    ]
+    ],
+    "url": "https://m.mobilelegends.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b7/fd/ba/b7fdba2a-85f3-e759-d96a-c58d487812ca/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Mobile Legends: Bang Bang\" by MOONTON (Apple CDN, app 1160056295)"
   },
   {
     "id": "game.free-fire",
@@ -882,7 +1043,10 @@
     },
     "hint": [
       "free fire"
-    ]
+    ],
+    "url": "https://ff.garena.com/",
+    "icon": "https://cdn.wildflamestudio.com/common/web_event/common/images/logo.png",
+    "iconSource": "Garena, ff.garena.com site icon"
   },
   {
     "id": "app.visual-studio-code",
@@ -907,7 +1071,10 @@
       "/usr/share/code",
       "/opt/visual-studio-code",
       "/snap/code"
-    ]
+    ],
+    "url": "https://code.visualstudio.com/",
+    "icon": "https://code.visualstudio.com/assets/apple-touch-icon.png",
+    "iconSource": "Microsoft, code.visualstudio.com site icon"
   },
   {
     "id": "app.visual-studio",
@@ -921,7 +1088,10 @@
     },
     "hint": [
       "microsoft visual studio"
-    ]
+    ],
+    "url": "https://visualstudio.microsoft.com/",
+    "icon": "https://visualstudio.microsoft.com/wp-content/themes/Avada-Child-Theme/assets/img/favicon/favicon-512.png",
+    "iconSource": "Microsoft, visualstudio.microsoft.com site icon"
   },
   {
     "id": "app.intellij-idea",
@@ -943,7 +1113,10 @@
     "hint": [
       "intellij idea",
       "idea"
-    ]
+    ],
+    "url": "https://www.jetbrains.com/idea/",
+    "icon": "https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA_icon.png",
+    "iconSource": "JetBrains brand resources"
   },
   {
     "id": "app.android-studio",
@@ -964,7 +1137,10 @@
     },
     "hint": [
       "android studio"
-    ]
+    ],
+    "url": "https://developer.android.com/studio",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Android_Studio_icon_%282023%29.svg/250px-Android_Studio_icon_%282023%29.svg.png",
+    "iconSource": "Wikimedia Commons File:Android Studio icon (2023).svg (CC BY 2.5)"
   },
   {
     "id": "app.pycharm",
@@ -985,7 +1161,10 @@
     },
     "hint": [
       "pycharm"
-    ]
+    ],
+    "url": "https://www.jetbrains.com/pycharm/",
+    "icon": "https://resources.jetbrains.com/storage/products/company/brand/logos/PyCharm_icon.png",
+    "iconSource": "JetBrains brand resources"
   },
   {
     "id": "app.google-chrome",
@@ -1007,7 +1186,11 @@
       "google/chrome",
       "google chrome.app",
       "/opt/google/chrome"
-    ]
+    ],
+    "browser": true,
+    "url": "https://www.google.com/chrome/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/40/9f/f2/409ff2f3-6b72-3b9f-fa48-26f3d27b3324/AppIcon-0-0-1x_U007epad-0-0-0-1-0-0-sRGB-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Google Chrome\" by Google LLC (Apple CDN, app 535886823)"
   },
   {
     "id": "app.microsoft-edge",
@@ -1029,7 +1212,11 @@
       "microsoft/edge",
       "microsoft edge.app",
       "/opt/microsoft/msedge"
-    ]
+    ],
+    "browser": true,
+    "url": "https://www.microsoft.com/edge",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/02/63/54/02635443-d947-5cd6-c964-bfeeb0b85e77/AppIcon-0-0-1x_U007epad-0-0-0-1-0-0-sRGB-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Microsoft Edge\" by Microsoft Corporation (Apple CDN, app 1288723196)"
   },
   {
     "id": "app.firefox",
@@ -1052,7 +1239,11 @@
       "mozilla firefox",
       "firefox.app",
       "firefox"
-    ]
+    ],
+    "browser": true,
+    "url": "https://www.firefox.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ca/84/a9/ca84a915-6a34-3c74-70b1-4da7c16c1e35/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Firefox Fast & Private Browser\" by Mozilla Corporation (Apple CDN, app 989804926)"
   },
   {
     "id": "app.brave",
@@ -1074,7 +1265,11 @@
       "bravesoftware",
       "brave browser.app",
       "brave"
-    ]
+    ],
+    "browser": true,
+    "url": "https://brave.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/9c/ec/55/9cec559a-339e-ae39-deea-7732d2059063/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Brave Browser & Search Engine\" by Brave Software, Inc. (Apple CDN, app 1052879175)"
   },
   {
     "id": "app.opera",
@@ -1094,7 +1289,11 @@
     },
     "hint": [
       "opera"
-    ]
+    ],
+    "browser": true,
+    "url": "https://www.opera.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/c0/06/69/c006692b-0835-f2ce-4a9f-dc4e19acf539/AppIcon-0-0-1x_U007emarketing-0-11-0-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Opera Browser with VPN\" by Opera Norway AS (Apple CDN, app 1411869974)"
   },
   {
     "id": "app.photoshop",
@@ -1112,7 +1311,10 @@
     },
     "hint": [
       "adobe"
-    ]
+    ],
+    "url": "https://www.adobe.com/products/photoshop.html",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d4/da/1e/d4da1efa-c555-2344-1919-93100e2b18da/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Adobe Photoshop: Photo Editor\" by Adobe Inc. (Apple CDN, app 1457771281)"
   },
   {
     "id": "app.illustrator",
@@ -1129,7 +1331,10 @@
     },
     "hint": [
       "adobe"
-    ]
+    ],
+    "url": "https://www.adobe.com/products/illustrator.html",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Adobe_Illustrator_CC_icon.svg/250px-Adobe_Illustrator_CC_icon.svg.png",
+    "iconSource": "Wikimedia Commons File:Adobe Illustrator CC icon.svg (Public domain)"
   },
   {
     "id": "app.premiere-pro",
@@ -1147,7 +1352,10 @@
     },
     "hint": [
       "adobe"
-    ]
+    ],
+    "url": "https://www.adobe.com/products/premiere.html",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/04/67/d1/0467d146-df24-033d-46cf-285b246f6846/AppIcon_Premiere-0-0-1x_U007epad-0-1-0-0-sRGB-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Adobe Premiere AI Video Editor\" by Adobe Inc. (Apple CDN, app 6742757464)"
   },
   {
     "id": "app.after-effects",
@@ -1164,7 +1372,10 @@
     },
     "hint": [
       "adobe"
-    ]
+    ],
+    "url": "https://www.adobe.com/products/aftereffects.html",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Adobe_After_Effects_CC_icon.svg/250px-Adobe_After_Effects_CC_icon.svg.png",
+    "iconSource": "Wikimedia Commons File:Adobe After Effects CC icon.svg (Public domain)"
   },
   {
     "id": "app.blender",
@@ -1184,7 +1395,10 @@
     },
     "hint": [
       "blender"
-    ]
+    ],
+    "url": "https://www.blender.org/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Logo_Blender.svg/250px-Logo_Blender.svg.png",
+    "iconSource": "Wikimedia Commons File:Logo Blender.svg (Public domain)"
   },
   {
     "id": "app.figma",
@@ -1201,7 +1415,10 @@
     },
     "hint": [
       "figma"
-    ]
+    ],
+    "url": "https://www.figma.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1b/12/a1/1b12a136-fa2c-2f5e-5b6d-d509f834073d/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Figma\" by Figma, Inc. (Apple CDN, app 1152747299)"
   },
   {
     "id": "app.gimp",
@@ -1225,7 +1442,10 @@
     },
     "hint": [
       "gimp"
-    ]
+    ],
+    "url": "https://www.gimp.org/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/45/The_GIMP_icon_-_gnome.svg/250px-The_GIMP_icon_-_gnome.svg.png",
+    "iconSource": "Wikimedia Commons File:The GIMP icon - gnome.svg (GPL)"
   },
   {
     "id": "app.krita",
@@ -1245,7 +1465,10 @@
     },
     "hint": [
       "krita"
-    ]
+    ],
+    "url": "https://krita.org/",
+    "icon": "https://krita.org/apple-touch-icon.png",
+    "iconSource": "Krita Foundation, krita.org site icon"
   },
   {
     "id": "app.inkscape",
@@ -1265,7 +1488,10 @@
     },
     "hint": [
       "inkscape"
-    ]
+    ],
+    "url": "https://inkscape.org/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Inkscape_Logo.svg/250px-Inkscape_Logo.svg.png",
+    "iconSource": "Wikimedia Commons File:Inkscape Logo.svg (CC BY-SA 3.0)"
   },
   {
     "id": "app.davinci-resolve",
@@ -1286,7 +1512,10 @@
     "hint": [
       "davinci resolve",
       "blackmagic"
-    ]
+    ],
+    "url": "https://www.blackmagicdesign.com/products/davinciresolve",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/DaVinci_Resolve_17_logo.svg/250px-DaVinci_Resolve_17_logo.svg.png",
+    "iconSource": "Wikimedia Commons File:DaVinci Resolve 17 logo.svg (Public domain)"
   },
   {
     "id": "app.obs-studio",
@@ -1309,7 +1538,10 @@
       "obs-studio",
       "obs.app",
       "obs"
-    ]
+    ],
+    "url": "https://obsproject.com/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/OBS_Studio_Logo.svg/250px-OBS_Studio_Logo.svg.png",
+    "iconSource": "Wikimedia Commons File:OBS Studio Logo.svg (Public domain)"
   },
   {
     "id": "app.audacity",
@@ -1329,7 +1561,10 @@
     },
     "hint": [
       "audacity"
-    ]
+    ],
+    "url": "https://www.audacityteam.org/",
+    "icon": "https://www.audacityteam.org/apple-touch-icon.png",
+    "iconSource": "Audacity Team, audacityteam.org site icon"
   },
   {
     "id": "app.unity",
@@ -1349,7 +1584,10 @@
     },
     "hint": [
       "unity"
-    ]
+    ],
+    "url": "https://unity.com/",
+    "icon": "https://unity.com/apple-touch-icon.png",
+    "iconSource": "Unity Technologies, unity.com site icon"
   },
   {
     "id": "app.unreal-editor",
@@ -1370,7 +1608,10 @@
     "hint": [
       "epic games",
       "unreal"
-    ]
+    ],
+    "url": "https://www.unrealengine.com/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Unreal_Engine_Logo.svg/250px-Unreal_Engine_Logo.svg.png",
+    "iconSource": "Wikimedia Commons File:Unreal Engine Logo.svg (Public domain)"
   },
   {
     "id": "app.godot",
@@ -1392,7 +1633,10 @@
     },
     "hint": [
       "godot"
-    ]
+    ],
+    "url": "https://godotengine.org/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Godot_icon.svg/250px-Godot_icon.svg.png",
+    "iconSource": "Wikimedia Commons File:Godot icon.svg (CC BY 4.0)"
   },
   {
     "id": "app.notion",
@@ -1409,7 +1653,10 @@
     },
     "hint": [
       "notion"
-    ]
+    ],
+    "url": "https://www.notion.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ea/1b/48/ea1b4840-9ee3-ab66-a482-659ced115cbb/AppIconProd-0-0-1x_U007epad-0-0-0-1-0-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Notion: Notes, Tasks, AI\" by Notion Labs, Incorporated (Apple CDN, app 1232780281)"
   },
   {
     "id": "app.obsidian",
@@ -1429,7 +1676,10 @@
     },
     "hint": [
       "obsidian"
-    ]
+    ],
+    "url": "https://obsidian.md/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/9f/6e/41/9f6e419e-d85c-d3b6-550b-40c51bf9ff26/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Obsidian - Connected Notes\" by Dynalist Inc. (Apple CDN, app 1557175442)"
   },
   {
     "id": "app.libreoffice",
@@ -1449,7 +1699,10 @@
     },
     "hint": [
       "libreoffice"
-    ]
+    ],
+    "url": "https://www.libreoffice.org/",
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/LibreOffice_7.5_Main_Icon.svg/250px-LibreOffice_7.5_Main_Icon.svg.png",
+    "iconSource": "Wikimedia Commons File:LibreOffice 7.5 Main Icon.svg (MPL 2)"
   },
   {
     "id": "app.microsoft-word",
@@ -1467,7 +1720,10 @@
     "hint": [
       "microsoft office",
       "microsoft word.app"
-    ]
+    ],
+    "url": "https://www.microsoft.com/microsoft-365/word",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/77/c7/82/77c782b2-3a4f-e4f3-6899-1acf28e0c2c9/AppIcon-0-0-1x_U007epad-0-1-0-0-sRGB-0-0-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Microsoft Word\" by Microsoft Corporation (Apple CDN, app 586447913)"
   },
   {
     "id": "app.microsoft-excel",
@@ -1485,7 +1741,10 @@
     "hint": [
       "microsoft office",
       "microsoft excel.app"
-    ]
+    ],
+    "url": "https://www.microsoft.com/microsoft-365/excel",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7c/cc/56/7ccc56ad-c025-55f9-1d76-56b4580f4752/AppIcon-0-0-1x_U007epad-0-1-0-0-sRGB-0-0-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Microsoft Excel\" by Microsoft Corporation (Apple CDN, app 586683407)"
   },
   {
     "id": "app.spotify",
@@ -1505,7 +1764,10 @@
     },
     "hint": [
       "spotify"
-    ]
+    ],
+    "url": "https://www.spotify.com/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ce/b5/1c/ceb51c33-0a63-56fb-db99-5d345728ae9e/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"Spotify: Music and Podcasts\" by Spotify (Apple CDN, app 324684580)"
   },
   {
     "id": "app.vlc",
@@ -1526,6 +1788,9 @@
     "hint": [
       "videolan",
       "vlc"
-    ]
+    ],
+    "url": "https://www.videolan.org/vlc/",
+    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8a/bc/8f/8abc8f02-7df8-3fd3-13c1-ebd03a61f9e2/AppIcon-0-0-1x_U007emarketing-0-0-0-8-0-0-85-220.png/512x512bb.jpg",
+    "iconSource": "App Store icon of \"VLC media player\" by VideoLAN (Apple CDN, app 650377962)"
   }
 ]
