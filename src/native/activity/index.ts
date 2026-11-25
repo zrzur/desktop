@@ -45,8 +45,11 @@ import {
   DetectableKind,
   Override,
   RunningProcess,
+  desktopActivity,
   detect,
+  isOff,
   namesNeedingPath,
+  nextOverride,
   otherChatAppRunning,
   parseGetProcess,
   parsePaths,
@@ -54,6 +57,7 @@ import {
   platformOf,
   procEntry,
   userEntry,
+  withListPicture,
 } from "./detection";
 import { FrameError, FrameReader, encodeFrame } from "./frames";
 import { DataActivity, RpcConnection } from "./rpcProtocol";
@@ -182,11 +186,10 @@ function current(): ActivityUpdate {
       (top.pid === detected.pid ||
         top.activity.name.toLowerCase() === detected.entry.name.toLowerCase());
     if (!sameAsApp) {
-      desktop = {
-        type: detected.entry.kind,
-        name: detected.entry.name,
-        started_at: detected.since,
-      };
+      // a program on the list brings its picture and official page, unless
+      // the person renamed it
+      const renamed = !!settings().overrides[detected.entry.id]?.name;
+      desktop = desktopActivity(detected.entry, renamed, detected.since);
     }
   }
   return {
@@ -418,6 +421,18 @@ function programPath(pid: number | undefined): string | undefined {
   return running.find((p) => p.pid === pid)?.path ?? pathCache.get(pid);
 }
 
+/**
+ * The list entry behind a pid, when it is on Zrzur's own list and keeps its
+ * own name (a renamed one lends no picture: it would say what it is)
+ */
+function listEntryOf(pid: number | undefined): Detectable | undefined {
+  const process = pid ? running.find((p) => p.pid === pid) : undefined;
+  if (!process) return undefined;
+  const found = detect([process], detectableList as Detectable[], {}, platform);
+  if (!found || settings().overrides[found.entry.id]?.name) return undefined;
+  return found.entry;
+}
+
 /** Whether a pid is a program on Zrzur's own list (shown without asking) */
 function shippedProgram(pid: number | undefined) {
   const process = pid ? running.find((p) => p.pid === pid) : undefined;
@@ -516,12 +531,15 @@ function serveRpc(compat: boolean) {
               appId: change.clientId,
               appName: shownName,
               pid: change.pid,
-              activity: {
-                ...change.activity,
-                name: change.activity.name ?? shownName,
-                // the app's own id: Trust & Safety can stop an app by it
-                application_id: change.clientId,
-              },
+              activity: withListPicture(
+                {
+                  ...change.activity,
+                  name: change.activity.name ?? shownName,
+                  // the app's own id: Trust & Safety can stop an app by it
+                  application_id: change.clientId,
+                },
+                listEntryOf(change.pid),
+              ),
               at: Date.now(),
             },
           ];
@@ -833,9 +851,14 @@ function state() {
       originalName: entry.name,
       category: entry.category,
       kind: entry.kind,
-      off: !!s.overrides[entry.id]?.off,
+      off: isOff(entry, s.overrides[entry.id]),
       added: entry.id.startsWith("user."),
       running: detected?.entry.id === entry.id,
+      // the list's picture (the page loads it through Zrzur's image proxy)
+      // and official page; a program you added has its own icon instead
+      icon: entry.id.startsWith("user.") ? undefined : entry.icon,
+      url: entry.id.startsWith("user.") ? undefined : entry.url,
+      browser: !!entry.browser,
     })),
     apps: s.apps.map((a) => ({
       ...a,
@@ -850,6 +873,48 @@ function state() {
     /** The common-name pipe is open now (closed while the other app runs) */
     compatOpen: !!compatServer,
   };
+}
+
+/* The system's own icons, for the settings list on this computer only:
+   never sent to the server or anyone else */
+const iconCache = new Map<string, string | null>();
+const ICON_CACHE_MAX = 200;
+
+async function iconOf(path: string | undefined): Promise<string | undefined> {
+  if (!path) return undefined;
+  if (iconCache.has(path)) return iconCache.get(path) ?? undefined;
+  let url: string | null = null;
+  try {
+    const image = await app.getFileIcon(path, { size: "normal" });
+    url = image.isEmpty() ? null : image.toDataURL();
+  } catch {
+    url = null;
+  }
+  if (iconCache.size >= ICON_CACHE_MAX) iconCache.clear();
+  iconCache.set(path, url);
+  return url ?? undefined;
+}
+
+/**
+ * Icons by id for the settings list: programs the person added, list
+ * entries running now without a picture of their own, and apps that
+ * reported (`app:<id>`), each from the program's file on this computer
+ */
+async function localIcons(): Promise<Record<string, string>> {
+  const out: Record<string, string> = {};
+  const jobs: Promise<void>[] = [];
+  const want = (key: string, path: string | undefined) =>
+    jobs.push(
+      iconOf(path).then((url) => {
+        if (url) out[key] = url;
+      }),
+    );
+  for (const entry of settings().added) want(entry.id, entry.path);
+  if (detected && !detected.entry.icon && !detected.entry.id.startsWith("user."))
+    want(detected.entry.id, programPath(detected.pid));
+  for (const a of settings().apps) if (a.path) want(`app:${a.id}`, a.path);
+  await Promise.all(jobs);
+  return out;
 }
 
 /** Programs running now that the person could add (names only) */
@@ -896,6 +961,7 @@ export function initActivity() {
   });
 
   handle("activityState", () => state());
+  handle("activityIcons", () => localIcons());
   handle("activityCurrent", () => current());
 
   handle("activitySetSharing", async (_event, on: unknown) => {
@@ -918,18 +984,13 @@ export function initActivity() {
   });
 
   handle("activitySetEntry", (_event, id: unknown, change: unknown) => {
-    if (typeof id !== "string" || !list().some((entry) => entry.id === id)) return state();
+    const entry = typeof id === "string" ? list().find((e) => e.id === id) : undefined;
+    if (!entry) return state();
     const c = (change ?? {}) as { name?: unknown; off?: unknown };
-    const overrides = { ...settings().overrides };
-    const next: Override = { ...overrides[id] };
-    if (typeof c.name === "string") {
-      const name = c.name.trim().slice(0, 128);
-      if (name) next.name = name;
-      else delete next.name;
-    }
-    if (typeof c.off === "boolean") next.off = c.off;
-    if (!next.name && !next.off) delete overrides[id];
-    else overrides[id] = next;
+    const overrides: Record<string, Override> = { ...settings().overrides };
+    const next = nextOverride(entry, overrides[entry.id], c);
+    if (next) overrides[entry.id] = next;
+    else delete overrides[entry.id];
     kv.set("overrides", overrides);
     void scan();
     return state();
