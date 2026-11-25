@@ -150,8 +150,8 @@
       "fortnite"
     ],
     "url": "https://www.fortnite.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/f3/68/0a/f3680a12-042c-a886-4724-b4714629eaaf/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Fortnite\" by Epic Games Sweden AB (Apple CDN, app 6483539426)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Fortnite_logo_padded.svg/250px-Fortnite_logo_padded.svg.png",
+    "iconSource": "Wikimedia Commons File:Fortnite logo padded.svg (Public domain)"
   },
   {
     "id": "game.rocket-league",
@@ -192,8 +192,8 @@
       "minecraft"
     ],
     "url": "https://www.minecraft.net/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/fb/a7/be/fba7bef5-248f-e255-da11-dd06a30e3828/AppIcon-0-0-1x_U007emarketing-0-10-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Minecraft: Play with Friends!\" by Mojang AB (Apple CDN, app 479516143)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/Minecraft_cube.svg/250px-Minecraft_cube.svg.png",
+    "iconSource": "Wikimedia Commons File:Minecraft cube.svg (Public domain)"
   },
   {
     "id": "game.roblox",
@@ -212,8 +212,8 @@
       "roblox"
     ],
     "url": "https://www.roblox.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/05/b8/b8/05b8b8cc-1410-a32b-eb2c-3e24acd99189/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Roblox\" by Roblox Corporation (Apple CDN, app 431946152)"
+    "icon": "https://upload.wikimedia.org/wikipedia/commons/2/29/Roblox_Icon_Transparent.png",
+    "iconSource": "Wikimedia Commons File:Roblox Icon Transparent.png (Public domain)"
   },
   {
     "id": "game.gta-v",
@@ -305,8 +305,8 @@
       "hearthstone"
     ],
     "url": "https://hearthstone.blizzard.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/c3/ef/57/c3ef5751-c50e-3be1-c5b4-7e8dbc48b133/AppIcon-1x_U007emarketing-0-8-0-85-220-0.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Hearthstone\" by Blizzard Entertainment, Inc. (Apple CDN, app 625257520)"
+    "icon": "https://blz-contentstack-images.akamaized.net/v3/assets/blt9c12f249ac15c7ec/blt2cbf3f08528a78f9/6a4d481c515519530f5fad21/favicon.ico",
+    "iconSource": "Blizzard Entertainment, official site icon (transparent)"
   },
   {
     "id": "game.diablo-iv",
@@ -548,8 +548,8 @@
       "genshin impact"
     ],
     "url": "https://genshin.hoyoverse.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/15/9e/b1/159eb1a7-fc58-2b43-b330-c5e619a77e2d/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Genshin Impact\" by COGNOSPHERE PTE. LTD. (Apple CDN, app 1517783697)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a4/Genshin_Impact_wordmark.svg/250px-Genshin_Impact_wordmark.svg.png",
+    "iconSource": "Wikimedia Commons File:Genshin Impact wordmark.svg (Public domain)"
   },
   {
     "id": "game.honkai-star-rail",
@@ -564,9 +564,7 @@
     "hint": [
       "star rail"
     ],
-    "url": "https://hsr.hoyoverse.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b9/19/0a/b9190ac1-9dfc-6d88-5ac4-96dd4e6d6ff4/AppIcon-0-0-1x_U007emarketing-0-8-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Honkai: Star Rail\" by COGNOSPHERE PTE. LTD. (Apple CDN, app 1599719154)"
+    "url": "https://hsr.hoyoverse.com/"
   },
   {
     "id": "game.rust",
@@ -1027,9 +1025,7 @@
     "hint": [
       "mobile legends"
     ],
-    "url": "https://m.mobilelegends.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/b7/fd/ba/b7fdba2a-85f3-e759-d96a-c58d487812ca/AppIcon-0-0-1x_U007emarketing-0-7-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Mobile Legends: Bang Bang\" by MOONTON (Apple CDN, app 1160056295)"
+    "url": "https://m.mobilelegends.com/"
   },
   {
     "id": "game.free-fire",
@@ -1090,8 +1086,8 @@
       "microsoft visual studio"
     ],
     "url": "https://visualstudio.microsoft.com/",
-    "icon": "https://visualstudio.microsoft.com/wp-content/themes/Avada-Child-Theme/assets/img/favicon/favicon-512.png",
-    "iconSource": "Microsoft, visualstudio.microsoft.com site icon"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2c/Visual_Studio_Icon_2022.svg/250px-Visual_Studio_Icon_2022.svg.png",
+    "iconSource": "Wikimedia Commons File:Visual Studio Icon 2022.svg (Public domain)"
   },
   {
     "id": "app.intellij-idea",
@@ -1115,8 +1111,8 @@
       "idea"
     ],
     "url": "https://www.jetbrains.com/idea/",
-    "icon": "https://resources.jetbrains.com/storage/products/company/brand/logos/IntelliJ_IDEA_icon.png",
-    "iconSource": "JetBrains brand resources"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9c/IntelliJ_IDEA_Icon.svg/250px-IntelliJ_IDEA_Icon.svg.png",
+    "iconSource": "Wikimedia Commons File:IntelliJ IDEA Icon.svg (Public domain)"
   },
   {
     "id": "app.android-studio",
@@ -1163,8 +1159,8 @@
       "pycharm"
     ],
     "url": "https://www.jetbrains.com/pycharm/",
-    "icon": "https://resources.jetbrains.com/storage/products/company/brand/logos/PyCharm_icon.png",
-    "iconSource": "JetBrains brand resources"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/PyCharm_Icon.svg/250px-PyCharm_Icon.svg.png",
+    "iconSource": "Wikimedia Commons File:PyCharm Icon.svg (Public domain)"
   },
   {
     "id": "app.google-chrome",
@@ -1189,8 +1185,8 @@
     ],
     "browser": true,
     "url": "https://www.google.com/chrome/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/40/9f/f2/409ff2f3-6b72-3b9f-fa48-26f3d27b3324/AppIcon-0-0-1x_U007epad-0-0-0-1-0-0-sRGB-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Google Chrome\" by Google LLC (Apple CDN, app 535886823)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e1/Google_Chrome_icon_%28February_2022%29.svg/250px-Google_Chrome_icon_%28February_2022%29.svg.png",
+    "iconSource": "Wikimedia Commons File:Google Chrome icon (February 2022).svg (Public domain)"
   },
   {
     "id": "app.microsoft-edge",
@@ -1215,8 +1211,8 @@
     ],
     "browser": true,
     "url": "https://www.microsoft.com/edge",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/02/63/54/02635443-d947-5cd6-c964-bfeeb0b85e77/AppIcon-0-0-1x_U007epad-0-0-0-1-0-0-sRGB-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Microsoft Edge\" by Microsoft Corporation (Apple CDN, app 1288723196)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/98/Microsoft_Edge_logo_%282019%29.svg/250px-Microsoft_Edge_logo_%282019%29.svg.png",
+    "iconSource": "Wikimedia Commons File:Microsoft Edge logo (2019).svg (MIT)"
   },
   {
     "id": "app.firefox",
@@ -1242,8 +1238,8 @@
     ],
     "browser": true,
     "url": "https://www.firefox.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ca/84/a9/ca84a915-6a34-3c74-70b1-4da7c16c1e35/AppIcon-0-0-1x_U007epad-0-1-0-sRGB-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Firefox Fast & Private Browser\" by Mozilla Corporation (Apple CDN, app 989804926)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/250px-Firefox_logo%2C_2019.svg.png",
+    "iconSource": "Wikimedia Commons File:Firefox logo, 2019.svg (MPL 2)"
   },
   {
     "id": "app.brave",
@@ -1268,8 +1264,8 @@
     ],
     "browser": true,
     "url": "https://brave.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/9c/ec/55/9cec559a-339e-ae39-deea-7732d2059063/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Brave Browser & Search Engine\" by Brave Software, Inc. (Apple CDN, app 1052879175)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Brave_lion_icon.svg/250px-Brave_lion_icon.svg.png",
+    "iconSource": "Wikimedia Commons File:Brave lion icon.svg (MPL 2)"
   },
   {
     "id": "app.opera",
@@ -1292,8 +1288,8 @@
     ],
     "browser": true,
     "url": "https://www.opera.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/c0/06/69/c006692b-0835-f2ce-4a9f-dc4e19acf539/AppIcon-0-0-1x_U007emarketing-0-11-0-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Opera Browser with VPN\" by Opera Norway AS (Apple CDN, app 1411869974)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Opera_2015_icon.svg/250px-Opera_2015_icon.svg.png",
+    "iconSource": "Wikimedia Commons File:Opera 2015 icon.svg (Public domain)"
   },
   {
     "id": "app.photoshop",
@@ -1313,8 +1309,8 @@
       "adobe"
     ],
     "url": "https://www.adobe.com/products/photoshop.html",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/d4/da/1e/d4da1efa-c555-2344-1919-93100e2b18da/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Adobe Photoshop: Photo Editor\" by Adobe Inc. (Apple CDN, app 1457771281)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/af/Adobe_Photoshop_CC_icon.svg/250px-Adobe_Photoshop_CC_icon.svg.png",
+    "iconSource": "Wikimedia Commons File:Adobe Photoshop CC icon.svg (Public domain)"
   },
   {
     "id": "app.illustrator",
@@ -1354,8 +1350,8 @@
       "adobe"
     ],
     "url": "https://www.adobe.com/products/premiere.html",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/04/67/d1/0467d146-df24-033d-46cf-285b246f6846/AppIcon_Premiere-0-0-1x_U007epad-0-1-0-0-sRGB-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Adobe Premiere AI Video Editor\" by Adobe Inc. (Apple CDN, app 6742757464)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/40/Adobe_Premiere_Pro_CC_icon.svg/250px-Adobe_Premiere_Pro_CC_icon.svg.png",
+    "iconSource": "Wikimedia Commons File:Adobe Premiere Pro CC icon.svg (Public domain)"
   },
   {
     "id": "app.after-effects",
@@ -1397,8 +1393,8 @@
       "blender"
     ],
     "url": "https://www.blender.org/",
-    "icon": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Logo_Blender.svg/250px-Logo_Blender.svg.png",
-    "iconSource": "Wikimedia Commons File:Logo Blender.svg (Public domain)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0c/Blender_logo_no_text.svg/250px-Blender_logo_no_text.svg.png",
+    "iconSource": "Wikimedia Commons File:Blender logo no text.svg (Public domain)"
   },
   {
     "id": "app.figma",
@@ -1417,8 +1413,8 @@
       "figma"
     ],
     "url": "https://www.figma.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/1b/12/a1/1b12a136-fa2c-2f5e-5b6d-d509f834073d/AppIcon-0-0-1x_U007epad-0-1-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Figma\" by Figma, Inc. (Apple CDN, app 1152747299)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Figma-logo.svg/250px-Figma-logo.svg.png",
+    "iconSource": "Wikimedia Commons File:Figma-logo.svg (Public domain)"
   },
   {
     "id": "app.gimp",
@@ -1467,8 +1463,8 @@
       "krita"
     ],
     "url": "https://krita.org/",
-    "icon": "https://krita.org/apple-touch-icon.png",
-    "iconSource": "Krita Foundation, krita.org site icon"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Krita-logo-plain.svg/250px-Krita-logo-plain.svg.png",
+    "iconSource": "Wikimedia Commons File:Krita-logo-plain.svg (CC BY 2.5)"
   },
   {
     "id": "app.inkscape",
@@ -1563,8 +1559,8 @@
       "audacity"
     ],
     "url": "https://www.audacityteam.org/",
-    "icon": "https://www.audacityteam.org/apple-touch-icon.png",
-    "iconSource": "Audacity Team, audacityteam.org site icon"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Audacity_4_Symbol.svg/250px-Audacity_4_Symbol.svg.png",
+    "iconSource": "Wikimedia Commons File:Audacity 4 Symbol.svg (Public domain)"
   },
   {
     "id": "app.unity",
@@ -1586,8 +1582,8 @@
       "unity"
     ],
     "url": "https://unity.com/",
-    "icon": "https://unity.com/apple-touch-icon.png",
-    "iconSource": "Unity Technologies, unity.com site icon"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c4/Unity_2021.svg/250px-Unity_2021.svg.png",
+    "iconSource": "Wikimedia Commons File:Unity 2021.svg (Public domain)"
   },
   {
     "id": "app.unreal-editor",
@@ -1655,8 +1651,8 @@
       "notion"
     ],
     "url": "https://www.notion.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple211/v4/ea/1b/48/ea1b4840-9ee3-ab66-a482-659ced115cbb/AppIconProd-0-0-1x_U007epad-0-0-0-1-0-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Notion: Notes, Tasks, AI\" by Notion Labs, Incorporated (Apple CDN, app 1232780281)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e9/Notion-logo.svg/250px-Notion-logo.svg.png",
+    "iconSource": "Wikimedia Commons File:Notion-logo.svg (Public domain)"
   },
   {
     "id": "app.obsidian",
@@ -1678,8 +1674,8 @@
       "obsidian"
     ],
     "url": "https://obsidian.md/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/9f/6e/41/9f6e419e-d85c-d3b6-550b-40c51bf9ff26/AppIcon-0-0-1x_U007epad-0-1-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Obsidian - Connected Notes\" by Dynalist Inc. (Apple CDN, app 1557175442)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/10/2023_Obsidian_logo.svg/250px-2023_Obsidian_logo.svg.png",
+    "iconSource": "Wikimedia Commons File:2023 Obsidian logo.svg (CC BY 4.0)"
   },
   {
     "id": "app.libreoffice",
@@ -1722,8 +1718,8 @@
       "microsoft word.app"
     ],
     "url": "https://www.microsoft.com/microsoft-365/word",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/77/c7/82/77c782b2-3a4f-e4f3-6899-1acf28e0c2c9/AppIcon-0-0-1x_U007epad-0-1-0-0-sRGB-0-0-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Microsoft Word\" by Microsoft Corporation (Apple CDN, app 586447913)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e8/Microsoft_Office_Word_%282025%E2%80%93present%29.svg/250px-Microsoft_Office_Word_%282025%E2%80%93present%29.svg.png",
+    "iconSource": "Wikimedia Commons File:Microsoft Office Word (2025–present).svg (Public domain)"
   },
   {
     "id": "app.microsoft-excel",
@@ -1743,8 +1739,8 @@
       "microsoft excel.app"
     ],
     "url": "https://www.microsoft.com/microsoft-365/excel",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/7c/cc/56/7ccc56ad-c025-55f9-1d76-56b4580f4752/AppIcon-0-0-1x_U007epad-0-1-0-0-sRGB-0-0-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Microsoft Excel\" by Microsoft Corporation (Apple CDN, app 586683407)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/60/Microsoft_Office_Excel_%282025%E2%80%93present%29.svg/250px-Microsoft_Office_Excel_%282025%E2%80%93present%29.svg.png",
+    "iconSource": "Wikimedia Commons File:Microsoft Office Excel (2025–present).svg (Public domain)"
   },
   {
     "id": "app.spotify",
@@ -1766,8 +1762,8 @@
       "spotify"
     ],
     "url": "https://www.spotify.com/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/ce/b5/1c/ceb51c33-0a63-56fb-db99-5d345728ae9e/AppIcon-0-0-1x_U007epad-0-1-0-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"Spotify: Music and Podcasts\" by Spotify (Apple CDN, app 324684580)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Spotify_icon.svg/250px-Spotify_icon.svg.png",
+    "iconSource": "Wikimedia Commons File:Spotify icon.svg (Public domain)"
   },
   {
     "id": "app.vlc",
@@ -1790,7 +1786,7 @@
       "vlc"
     ],
     "url": "https://www.videolan.org/vlc/",
-    "icon": "https://is1-ssl.mzstatic.com/image/thumb/Purple221/v4/8a/bc/8f/8abc8f02-7df8-3fd3-13c1-ebd03a61f9e2/AppIcon-0-0-1x_U007emarketing-0-0-0-8-0-0-85-220.png/512x512bb.jpg",
-    "iconSource": "App Store icon of \"VLC media player\" by VideoLAN (Apple CDN, app 650377962)"
+    "icon": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/VLC_Icon.svg/250px-VLC_Icon.svg.png",
+    "iconSource": "Wikimedia Commons File:VLC Icon.svg (GPL)"
   }
 ]

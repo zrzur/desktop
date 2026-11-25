@@ -370,6 +370,13 @@ test("every entry links its official page; nearly all carry a picture and say wh
   );
 });
 
+test("pictures are bare logos: no App Store tiles, Steam keeps its covers", () => {
+  // App Store artwork is a filled square tile; the owner wants the logo alone (2026-11-25)
+  assert.deepEqual(list.filter((e) => e.icon?.includes("mzstatic.com")).map((e) => e.id), []);
+  for (const e of list.filter((e) => e.icon?.includes("steamstatic.com")))
+    assert.match(e.icon, /library_600x900\.jpg$/, `${e.id} keeps its Steam cover`);
+});
+
 test("the list checker refuses plain-http pictures, pictures without a source and browser games", () => {
   const base = { id: "app.x", name: "X", category: "app", kind: "Using", exe: { win: ["x.exe"] } };
   const problems = validateList([
