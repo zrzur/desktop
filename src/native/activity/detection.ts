@@ -193,8 +193,9 @@ export function desktopActivity(
   const shown: ShownActivity = { type: entry.kind, name: entry.name, started_at: since };
   if (renamed || entry.id.startsWith("user.")) return shown;
   if (entry.icon?.startsWith("https://")) shown.large_image = entry.icon;
-  const label = entry.url?.startsWith("https://") ? linkLabel(entry.url) : undefined;
-  if (label) shown.buttons = [{ label, url: entry.url! }];
+  const url = entry.url?.startsWith("https://") ? entry.url : undefined;
+  const label = url ? linkLabel(url) : undefined;
+  if (url && label) shown.buttons = [{ label, url }];
   return shown;
 }
 
