@@ -532,8 +532,8 @@
     },
     {
       "path": "src/native/activity/detection.ts",
-      "sha256": "a445e91350fe3623a4329fea91512c9464ae69dc35ce0eab34ebc0edd54d9578",
-      "bytes": 13701,
+      "sha256": "e2672e62e870761c4068d8cf6540fd99e29052cbde93fead952301d8d6276e59",
+      "bytes": 13733,
       "category": "product-source-or-build-manifest"
     },
     {
