@@ -154,8 +154,8 @@
     },
     {
       "path": "CHANGELOG.md",
-      "sha256": "78e9070b61307f1be8107ebc47eea5ea5f59730fdcd754c0c46b2c72a5b3985f",
-      "bytes": 21325,
+      "sha256": "1a0adb1d5abab1e59238ddcf2180ce3130bb97f0085d50805a3e7e09ccbe6368",
+      "bytes": 21351,
       "category": "public-documentation"
     },
     {
@@ -526,8 +526,8 @@
     },
     {
       "path": "src/native/activity/detectable.json",
-      "sha256": "2f7a8da2fb41d29c7f3e6ad797073030dea150ad81f8fa91bcedc4f61df41db0",
-      "bytes": 47390,
+      "sha256": "4889e7175c12658dff54d9a8f296c62e61f300bfc4ddd30095329e4bb2214db3",
+      "bytes": 45922,
       "category": "product-source-or-build-manifest"
     },
     {
@@ -790,8 +790,8 @@
     },
     {
       "path": "test/activity.test.mjs",
-      "sha256": "e0f94300fdcb3a89a5d2651eb098c05b8b29db0beab5cd0c986832e115cd642f",
-      "bytes": 29942,
+      "sha256": "4b238cd9747c8a3d21d089c7075ab09a651699496ae206682e4466c0e21529ad",
+      "bytes": 30377,
       "category": "synthetic-test-source-or-fixture"
     },
     {
