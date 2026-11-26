@@ -2,6 +2,18 @@
 
 ## Unreleased
 
+## Zrzur Desktop 26.3.0 (2026-11-25)
+
+The official release of everything tested in 26.3.0-beta.1 to 26.3.0-beta.9. The Dependabot update of 27 packages (Electron 45, Forge 8, TypeScript 7, Vite 8, ESLint 10, electron-store 12) is taken back out of this release: it broke the build and lint, and needs its own tested upgrade.
+
+### Activity: real pictures, official pages, browsers off by default (2026-11-25, owner's report)
+
+* **Every program on Zrzur's list has its official page, and 84 of 88 a real picture**, each with its source recorded next to it in `detectable.json` (`iconSource`): Steam games use their Steam library art by app id; every other game and app its bare logo with a transparent background (a Wikimedia Commons logo with its licence, or the maker's own transparent site icon), never an App Store tile. Names and pictures are used only to say which program it is. World of Warcraft, EA SPORTS FC, Honkai: Star Rail and Mobile Legends have no bare logo yet and show a letter.
+* What others see of a running program now carries that picture (`large_image`) and its official page as one link (`buttons`, labelled with the site's name, e.g. `store.steampowered.com`). The server shows every outside picture through Zrzur's image proxy, so nobody's browser asks Steam, Apple or Wikimedia. An app's own report without a picture borrows the list's picture.
+* **A renamed entry sends no picture and no link**, and neither does a program you added: a new name never gives away what it hides.
+* **Browsers are off until you turn them on** (Chrome, Edge, Firefox, Brave, Opera): many people do not want their browser shown. One tap in Settings → Activity turns one on; that choice is kept, and a choice equal to the default is not stored.
+* The settings page gets each entry's picture, page and browser flag, and a new `window.native.activity.icons()` gives the system's own icons (Electron `app.getFileIcon`, as PNG data URLs) of programs you added and apps that reported. These icons stay on this computer; they are never sent.
+
 * The app tells the page which system it runs on (`window.native.platform`: `darwin`, `win32` or `linux`), so the keyboard shortcuts follow the macOS, Windows or Linux set.
 
 ### Rich presence (behind the server's `features.rich_presence`, off by default)

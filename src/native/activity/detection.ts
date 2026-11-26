@@ -32,9 +32,23 @@ export type Detectable = {
   /** Parts of the path, any one of which must be there (without case,
    * `/` and `\` alike). Empty or missing: the name is enough. */
   hint?: string[];
+  /** Official page (`https://`), shown to others as a link */
+  url?: string;
+  /**
+   * Picture (`https://`): others load it only through Zrzur's image proxy,
+   * which the server puts in front of every outside picture
+   */
+  icon?: string;
+  /** Where the picture comes from (owner, licence or store) */
+  iconSource?: string;
+  /** A web browser: hidden until the person turns it on */
+  browser?: boolean;
+  /** A program the person added: its full path, on this computer only */
+  path?: string;
 };
 
-/** What the person changed about an entry */
+/** What the person changed about an entry. `off: false` turns on an entry
+ * that is off by default (a browser). */
 export type Override = { name?: string; off?: boolean };
 
 /** A program running now */
@@ -99,7 +113,7 @@ export function detect(
   platform: Platform,
 ): Detected | undefined {
   const usable = list
-    .filter((entry) => !overrides[entry.id]?.off)
+    .filter((entry) => !isOff(entry, overrides[entry.id]))
     .map((entry) =>
       overrides[entry.id]?.name
         ? { ...entry, name: overrides[entry.id].name! }
@@ -114,6 +128,88 @@ export function detect(
     if (process) return { entry, pid: process.pid };
   }
   return undefined;
+}
+
+/** Whether an entry is off: the person's choice, else off for browsers */
+export function isOff(entry: Detectable, override: Override | undefined) {
+  return override?.off ?? !!entry.browser;
+}
+
+/**
+ * The stored override after a change from the settings page, or `undefined`
+ * when nothing differs from the list (a default is never stored)
+ */
+export function nextOverride(
+  entry: Detectable,
+  before: Override | undefined,
+  change: { name?: unknown; off?: unknown },
+): Override | undefined {
+  const next: Override = { ...before };
+  if (typeof change.name === "string") {
+    const name = change.name.trim().slice(0, 128);
+    if (name) next.name = name;
+    else delete next.name;
+  }
+  if (typeof change.off === "boolean") {
+    if (change.off === !!entry.browser) delete next.off;
+    else next.off = change.off;
+  }
+  return next.name === undefined && next.off === undefined ? undefined : next;
+}
+
+/** The longest button label the server takes */
+const LABEL_MAX = 32;
+
+/** A link's label others read in any language: the site's name, `www.` left out */
+export function linkLabel(url: string): string | undefined {
+  try {
+    const host = new URL(url).hostname.replace(/^www\./, "");
+    return host && host.length <= LABEL_MAX ? host : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+/** An activity in the API's shape (`DataActivity`), the parts sent from here */
+export type ShownActivity = {
+  type: DetectableKind;
+  name: string;
+  started_at?: string;
+  large_image?: string;
+  buttons?: { label: string; url: string }[];
+};
+
+/**
+ * What others see for a program that runs: its name and since when, and,
+ * for a program on Zrzur's own list, its picture and official page. A
+ * renamed entry carries neither (they would say what it really is), and a
+ * program the person added has none.
+ */
+export function desktopActivity(
+  entry: Detectable,
+  renamed: boolean,
+  since: string,
+): ShownActivity {
+  const shown: ShownActivity = { type: entry.kind, name: entry.name, started_at: since };
+  if (renamed || entry.id.startsWith("user.")) return shown;
+  if (entry.icon?.startsWith("https://")) shown.large_image = entry.icon;
+  const url = entry.url?.startsWith("https://") ? entry.url : undefined;
+  const label = url ? linkLabel(url) : undefined;
+  if (url && label) shown.buttons = [{ label, url }];
+  return shown;
+}
+
+/**
+ * An app's own report keeps its own picture; without one, a program on
+ * Zrzur's list lends its picture
+ */
+export function withListPicture<T extends { large_image?: string }>(
+  activity: T,
+  entry: Detectable | undefined,
+): T {
+  if (activity.large_image || !entry || entry.id.startsWith("user.")) return activity;
+  if (!entry.icon?.startsWith("https://")) return activity;
+  return { ...activity, large_image: entry.icon };
 }
 
 /**
@@ -180,8 +276,24 @@ export function validateList(list: unknown): string[] {
       if (!name || /[\\/]/.test(name)) problems.push(`${where}: executable ${name}`);
     for (const name of entry.exe?.win ?? [])
       if (!name.toLowerCase().endsWith(".exe")) problems.push(`${where}: ${name} is not an .exe`);
+    if (entry.url !== undefined && !httpsAddress(entry.url)) problems.push(`${where}: url`);
+    if (entry.icon !== undefined && !httpsAddress(entry.icon)) problems.push(`${where}: icon`);
+    if (entry.icon && !entry.iconSource) problems.push(`${where}: icon without its source`);
+    if (entry.browser !== undefined && (entry.browser !== true || entry.category !== "app"))
+      problems.push(`${where}: only an app can be a browser`);
+    if (entry.path !== undefined) problems.push(`${where}: path is for added programs only`);
   }
   return problems;
+}
+
+function httpsAddress(value: unknown) {
+  if (typeof value !== "string" || value.length > 512) return false;
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && !!url.hostname && !url.username;
+  } catch {
+    return false;
+  }
 }
 
 /* Process lists. Each needs no special permission. */
@@ -279,5 +391,7 @@ export function userEntry(
     // the folder it ran from, so a different program with the same name
     // does not count
     hint: folder ? [folder] : undefined,
+    // for its own icon in the settings list; never sent anywhere
+    path: process.path,
   };
 }
